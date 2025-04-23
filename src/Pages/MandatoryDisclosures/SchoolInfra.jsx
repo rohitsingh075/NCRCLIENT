@@ -2,6 +2,8 @@ import { useState } from "react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 
+
+
 const infrastructureData = [
   {
     title: "Total Campus Area",
@@ -37,7 +39,7 @@ const infrastructureData = [
   },
 ];
 
-export default function SchoolInfrastructure() {
+export default function SchoolInfra() {
   const [activeIndex, setActiveIndex] = useState(null);
 
   const toggleIndex = (index) => {

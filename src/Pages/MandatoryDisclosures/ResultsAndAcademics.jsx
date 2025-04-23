@@ -2,6 +2,7 @@ import { useState } from "react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 
+
 const documentData = [
   {
     title: "FEE STRUCTURE OF THE SCHOOL",
