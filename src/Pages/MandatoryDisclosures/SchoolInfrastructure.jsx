@@ -37,7 +37,7 @@ const infrastructureData = [
   },
 ];
 
-export default function SchoolInfraStructure() {
+export default function SchoolInfrastructure() {
   const [activeIndex, setActiveIndex] = useState(null);
 
   const toggleIndex = (index) => {

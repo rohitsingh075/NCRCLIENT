@@ -19,8 +19,8 @@ import GeneralInformation from './Pages/MandatoryDisclosures/GeneralInfomation.j
 import DocumentsAndInfomation from './Pages/MandatoryDisclosures/DocumetsAndInfomation.jsx';
 import ResultAndAcademics from './Pages/MandatoryDisclosures/ResultsAndAcademics.jsx';
 import TeachingStaff from './Pages/MandatoryDisclosures/TeachingStaff.jsx';
-import { SchoolIcon } from 'lucide-react';
-import SchoolInfraStructure from './Pages/MandatoryDisclosures/SchoolInfraStructure.jsx';
+import SchoolInfrastructure from './Pages/MandatoryDisclosures/SchoolInfraStructure.jsx';
+
 
 export const router= createBrowserRouter([
   {
@@ -98,7 +98,7 @@ export const router= createBrowserRouter([
   },  
   {
     path:'/school-infrastructure',
-    element: <SchoolInfraStructure/>,
+    element: <SchoolInfrastructure/>,
   },  
  
  
