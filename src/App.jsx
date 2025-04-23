@@ -19,7 +19,7 @@ import GeneralInformation from './Pages/MandatoryDisclosures/GeneralInfomation.j
 import DocumentsAndInfomation from './Pages/MandatoryDisclosures/DocumetsAndInfomation.jsx';
 import ResultAndAcademics from './Pages/MandatoryDisclosures/ResultsAndAcademics.jsx';
 import TeachingStaff from './Pages/MandatoryDisclosures/TeachingStaff.jsx';
-import SchoolInfrastructure from './Pages/MandatoryDisclosures/SchoolInfraStructure.jsx';
+import SchoolInfrastructure from './Pages/MandatoryDisclosures/SchoolInfrastructure.jsx';
 
 
 export const router= createBrowserRouter([
