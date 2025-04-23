@@ -138,7 +138,7 @@ const Navbar = () => {
               </div>
 
               {/* <a href="#" className="hover:text-blue-600">Contact</a> */}
-              <div className="bg-black hover:bg-blue-600 text-white hover:text-white px-2 py-1 ml-2 rounded-md  transition duration-300">
+              <div className="bg-black hover:bg-blue-600 text-white hover:text-white px-3 py-1.5 ml-2 rounded-md  transition duration-300">
                 <button  >
                   <Link to="/login">Login</Link>
                 </button>
