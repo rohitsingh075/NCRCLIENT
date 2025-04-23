@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
-  FaFacebookF,
-  FaInstagram,
-  FaTwitter,
-  FaYoutube,
+  // FaFacebookF,
+  // FaInstagram,
+  // FaTwitter,
+  // FaYoutube,
   FaPhoneAlt,
-  FaWhatsapp,
+  // FaWhatsapp,
   FaEnvelope,
   FaMapMarkerAlt
 } from 'react-icons/fa';
@@ -23,26 +24,26 @@ export default function Footer() {
         {/* Quick Links */}
         <div>
           <h3 className="text-lg font-bold mb-4">Quick Links</h3>
-          <ul className="space-y-2">
-            <li><a href="#" className="hover:underline">About Us</a></li>
-            <li><a href="#" className="hover:underline">Our Mission & Vision</a></li>
-            <li><a href="#" className="hover:underline">Principal's Message</a></li>
-            <li><a href="#" className="hover:underline">Media Gallery</a></li>
-            <li><a href="#" className="hover:underline">Book List</a></li>
+          <ul className="flex flex-col gap-y-2 ">
+            <Link to="/about" ><li className='hover:text-gray-900' >About  Us</li></Link>
+            <Link to="/vission-mission" ><li className='hover:text-gray-900' >Our Mission & Vision</li></Link>
+            <Link to="/principal-message" ><li className='hover:text-gray-900' >Principal's Message</li></Link>
+            <Link to="/" ><li className='hover:text-gray-900' >Media Gallery</li ></Link>
+            <Link to="/academic-curriculum" ><li className='hover:text-gray-900' >Book List</li></Link>
           </ul>
         </div>
 
         {/* Important Links */}
-        <div>
+        <div className=''>
           <h3 className="text-lg font-bold mb-4">Important Links</h3>
-          <ul className="space-y-2">
-            <li><a href="#" className="hover:underline">Admission Procedure</a></li>
-            <li><a href="#" className="hover:underline">Fee Structure</a></li>
+          <ul className="flex flex-col gap-y-2">
             {/* <li><a href="#" className="hover:underline">Apply for Admission</a></li> */}
-            <li><a href="#" className="hover:underline">Academic Curriculum</a></li>
-            <li><a href="#" className="hover:underline">Vacancies</a></li>
-            <li><a href="#" className="hover:underline">Notice</a></li>
-            <li><a href="#" className="hover:underline">Contact Us</a></li>
+            <Link to="/admission-procedure"><li className='hover:text-gray-900'>Admission Procedure</li></Link>
+            <Link to="/fee-structure"><li className='hover:text-gray-900'>Fee Structure</li></Link>
+            <Link to="/academic-curriculum"><li className='hover:text-gray-900'>Academic Curriculum</li></Link>
+            {/* <Link to="/"><li>Vacancies</li></Link>
+            <Link to="/"><li>Notice</li></Link>
+            <Link to="/"><li>Contact Us</li></Link> */}
           </ul>
         </div>
 
@@ -50,20 +51,20 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-bold mb-4">Get in touch</h3>
           <ul className="space-y-3 text-sm font-bold">
-            <li className="flex items-center gap-2"><FaWhatsapp /> +91 0000 000 000</li>
-            <li className="flex items-center gap-2"><FaPhoneAlt /> +91 0000 000 000</li>
-            <li className="flex items-center gap-2"><FaEnvelope /> abcr123@gmail.com</li>
+            {/* <li className="flex items-center gap-2"><FaWhatsapp /> +91 0000 000 000</li> */}
+            <li className="flex items-center gap-2"><FaPhoneAlt /> 05612229463</li>
+            <li className="flex items-center gap-2"><FaEnvelope /> ncrcollegetundla@rediffmail.com</li>
             <li className="flex items-start gap-2"><FaMapMarkerAlt className="mt-1" /> 
             665Q+Q6C, Company Bagh Road, Tundla, Tundla Rly. Colony, Uttar Pradesh 283204
             </li>
           </ul>
           {/* Social Icons */}
-          <div className="flex gap-4 mt-4 text-xl text-gray-600 ">
+          {/* <div className="flex gap-4 mt-4 text-xl text-gray-600 ">
             <a href="#"><FaFacebookF className="hover:text-blue-600" /></a>
             <a href="#"><FaInstagram className="hover:text-pink-500" /></a>
             <a href="#"><FaTwitter className="hover:text-blue-400" /></a>
             <a href="#"><FaYoutube className="hover:text-red-500" /></a>
-          </div>
+          </div> */}
         </div>
 
         {/* Map */}

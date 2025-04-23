@@ -5,7 +5,7 @@ import Footer from "../../Components/Footer";
 
 const documentData = [
   {
-    title: "FEE STRUCTURE OF THE SCHOOL",
+    title: "FEE STRUCTURE ",
     pdf: "../../public/resultDocuments/Fees_Structure.pdf",
   },
   {
@@ -13,15 +13,15 @@ const documentData = [
     pdf: "../../public/resultDocuments/Academic_Calendar.pdf",
   },
   {
-    title: "LIST OF SCHOOL MANAGEMENT COMMITTEE (SMC)",
+    title: "SCHOOL MANAGEMENT COMMITTEE (SMC)",
     pdf: "../../public/resultDocuments/SMC.pdf",
   },
   {
-    title: "LIST OF PARENTS TEACHERS ASSOCIATION (PTA) MEMBERS",
+    title: "PARENTS TEACHERS ASSOCIATION (PTA) MEMBERS",
     pdf: "../../public/resultDocuments/PTA.pdf",
   },
   {
-    title: "LAST THREE-YEAR RESULT OF THE BOARD EXAMINATION AS PER APPLICABILITY",
+    title: "LAST THREE-YEAR RESULT OF THE BOARD EXAMINATION ",
     pdf: "../../public/resultDocuments/Result.pdf",
   },
 //   {

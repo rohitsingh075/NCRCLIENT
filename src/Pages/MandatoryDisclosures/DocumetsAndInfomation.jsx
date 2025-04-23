@@ -4,35 +4,35 @@ import Footer from "../../Components/Footer";
 
 const documentData = [
   {
-    title: "COPIES OF AFFILIATION/UPGRADATION LETTER AND RECENT EXTENSION OF AFFILIATION, IF ANY",
+    title: "AFFILIATION LETTER",
     pdf: "../../public/schoolDocuments/Affiliationletter.pdf",
   },
   {
-    title: "COPIES OF SOCIETIES/TRUST/COMPANY REGISTRATION/RENEWAL CERTIFICATE, AS APPLICABLE",
+    title: "SCHOOL REGISTRATION CERTIFICATE",
     pdf: "../../public/schoolDocuments/School_registration.pdf",
   },
   {
-    title: "COPY OF NO OBJECTION CERTIFICATE (NOC) ISSUED, IF APPLICABLE, BY THE STATE GOVT./UT",
+    title: "NO OBJECTION CERTIFICATE (NOC) ",
     pdf: "../../public/schoolDocuments/NOC.pdf",
   },
   {
-    title: "COPIES OF RECOGNITION CERTIFICATE UNDER RTE ACT, 2009, AND ITS RENEWAL IF APPLICABLE",
+    title: "RECOGNITION CERTIFICATE ",
     pdf: "../../public/schoolDocuments/Recognition_certificate.pdf",
   },
   {
-    title: "COPY OF VALID BUILDING SAFETY CERTIFICATE AS PER THE NATIONAL BUILDING CODE",
+    title: "BUILDING SAFETY CERTIFICATE  ",
     pdf: "../../public/schoolDocuments/Building_Safety_Certificate.pdf",
   },
   {
-    title: "COPY OF VALID FIRE SAFETY CERTIFICATE ISSUED BY THE COMPETENT AUTHORITY",
+    title: "FIRE SAFETY CERTIFICATE ",
     pdf: "../../public/schoolDocuments/Fire_Safety_certificate.pdf",
   },
   {
-    title: "COPY OF THE SELF CERTIFICATION SUBMITTED BY THE SCHOOL FOR AFFILIATION/UPGRADATION/EXTENSION OF AFFILIATION",
+    title: "SELF CERTIFICATION ",
     pdf: "../../public/schoolDocuments/Self_certificate.pdf",
   },
   {
-    title: "COPIES OF VALID WATER, HEALTH AND SANITATION CERTIFICATES",
+    title: " WATER, HEALTH AND SANITATION CERTIFICATE",
     pdf: "../../public/schoolDocuments/Waterhealth_certificate.pdf",
   },
 ];

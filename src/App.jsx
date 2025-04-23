@@ -1,6 +1,7 @@
 import './App.css'
 import { createBrowserRouter} from 'react-router-dom';
 import { RouterProvider } from 'react-router-dom';
+import ScrollToTop from './Components/ScrollToTop.jsx';
 import HomePage from './Pages/HomePage/HomePage.jsx';
 import AboutSchool from './Pages/AboutUsPages/AboutSchool.jsx';
 import History from './Pages/AboutUsPages/History.jsx';
@@ -20,6 +21,13 @@ import DocumentsAndInfomation from './Pages/MandatoryDisclosures/DocumetsAndInfo
 import ResultAndAcademics from './Pages/MandatoryDisclosures/ResultsAndAcademics.jsx';
 import TeachingStaff from './Pages/MandatoryDisclosures/TeachingStaff.jsx';
 import SchoolInfra from './Pages/MandatoryDisclosures/SchoolInfra.jsx';
+import AdmissionProcedure from './Pages/AdmissionPages/AdmissionProcedure.jsx';
+import FeeStructure from './Pages/AdmissionPages/FeeStructure.jsx';
+import SchoolUniform from './Pages/RulesAndRegulations/SchoolUniform.jsx';
+import AcademicCurriculum from './Pages/AcademicPages/AcadminCurriculum.jsx';
+import AcademicCalender from './Pages/AcademicPages/AcademicCalender.jsx';
+import Facilities from './Pages/AcademicPages/Facilites.jsx';
+import NationalEducationPolicy from './Pages/AcademicPages/NationalEducationPolicy.jsx';
 
 
 
@@ -55,6 +63,10 @@ export const router= createBrowserRouter([
   {
     path:'/student-guidelines',
     element: <StudentGuidelines/>,
+  },  
+  {
+    path:'/school-uniform',
+    element: <SchoolUniform/>,
   },  
   {
     path:'/dashboard',
@@ -101,6 +113,34 @@ export const router= createBrowserRouter([
     path:'/school-infrastructure',
     element: <SchoolInfra/>,
   },  
+  {
+    path:'/admission-procedure',
+    element: <AdmissionProcedure/>,
+  },  
+  {
+    path:'/fee-structure',
+    element: <FeeStructure/>,
+  },  
+ 
+  {
+    path:'/academic-curriculum',
+    element: <AcademicCurriculum/>,
+  },  
+ 
+  {
+    path:'/facilities',
+    element: <Facilities/>,
+  },  
+ 
+  {
+    path:'/academic-calendar',
+    element: <AcademicCalender/>,
+  },  
+ 
+  {
+    path:'/nep',
+    element: <NationalEducationPolicy/>,
+  },  
  
  
 ]);
@@ -111,6 +151,7 @@ function App() {
 
   return (
     <div>
+      {/* <ScrollToTop /> */}
       <RouterProvider router={router} />
     </div>
   )
