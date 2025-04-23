@@ -20,7 +20,7 @@ import DocumentsAndInfomation from './Pages/MandatoryDisclosures/DocumetsAndInfo
 import ResultAndAcademics from './Pages/MandatoryDisclosures/ResultsAndAcademics.jsx';
 import TeachingStaff from './Pages/MandatoryDisclosures/TeachingStaff.jsx';
 import { SchoolIcon } from 'lucide-react';
-import SchoolInfrastructure from './Pages/MandatoryDisclosures/SchoolInfraStructure.jsx';
+import SchoolInfraStructure from './Pages/MandatoryDisclosures/SchoolInfraStructure.jsx';
 
 export const router= createBrowserRouter([
   {
@@ -98,7 +98,7 @@ export const router= createBrowserRouter([
   },  
   {
     path:'/school-infrastructure',
-    element: <SchoolInfrastructure/>,
+    element: <SchoolInfraStructure/>,
   },  
  
  
