@@ -26,10 +26,8 @@ export default function Footer() {
           <ul className="space-y-2">
             <li><a href="#" className="hover:underline">About Us</a></li>
             <li><a href="#" className="hover:underline">Our Mission & Vision</a></li>
-            <li><a href="#" className="hover:underline">Chairman's Message</a></li>
             <li><a href="#" className="hover:underline">Principal's Message</a></li>
             <li><a href="#" className="hover:underline">Media Gallery</a></li>
-            <li><a href="#" className="hover:underline">In The News</a></li>
             <li><a href="#" className="hover:underline">Book List</a></li>
           </ul>
         </div>
@@ -40,7 +38,7 @@ export default function Footer() {
           <ul className="space-y-2">
             <li><a href="#" className="hover:underline">Admission Procedure</a></li>
             <li><a href="#" className="hover:underline">Fee Structure</a></li>
-            <li><a href="#" className="hover:underline">Apply for Admission</a></li>
+            {/* <li><a href="#" className="hover:underline">Apply for Admission</a></li> */}
             <li><a href="#" className="hover:underline">Academic Curriculum</a></li>
             <li><a href="#" className="hover:underline">Vacancies</a></li>
             <li><a href="#" className="hover:underline">Notice</a></li>
@@ -60,7 +58,7 @@ export default function Footer() {
             </li>
           </ul>
           {/* Social Icons */}
-          <div className="flex gap-4 mt-4 text-xl text-gray-600">
+          <div className="flex gap-4 mt-4 text-xl text-gray-600 ">
             <a href="#"><FaFacebookF className="hover:text-blue-600" /></a>
             <a href="#"><FaInstagram className="hover:text-pink-500" /></a>
             <a href="#"><FaTwitter className="hover:text-blue-400" /></a>
@@ -85,7 +83,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="bg-gray-200 text-sm text-center py-3">
-        © 2025-2026 N.C.R. COLLEGE, TUNDLA. All Rights Reserved | Design By –
+        © 2025-2026 N.C.R. COLLEGE, TUNDLA. All Rights Reserved | Design By –  A.R.P Enterprises
       </div>
     </footer>
   );

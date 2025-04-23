@@ -1,12 +1,13 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade, Autoplay } from "swiper/modules";
-import image1 from "../assets/image1.jpg"
-import image2 from "../assets/image2.jpg"
-import image3 from "../assets/image3.jpg"
-import image4 from "../assets/image4.jpg"
-import images5 from "../assets/images5.jpg"
-import big_20_171 from "../assets/big_20_171.jpg"
+
+import image1 from "../assets/ncrimage1.jpg"
+import image2 from "../assets/ncrimage2.jpg"
+import image3 from "../assets/ncrimage3.jpg"
+import image4 from "../assets/ncrimage4.jpg"
+import image5 from "../assets/ncrimage5.jpg"
+
 
 // Import Swiper styles
 import "swiper/css";
@@ -19,13 +20,14 @@ const slides = [
   { id: 2, image: image2 }, 
   { id: 3, image: image3 }, 
   { id: 4, image: image4 },
-  { id: 5, image: big_20_171 },
-  { id: 6, image: images5 },
+  { id: 5, image: image5 },
+
 ];
 
 const FadeSwiper = () => {
   return (
-    <div className="w-full max-w-8xl mt-25">
+  <div className="">
+      <div className="w-full max-w-8xl mt-25  ">
       <Swiper
         modules={[Navigation, EffectFade, Autoplay]}
         effect="fade"
@@ -38,12 +40,13 @@ const FadeSwiper = () => {
           <SwiperSlide key={slide.id}>
             <img
               src={slide.image} 
-              className="w-full h-120 object-cover"
+              className="w-full h-120 object-fit select-none"
             />
           </SwiperSlide>
         ))}
       </Swiper>
     </div>
+  </div>
   );
 };
 
