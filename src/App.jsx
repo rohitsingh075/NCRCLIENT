@@ -14,6 +14,13 @@ import Students from './Pages/AdminLoginPages/Students.jsx';
 import Events from './Pages/AdminLoginPages/Events.jsx';
 import Notices from './Pages/AdminLoginPages/Notices.jsx';
 import Gallery from './Pages/AdminLoginPages/Gallery.jsx';
+import MandatoryDisclosure from './Pages/MandatoryDisclosures/MandatoryDisclosure.jsx';
+import GeneralInformation from './Pages/MandatoryDisclosures/GeneralInfomation.jsx';
+import DocumentsAndInfomation from './Pages/MandatoryDisclosures/DocumetsAndInfomation.jsx';
+import ResultAndAcademics from './Pages/MandatoryDisclosures/ResultsAndAcademics.jsx';
+import TeachingStaff from './Pages/MandatoryDisclosures/TeachingStaff.jsx';
+import { SchoolIcon } from 'lucide-react';
+import SchoolInfrastructure from './Pages/MandatoryDisclosures/SchoolInfraStructure.jsx';
 
 export const router= createBrowserRouter([
   {
@@ -67,6 +74,31 @@ export const router= createBrowserRouter([
   {
     path:'/gallery',
     element: <Gallery/>,
+  },  
+  {
+    path:'/mandatory-disclosures',
+    element: <MandatoryDisclosure/>,
+  },  
+  {
+    path:'/general-information',
+    element: <GeneralInformation/>,
+  },  
+ 
+  {
+    path:'/documents-and-information',
+    element: <DocumentsAndInfomation/>,
+  },  
+  {
+    path:'/result-and-academics',
+    element: <ResultAndAcademics/>,
+  },  
+  {
+    path:'/teaching-staff',
+    element: <TeachingStaff/>,
+  },  
+  {
+    path:'/school-infrastructure',
+    element: <SchoolInfrastructure/>,
   },  
  
  

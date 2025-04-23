@@ -65,24 +65,18 @@ const Navbar = () => {
 
               {/* Mandatory Disclosure  */}
               <div className="relative group z-50">
-                <button className="hover:text-blue-600 flex items-center">
-                  Mandatory Disclosures ▾
-                </button>
+                <Link to="/mandatory-disclosures">
+                  <button className="hover:text-blue-600 flex items-center">
+                    Mandatory Disclosures ▾
+                  </button>
+                </Link>
                 <div className="absolute left-0 mt-2 w-64 rounded-md bg-white shadow-lg ring-1 ring-black/10 opacity-0 group-hover:opacity-100 invisible group-hover:visible transform transition-all duration-200">
                   <ul className="py-2 text-sm text-gray-700">
-                    <li><a href="#" className="block px-4 py-2 hover:bg-gray-200">General Information</a></li>
-                    <li><a href="#" className="block px-4 py-2 hover:bg-gray-200">Documents and Information</a></li>
-                    <li><a href="#" className="block px-4 py-2 hover:bg-gray-200">Result and Academics</a></li>
-                    <li><a href="#" className="block px-4 py-2 hover:bg-gray-200">Staff (Teaching)</a></li>
-                    <li><a href="#" className="block px-4 py-2 hover:bg-gray-200">School Infrastructure</a></li>
-                    <li><a href="#" className="block px-4 py-2 hover:bg-gray-200">Fee Structure</a></li>
-                    <li><a href="#" className="block px-4 py-2 hover:bg-gray-200">Annual Academic Calendar</a></li>
-                    <li><a href="#" className="block px-4 py-2 hover:bg-gray-200">List of SMC Members</a></li>
-                    <li><a href="#" className="block px-4 py-2 hover:bg-gray-200">List of PTA Members</a></li>
-                    <li><a href="#" className="block px-4 py-2 hover:bg-gray-200">Last Three Years' Results</a></li>
-                    <li><a href="#" className="block px-4 py-2 hover:bg-gray-200">Building Safety Certificate</a></li>
-                    <li><a href="#" className="block px-4 py-2 hover:bg-gray-200">Fire Safety Certificate</a></li>
-                    <li><a href="#" className="block px-4 py-2 hover:bg-gray-200">Water, Health & Sanitation Certificates</a></li>
+                    <Link to="/general-information"><li className="block px-4 py-2 hover:bg-gray-200">General Information</li></Link>
+                    <Link to="/documents-and-information"><li className="block px-4 py-2 hover:bg-gray-200">Documents and Information</li></Link>
+                    <Link to="/result-and-academics"><li className="block px-4 py-2 hover:bg-gray-200">Result and Academics</li></Link>
+                    <Link to="/teaching-staff"><li className="block px-4 py-2 hover:bg-gray-200">Staff (Teaching)</li></Link>
+                    <Link to="/school-infrastructure"><li className="block px-4 py-2 hover:bg-gray-200">School Infrastructure</li></Link>
                   </ul>
                 </div>
               </div>
