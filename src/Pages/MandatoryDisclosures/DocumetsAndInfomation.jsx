@@ -5,35 +5,35 @@ import Footer from "../../Components/Footer";
 const documentData = [
   {
     title: "AFFILIATION LETTER",
-    pdf: "../../public/schoolDocuments/Affiliationletter.pdf",
+    pdf: "/schoolDocuments/Affiliationletter.pdf",
   },
   {
     title: "SCHOOL REGISTRATION CERTIFICATE",
-    pdf: "../../public/schoolDocuments/School_registration.pdf",
+    pdf: "/schoolDocuments/School_registration.pdf",
   },
   {
     title: "NO OBJECTION CERTIFICATE (NOC) ",
-    pdf: "../../public/schoolDocuments/NOC.pdf",
+    pdf: "/schoolDocuments/NOC.pdf",
   },
   {
     title: "RECOGNITION CERTIFICATE ",
-    pdf: "../../public/schoolDocuments/Recognition_certificate.pdf",
+    pdf: "/schoolDocuments/Recognition_certificate.pdf",
   },
   {
     title: "BUILDING SAFETY CERTIFICATE  ",
-    pdf: "../../public/schoolDocuments/Building_Safety_Certificate.pdf",
+    pdf: "/schoolDocuments/Building_Safety_Certificate.pdf",
   },
   {
     title: "FIRE SAFETY CERTIFICATE ",
-    pdf: "../../public/schoolDocuments/Fire_Safety_certificate.pdf",
+    pdf: "/schoolDocuments/Fire_Safety_certificate.pdf",
   },
   {
     title: "SELF CERTIFICATION ",
-    pdf: "../../public/schoolDocuments/Self_certificate.pdf",
+    pdf: "/schoolDocuments/Self_certificate.pdf",
   },
   {
     title: " WATER, HEALTH AND SANITATION CERTIFICATE",
-    pdf: "../../public/schoolDocuments/Waterhealth_certificate.pdf",
+    pdf: "/schoolDocuments/Waterhealth_certificate.pdf",
   },
 ];
 

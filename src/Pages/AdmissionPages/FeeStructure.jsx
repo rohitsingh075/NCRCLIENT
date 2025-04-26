@@ -68,7 +68,7 @@ const FeeStructure = () => {
                Fee Structure 
             </h2>
             <iframe
-              src="../../../public/resultDocuments/Fees_Structure.pdf"
+              src="/resultDocuments/Fees_Structure.pdf"
               width="100%"
               height="500px"
               className="border rounded "

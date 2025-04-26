@@ -6,23 +6,23 @@ import Footer from "../../Components/Footer";
 const documentData = [
   {
     title: "FEE STRUCTURE ",
-    pdf: "../../public/resultDocuments/Fees_Structure.pdf",
+    pdf: "/resultDocuments/Fees_Structure.pdf",
   },
   {
     title: "ANNUAL ACADEMIC CALENDER",
-    pdf: "../../public/resultDocuments/Academic_Calendar.pdf",
+    pdf: "/resultDocuments/Academic_Calendar.pdf",
   },
   {
     title: "SCHOOL MANAGEMENT COMMITTEE (SMC)",
-    pdf: "../../public/resultDocuments/SMC.pdf",
+    pdf: "/resultDocuments/SMC.pdf",
   },
   {
     title: "PARENTS TEACHERS ASSOCIATION (PTA) MEMBERS",
-    pdf: "../../public/resultDocuments/PTA.pdf",
+    pdf: "/resultDocuments/PTA.pdf",
   },
   {
     title: "LAST THREE-YEAR RESULT OF THE BOARD EXAMINATION ",
-    pdf: "../../public/resultDocuments/Result.pdf",
+    pdf: "/resultDocuments/Result.pdf",
   },
 //   {
 //     title: "COPY OF VALID FIRE SAFETY CERTIFICATE ISSUED BY THE COMPETENT AUTHORITY",

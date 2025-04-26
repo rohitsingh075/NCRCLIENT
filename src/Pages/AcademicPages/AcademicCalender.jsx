@@ -18,7 +18,7 @@ const AcademicCalender = () => {
                Academic Calendar
             </h2>
             <iframe
-              src="../../../resultDocuments/Academic_Calendar.pdf"
+              src="/resultDocuments/Academic_Calendar.pdf"
               width="100%"
               height="600px"
               className="border rounded"
