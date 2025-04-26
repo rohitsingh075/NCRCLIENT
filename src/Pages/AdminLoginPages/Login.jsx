@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import React from "react";
 import { Eye, EyeOff } from "lucide-react";
 import api from "../../../api";
+import { toast } from "react-hot-toast";
 
 
 export default function LoginPage() {
@@ -39,10 +40,12 @@ export default function LoginPage() {
             const response = await api.post('/login', formData);
             setMessage("Login successful!");
             console.log("Server response:", response.data);
-            navigate("/dashboard",{response}); // Redirect to admin dashboard or another page
+            navigate("/dashboard",{response});
+            toast.success("Logged In"); // Redirect to admin dashboard or another page
         } catch (error) {
             console.error("Login failed:", error);
             setMessage("Login failed. Please check your credentials.");
+            toast.error("Login failed check your credentials.",{style:{marginTop:"50px",zIndex:1000}});
         } finally {
             setLoading(false);
         }

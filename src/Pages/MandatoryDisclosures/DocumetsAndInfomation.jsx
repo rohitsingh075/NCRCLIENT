@@ -54,7 +54,7 @@ export default function DocumentsAndInfomation() {
         <Navbar />
       </div>
 
-      <div className="max-w-4xl mx-auto mt-25 p-4">
+      <div className="max-w-6xl mx-auto mt-25 p-4">
         <div className="border rounded p-4 bg-white shadow">
           <h2 className="text-lg font-bold text-blue-700 border-b pb-2 mb-4">
             MANDATORY DOCUMENTS

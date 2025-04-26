@@ -14,7 +14,7 @@ const Dashboard = () => {
       const data = {
         name: "John Doe",
         email: "principal@ncrcollege.edu",
-        role: "Principal",
+        role: "Admin",
       };
       setAdminData(data);
     };
@@ -23,12 +23,12 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 ">
       {/* ✅ Reusable Header with title and navigation */}
       <AdminHeader />
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-6 -mt-10  ml-64 ">
         {/* Admin Info */}
         <div className="bg-white shadow-md rounded-lg p-6 mb-8">
           <h2 className="text-xl font-bold mb-4">Welcome, {adminData.name}</h2>
@@ -40,7 +40,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Recent Activities */}
           <div className="bg-white shadow-md rounded-lg p-6">
             <h3 className="text-lg font-bold mb-4">Recent Activities</h3>
@@ -86,7 +86,7 @@ const Dashboard = () => {
           </div>
 
           {/* System Stats */}
-          <div className="bg-white shadow-md rounded-lg p-6 md:col-span-2">
+          <div className="bg-white shadow-md rounded-lg p-6  md:col-span-2">
             <h3 className="text-lg font-bold mb-4">System Stats</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-gray-700">
               <div>
