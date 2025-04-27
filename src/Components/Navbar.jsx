@@ -23,7 +23,7 @@ const Navbar = () => {
         </div>
       </div>
 <hr className="border-white"/>
-      {/* Middle Navbar /}    {/ Logo Section */}
+      {/* Middle Navbar */}    {/* Logo Section */}
       <div className="w-full bg-white py-1  flex justify-center items-center shadow-md">
         <Link to="/">
           <img src={logo} alt="NCR COLLEGE" className="w-20 h-20" />

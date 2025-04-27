@@ -1,6 +1,7 @@
 import './App.css'
 import { createBrowserRouter} from 'react-router-dom';
 import { RouterProvider } from 'react-router-dom';
+import  Layout from "./Components/Layout.jsx"
 import ScrollToTop from './Components/ScrollToTop.jsx';
 import HomePage from './Pages/HomePage/HomePage.jsx';
 import AboutSchool from './Pages/AboutUsPages/AboutSchool.jsx';
@@ -31,118 +32,39 @@ import NationalEducationPolicy from './Pages/AcademicPages/NationalEducationPoli
 
 
 
-export const router= createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage/>,
-  },
-  {
-    path: '/login',
-    element: <Login/>,
-  },
-  {
-    path:'/about',
-    element: <AboutSchool/>,
-  },  
-  {
-    path:'/history',
-    element: <History/>,
-  },  
-  {
-    path:'/vission-mission',
-    element: <VissionAndMission/>,
-  },  
-  {
-    path:'/our-goals',
-    element: <OurGoals />,
-  },  
-  {
-    path:'/principal-message',
-    element: <PrincipalMessage/>,
-  },  
-  {
-    path:'/student-guidelines',
-    element: <StudentGuidelines/>,
-  },  
-  {
-    path:'/school-uniform',
-    element: <SchoolUniform/>,
-  },  
-  {
-    path:'/dashboard',
-    element: <Dashboard/>,
-  },  
-  {
-    path:'/students',
-    element: <Students/>,
-  },  
-  {
-    path:'/events',
-    element: <Events/> ,
-  },  
-  {
-    path:'/notices',
-    element: <Notices/>,
-  },  
-  {
-    path:'/gallery',
-    element: <Gallery/>,
-  },  
-  {
-    path:'/mandatory-disclosures',
-    element: <MandatoryDisclosure/>,
-  },  
-  {
-    path:'/general-information',
-    element: <GeneralInformation/>,
-  },  
- 
-  {
-    path:'/documents-and-information',
-    element: <DocumentsAndInfomation/>,
-  },  
-  {
-    path:'/result-and-academics',
-    element: <ResultAndAcademics/>,
-  },  
-  {
-    path:'/teaching-staff',
-    element: <TeachingStaff/>,
-  },  
-  {
-    path:'/school-infrastructure',
-    element: <SchoolInfra/>,
-  },  
-  {
-    path:'/admission-procedure',
-    element: <AdmissionProcedure/>,
-  },  
-  {
-    path:'/fee-structure',
-    element: <FeeStructure/>,
-  },  
- 
-  {
-    path:'/academic-curriculum',
-    element: <AcademicCurriculum/>,
-  },  
- 
-  {
-    path:'/facilities',
-    element: <Facilities/>,
-  },  
- 
-  {
-    path:'/academic-calendar',
-    element: <AcademicCalender/>,
-  },  
- 
-  {
-    path:'/nep',
-    element: <NationalEducationPolicy/>,
-  },  
- 
- 
+    element: <Layout />,  // Wrap everything under Layout
+    children: [
+      { path: '/', element: <HomePage /> },
+      { path: '/login', element: <Login /> },
+      { path: '/about', element: <AboutSchool /> },
+      { path: '/history', element: <History /> },
+      { path: '/vission-mission', element: <VissionAndMission /> },
+      { path: '/our-goals', element: <OurGoals /> },
+      { path: '/principal-message', element: <PrincipalMessage /> },
+      { path: '/student-guidelines', element: <StudentGuidelines /> },
+      { path: '/school-uniform', element: <SchoolUniform /> },
+      { path: '/dashboard', element: <Dashboard /> },
+      { path: '/students', element: <Students /> },
+      { path: '/events', element: <Events /> },
+      { path: '/notices', element: <Notices /> },
+      { path: '/gallery', element: <Gallery /> },
+      { path: '/mandatory-disclosures', element: <MandatoryDisclosure /> },
+      { path: '/general-information', element: <GeneralInformation /> },
+      { path: '/documents-and-information', element: <DocumentsAndInfomation /> },
+      { path: '/result-and-academics', element: <ResultAndAcademics /> },
+      { path: '/teaching-staff', element: <TeachingStaff /> },
+      { path: '/school-infrastructure', element: <SchoolInfra /> },
+      { path: '/admission-procedure', element: <AdmissionProcedure /> },
+      { path: '/fee-structure', element: <FeeStructure /> },
+      { path: '/academic-curriculum', element: <AcademicCurriculum /> },
+      { path: '/facilities', element: <Facilities /> },
+      { path: '/academic-calendar', element: <AcademicCalender /> },
+      { path: '/nep', element: <NationalEducationPolicy /> },
+    ]
+  }
 ]);
 
 
@@ -151,7 +73,6 @@ function App() {
 
   return (
     <div>
-      {/* <ScrollToTop /> */}
       <RouterProvider router={router} />
     </div>
   )

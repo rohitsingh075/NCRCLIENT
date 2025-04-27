@@ -50,7 +50,7 @@ export default function GeneralInformation() {
         <Navbar />
       </div>
 
-    <div className="max-w-4xl mx-auto  mt-26 mb-12 p-6 ">
+    <div className="max-w-6xl mx-auto  mt-26 mb-12 p-6 ">
     {/* <h1 className="text-3xl font-serif italic mb-2">Public Disclosure</h1> */}
       {/* <p className="text-sm mb-6">Home &rarr; Mandatory Disclosure &rarr; Public Disclosure</p> */}
 
