@@ -10,24 +10,24 @@ const History = () => {
       <Navbar />
 
       {/* Main Content */}
-      <div className="pt-20 bg-gray-50">
+      <div className="pt-8 bg-gray-50">
         {/* History Section */}
-        <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="max-w-7xl mx-auto px-6 py-6">
           {/* <h2 className="text-red-600 text-lg font-bold uppercase mb-2">History</h2> */}
           <h1 className="text-4xl font-bold mb-6">The Legacy of North Central Railway College</h1>
-          <p className="text-gray-700 text-lg leading-relaxed mb-6">
+          <p className="text-gray-700 text-lg leading-relaxed mb-4">
             North Central Railway College, Tundla, has a remarkable history that dates back to its establishment in 1882. 
             Over the decades, the school has evolved into a prestigious institution, shaping the lives of countless students 
             and contributing to the community's growth and development.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
             {/* Left Section: Image */}
             <div>
               <img
                 src={historyImage} // Replace with actual history-related image URL
                 alt="Historical Image of School"
-                className="rounded-lg shadow-lg h-100 object-cover mb-4 md:mb-0"
+                className="rounded-lg shadow-lg h-84 object-cover mb-4 md:mb-0"
               />
             </div>
 

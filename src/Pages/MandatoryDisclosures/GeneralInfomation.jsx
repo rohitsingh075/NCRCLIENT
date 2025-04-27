@@ -45,23 +45,23 @@ export default function GeneralInformation() {
   };
 
   return (
-    <div className=" mx-auto ">
-      <div className="mt-4 mb-4">
+    <div className=" ">
+      <div className=" ">
         <Navbar />
       </div>
 
-    <div className="max-w-6xl mx-auto  mt-26 mb-12 p-6 ">
+    <div className="max-w-6xl mx-auto p-4 mb-7 ">
     {/* <h1 className="text-3xl font-serif italic mb-2">Public Disclosure</h1> */}
       {/* <p className="text-sm mb-6">Home &rarr; Mandatory Disclosure &rarr; Public Disclosure</p> */}
 
-      <div className="border rounded p-4 bg-white shadow ">
-        <h2 className="text-lg font-bold text-blue-700 border-b pb-2 mb-4">GENERAL INFORMATION</h2>
+      <div className="border rounded p-3 bg-white shadow ">
+        <h2 className="text-lg font-bold text-blue-700 border-b pb-2 mb-3">GENERAL INFORMATION</h2>
 
         {disclosureData.map((item, index) => (
           <div key={index} className="mb-2 border-1 rounded overflow-hidden">
             <button
               onClick={() => toggleIndex(index)}
-              className="w-full text-left bg-gradient-to-b from-gray-100 to-gray-200 p-3 font-semibold hover:bg-gray-100"
+              className="w-full text-left bg-gradient-to-b from-gray-100 to-gray-200 p-2.5 font-semibold hover:bg-gray-100"
             >
               <div>
               {item.title}

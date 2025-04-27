@@ -47,12 +47,12 @@ export default function SchoolInfra() {
   };
 
   return (
-    <div className=" mx-auto p-4">
-      <div className="mt-4 mb-4">
+    <div className=" ">
+      <div className="">
         <Navbar />
       </div>
 
-      <div className="max-w-6xl mx-auto p-4 mt-22 mb-12 ">
+      <div className="max-w-6xl mx-auto p-4 mt-5 mb-7 ">
       {/* <h1 className="text-3xl font-serif italic mb-2 text-green-800">School Infrastructure</h1> */}
       {/* <p className="text-sm mb-6">Home &rarr; Mandatory Disclosure &rarr; School Infrastructure</p> */}
 
@@ -63,7 +63,7 @@ export default function SchoolInfra() {
           <div key={index} className="mb-2 border rounded overflow-hidden">
             <button
               onClick={() => toggleIndex(index)}
-              className="w-full text-left bg-gradient-to-b from-gray-100 to-gray-200 p-3 font-semibold hover:bg-gray-100"
+              className="w-full text-left bg-gradient-to-b from-gray-100 to-gray-200 p-2 font-semibold hover:bg-gray-100"
             >
               {item.title}
             </button>
@@ -77,7 +77,7 @@ export default function SchoolInfra() {
       </div>
       </div>
 
-      <div className="mt-4 min-w-h-screen">
+      <div className=" ">
         <Footer />
       </div>
     </div>

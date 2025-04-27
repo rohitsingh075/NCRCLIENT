@@ -11,7 +11,7 @@ const VissionAndMission = () => {
       <Navbar />
 
       {/* Main Content */}
-      <div className="pt-20 bg-gray-50">
+      <div className=" bg-gray-50">
         {/* Vision and Mission Section */}
         <div className="max-w-7xl mx-auto px-6 py-12">
           <h1 className="text-4xl font-bold mb-6">Our Vision & Mission</h1>
@@ -43,12 +43,12 @@ const VissionAndMission = () => {
         </div>
 
         {/* Facilities Section */}
-        <div className="bg-gray-100 py-12">
+        <div className="bg-gray-100 py-3 mb-34">
           <div className="max-w-7xl mx-auto px-6">
-            <h2 className="text-3xl font-bold text-center mb-8">Facilities for Overall Development</h2>
+            {/* <h2 className="text-3xl font-bold text-center mb-8">Facilities for Overall Development</h2> */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Scout Guides Section */}
-              <div className="bg-white shadow-md rounded-lg p-6 text-center">
+              {/* <div className="bg-white shadow-md rounded-lg p-6 text-center">
                 <img
                   src={scoutLogo} // Replace with actual Scout Guides logo path
                   alt="Scout Guides Logo"
@@ -58,10 +58,10 @@ const VissionAndMission = () => {
                 <p className="text-gray-600">
                   Our Scout Guides program instills discipline, teamwork, and leadership skills in students, preparing them to be responsible citizens.
                 </p>
-              </div>
+              </div> */}
 
               {/* NCC Section */}
-              <div className="bg-white shadow-md rounded-lg p-6 text-center">
+              {/* <div className="bg-white shadow-md rounded-lg p-6 text-center">
                 <img
                   src={nccLogo} // Replace with actual NCC logo path
                   alt="NCC Logo"
@@ -71,7 +71,7 @@ const VissionAndMission = () => {
                 <p className="text-gray-600">
                   The NCC program provides students with opportunities to develop leadership, discipline, and a sense of patriotism through various activities.
                 </p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

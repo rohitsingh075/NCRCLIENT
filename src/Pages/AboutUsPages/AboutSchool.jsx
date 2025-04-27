@@ -9,7 +9,7 @@ const AboutSchool = () => {
       <Navbar />
 
       {/* Main Content */}
-      <div className="pt-20 bg-gray-50">
+      <div className="pt-1 bg-gray-50">
         {/* About School Section */}
         <div className="max-w-7xl mx-auto px-6 py-12">
           {/* <h2 className="text-red-600 text-lg font-bold uppercase mb-2">About School</h2> */}

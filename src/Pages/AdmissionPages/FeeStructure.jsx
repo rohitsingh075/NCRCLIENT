@@ -8,7 +8,7 @@ const FeeStructure = () => {
     <>
       <Navbar />
       <div className="min-h-screen bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="max-w-8xl mx-auto px-6 py-5">
           {/* <h1 className="text-2xl font-bold text-center text-blue-700 mt-200">
             Fee Structure
           </h1> */}
@@ -63,14 +63,14 @@ const FeeStructure = () => {
           </div> */}
 
           {/* PDF Viewer */}
-          <div className="bg-white shadow-lg rounded-lg p-5 mt-20 ">
+          <div className="bg-white shadow-lg rounded-lg p-5  ">
             <h2 className="text-3xl font-bold text-blue-600 mb-2">
                Fee Structure 
             </h2>
             <iframe
               src="/resultDocuments/Fees_Structure.pdf"
               width="100%"
-              height="500px"
+              height="450px"
               className="border rounded "
               title="Fee Structure "/>
           </div>

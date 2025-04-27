@@ -9,18 +9,17 @@ const OurGoals = () => {
       <Navbar />
 
       {/* Main Content */}
-      <div className="pt-20 bg-gray-50">
+      <div className="pt-8 bg-gray-50">
         {/* Goals Section */}
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          <h2 className="text-red-600 text-lg font-bold uppercase mb-2">Our Goals</h2>
-          <h1 className="text-4xl font-bold mb-6">Our Aspirations for Excellence</h1>
-          <p className="text-gray-700 text-lg leading-relaxed mb-6">
+        <div className="max-w-7xl mx-auto px-5 py-4">
+          <h1 className="text-4xl font-bold mb-3">Our Aspirations for Excellence</h1>
+          <p className="text-gray-700 text-lg leading-relaxed mb-4">
             At North Central Railway College, we strive to create an environment that fosters growth, learning, and excellence. 
             Our goals are designed to ensure that every student reaches their full potential while becoming responsible and 
             compassionate members of society.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
             {/* Goal 1 */}
             <div className="bg-white shadow-md rounded-lg p-6">
               <h2 className="text-xl font-bold mb-4">1. Academic Excellence</h2>
