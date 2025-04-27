@@ -13,7 +13,7 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-100 text-gray-700">
+    <footer className="bg-gray-900 text-white">
       {/* Top Quote Bar */}
       <div className="bg-red-800 text-white text-center py-3 text-sm md:text-base">
         Knowledge is power. Information is liberating. Education is the premise of progress, in every society, in every family.
@@ -25,11 +25,11 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-bold mb-4">Quick Links</h3>
           <ul className="flex flex-col gap-y-2 ">
-            <Link to="/about" ><li className='hover:text-gray-900' >About  Us</li></Link>
-            <Link to="/vission-mission" ><li className='hover:text-gray-900' >Our Mission & Vision</li></Link>
-            <Link to="/principal-message" ><li className='hover:text-gray-900' >Principal's Message</li></Link>
-            <Link to="/" ><li className='hover:text-gray-900' >Media Gallery</li ></Link>
-            <Link to="/academic-curriculum" ><li className='hover:text-gray-900' >Book List</li></Link>
+            <Link to="/about" ><li className='hover:text-red-400' >About  Us</li></Link>
+            <Link to="/vission-mission" ><li className='hover:text-red-400' >Our Mission & Vision</li></Link>
+            <Link to="/principal-message" ><li className='hover:text-red-400' >Principal's Message</li></Link>
+            <Link to="/" ><li className='hover:text-red-400' >Media Gallery</li ></Link>
+            <Link to="/academic-curriculum" ><li className='hover:text-red-400' >Book List</li></Link>
           </ul>
         </div>
 
@@ -38,9 +38,9 @@ export default function Footer() {
           <h3 className="text-lg font-bold mb-4">Important Links</h3>
           <ul className="flex flex-col gap-y-2">
             {/* <li><a href="#" className="hover:underline">Apply for Admission</a></li> */}
-            <Link to="/admission-procedure"><li className='hover:text-gray-900'>Admission Procedure</li></Link>
-            <Link to="/fee-structure"><li className='hover:text-gray-900'>Fee Structure</li></Link>
-            <Link to="/academic-curriculum"><li className='hover:text-gray-900'>Academic Curriculum</li></Link>
+            <Link to="/admission-procedure"><li className='hover:text-red-400'>Admission Procedure</li></Link>
+            <Link to="/fee-structure"><li className='hover:text-red-400'>Fee Structure</li></Link>
+            <Link to="/academic-curriculum"><li className='hover:text-red-400'>Academic Curriculum</li></Link>
             {/* <Link to="/"><li>Vacancies</li></Link>
             <Link to="/"><li>Notice</li></Link>
             <Link to="/"><li>Contact Us</li></Link> */}
@@ -74,7 +74,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="bg-gray-200 text-sm text-center py-3">
+      <div className="bg-gray-700 text-sm text-center py-3">
         © 2025-2026 N.C.R. COLLEGE, TUNDLA. All Rights Reserved | Design By –  A.R.P Enterprises
       </div>
     </footer>
