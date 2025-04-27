@@ -66,7 +66,7 @@ const FadeSwiper = () => {
               <div className="zoom-animation w-full h-full">
                 <img
                   src={slide.image}
-                  className="w-full h-full object-cover select-none brightness-70"
+                  className="w-full h-full object-cover select-none brightness-55"
                   alt={`Slide ${slide.id}`} // corrected alt tag
                 />
               </div>
