@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: "https://ncr-webstie-b-copy.onrender.com", // ✅ use import.meta.env here
+  baseURL: "http://localhost:8181", // ✅ use import.meta.env here
   headers: {
     'Content-Type': 'application/json',
   },

@@ -27,7 +27,7 @@ const Events = () => {
     try {
       const response = await api.get("/events/");
       console.log("Fetched events:", response);
-      if (response.data && Array.isArray(response.data.data)) {
+      if (response.data.data && Array.isArray(response.data.data)) {
         setEvents(response.data.data);
         console.log("Events:", events[0].imageUrl);
         // toast.success("All events fetched successfully!");
@@ -261,6 +261,20 @@ const Events = () => {
                     key={event._id}
                     className="border rounded-lg shadow-md p-4 bg-gray-100"
                   >
+                    <div className="flex justify-end gap-x-3 mb-4">
+                      <button
+                        onClick={() => handleEditEvent(event)}
+                        className="bg-yellow-500 text-white px-6 py-1 rounded-md hover:bg-yellow-600 transition"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDeleteEvent(event._id)}
+                        className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition"
+                      >
+                        Delete
+                      </button>
+                    </div>
                     {event.imagePath && (console.log("Image URL:", event.imagePath),
                       <img
                         src={`${baseURL}/${event.imagePath}`}
@@ -284,20 +298,6 @@ const Events = () => {
                     <p className="text-gray-700">
                       <strong>Description:</strong> {event.description}
                     </p>
-                    <div className="flex justify-between mt-4">
-                      <button
-                        onClick={() => handleEditEvent(event)}
-                        className="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600 transition"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => handleDeleteEvent(event._id)}
-                        className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition"
-                      >
-                        Delete
-                      </button>
-                    </div>
                   </div>
                 ))}
               </div>

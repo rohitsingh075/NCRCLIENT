@@ -9,7 +9,6 @@ const Notices = () => {
     title: "",
     description: "",
     date: "",
-    attachmentUrl: "",
     issuedBy: "Admin",
     important: false,
     tags: "",
@@ -17,12 +16,15 @@ const Notices = () => {
   const [editingNoticeId, setEditingNoticeId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showCreateForm, setShowCreateForm] = useState(true);
+  const [noticeUpload, setNoticeUpload] = useState(null);
+  const baseUrl = api.defaults.baseURL;
 
   // Fetch all notices
   const fetchNotices = async () => {
     setLoading(true);
     try {
       const response = await api.get("/notices/");
+      console.log("Response from server:", response);
       console.log("Fetched notices:", response.data.data);
       if (response.data.data && Array.isArray(response.data.data)) {
         setNotices(response.data.data);
@@ -40,11 +42,6 @@ const Notices = () => {
     }
   };
 
-  useEffect(() => {
-    fetchNotices();
-  }, []);
-
-  // Handle input changes
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -52,32 +49,62 @@ const Notices = () => {
       [name]: type === "checkbox" ? checked : value,
     });
   };
+  useEffect(() => {
+    fetchNotices();
+  }, []);
+
+  // Handle input changes
+
+  const handleFileChange = (e) => {
+    // Get the first file from the FileList
+    setNoticeUpload(e.target.files[0]);
+    console.log("File selected:", e.target.files[0]); // Log the actual file object
+  };
 
   // Handle form submission for creating or editing notices
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (editingNoticeId) {
-        await api.put(`/notices/${editingNoticeId}`, formData);
-        toast.success("Notice updated successfully!");
-      } else {
-        await api.post("/notices/", formData);
-        toast.success("Notice created successfully!");
+      const data = new FormData();
+
+      // Add all form fields to FormData
+      Object.entries(formData).forEach(([key, value]) => {
+        data.append(key, value);
+      });
+
+      // Add file if it exists
+      if (noticeUpload) {
+        data.append("noticeUpload", noticeUpload);
+        console.log("Appending file:", noticeUpload.name);
       }
+
+      // Debug what's in FormData
+      console.log("Form data entries:");
+      for (let pair of data.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+      }
+
+      const response = await api.post("/notices/", data, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      // Fix setEvents to setNotices
+      setNotices(prevNotices => [...prevNotices, response.data.data]);
+      toast.success("Notice created successfully!");
+
+      // Reset form
       setFormData({
         title: "",
         description: "",
         date: "",
-        attachmentUrl: "",
         issuedBy: "Admin",
         important: false,
         tags: "",
       });
-      setEditingNoticeId(null);
-      fetchNotices();
+      setNoticeUpload(null);
     } catch (error) {
-      console.error("Error submitting notice:", error.message);
-      toast.error("Failed to submit notice. Please try again.");
+      console.error("Error creating notice:", error);
+      toast.error("Failed to create notice. Please try again.");
     }
   };
 
@@ -121,9 +148,8 @@ const Notices = () => {
         <div className="flex justify-start mt-2 mb-6 font-semibold text-lg">
           <button
             onClick={() => setShowCreateForm(true)}
-            className={`px-15 py-2 text-md rounded-l-md ${
-              showCreateForm ? "bg-gray-600 text-white" : "bg-gray-200 text-gray-600"
-            } transition`}
+            className={`px-15 py-2 text-md rounded-l-md ${showCreateForm ? "bg-gray-600 text-white" : "bg-gray-200 text-gray-600"
+              } transition`}
           >
             Create
           </button>
@@ -132,9 +158,8 @@ const Notices = () => {
               setShowCreateForm(false);
               fetchNotices();
             }}
-            className={`px-15 py-2 text-md rounded-r-md ${
-              !showCreateForm ? "bg-gray-600 text-white" : "bg-gray-200 text-gray-600"
-            } transition`}
+            className={`px-15 py-2 text-md rounded-r-md ${!showCreateForm ? "bg-gray-600 text-white" : "bg-gray-200 text-gray-600"
+              } transition`}
           >
             All Notices
           </button>
@@ -146,7 +171,7 @@ const Notices = () => {
             <h2 className="text-lg font-bold mb-4">
               {editingNoticeId ? "Edit Notice" : "Create Notice"}
             </h2>
-            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4" >
               <div>
                 <label className="block font-medium mb-1">Title</label>
                 <input
@@ -170,7 +195,7 @@ const Notices = () => {
                   required
                 />
               </div>
-              <div>
+              {/* <div>
                 <label className="block font-medium mb-1">Attachment URL</label>
                 <input
                   type="text"
@@ -180,6 +205,14 @@ const Notices = () => {
                   placeholder="Attachment URL"
                   className="w-full px-4 py-2 border rounded-md"
                 />
+              </div> */}
+              <div >
+                <label className="block font-medium mb-1">Photos</label>
+                <input
+                  type="file"
+                  name="noticeUpload"
+                  onChange={handleFileChange}
+                  className="w-full  px-4 py-1 border rounded-md  file:mr-4 file:py-1 file:px-4 file:h-8 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-200 file:text-blue-700 hover:file:bg-blue-500 hover:file:text-white" />
               </div>
               <div>
                 <label className="block font-medium mb-1">Issued By</label>
@@ -242,25 +275,34 @@ const Notices = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {notices.map((notice) => (
                   <div
-                  key={notice._id}
-                  className="h-64 w-fit max-w-full border rounded-lg shadow-md p-4 bg-gray-100 overflow-auto"
-                >
-                
-                     <div className="flex justify-end mb-4 gap-x-4">
-                     <button
-                        onClick={() => handleEdit(notice)}
-                        className="bg-yellow-500 text-white px-6 py-0.5 rounded-md hover:bg-yellow-600 transition"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => handleDelete(notice._id)}
-                        className="bg-red-500 text-white px-3 py-0.5 rounded-md hover:bg-red-600 transition"
-                      >
-                        Delete
-                      </button>
-                     </div>
-                    <h3 className="text-xl font-bold mb-2">{notice.title}</h3>
+                    key={notice._id}
+                    className="h-64 w-fit max-w-full border rounded-lg shadow-md p-4 bg-gray-100 overflow-auto"
+                  >
+
+                    <div className="flex justify-between mb-4 gap-x-4">
+                      <h3 className="text-xl font-bold mb-2">{notice.title}</h3>
+                      <div className="flex gap-x-4">
+                        <button
+                          onClick={() => handleEdit(notice)}
+                          className="bg-yellow-500 text-white px-6 py-0.5 rounded-md hover:bg-yellow-600 transition"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => handleDelete(notice._id)}
+                          className="bg-red-500 text-white px-3 py-0.5 rounded-md hover:bg-red-600 transition"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                    {notice.noticeUpload && (console.log("Image URL:", notice.noticeUpload),
+                      <img
+                        src={`${baseUrl}/${notice.noticeUpload}`}
+                        alt={notice.name}
+                        className="w-96 h-62 object-fill mb-4"
+                      />
+                    )}
                     <p className="text-gray-700 mb-1">
                       <strong>Issued Date:</strong> {notice.date ? notice.date.split("T")[0] : "N/A"}
                     </p>

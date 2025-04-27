@@ -20,7 +20,7 @@ export default function Footer() {
       </div>
 
       {/* Footer Main */}
-      <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div className="max-w-7xl mx-auto px-6 py-8 gap-10  grid grid-cols-1 md:grid-cols-4 ">
         {/* Quick Links */}
         <div>
           <h3 className="text-lg font-bold mb-4">Quick Links</h3>
@@ -69,16 +69,7 @@ export default function Footer() {
 
         {/* Map */}
         <div>
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.3889220702875!2d78.2354277!3d27.209453!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397468f1a6a0ae03%3A0x163b3da1754e348a!2sNorth%20Central%20Railway%20College!5e0!3m2!1sen!2sin!4v1681739848571!5m2!1sen!2sin"
-            width="100%"
-            height="250"
-            style={{ border: 0 }}
-            allowFullScreen=""
-            loading="lazy"
-            title="NCR COLLEGE Map"
-            className="rounded-xl"
-          ></iframe>
+        <iframe className='rounded-md shadow-2xl' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3548.3089507865952!2d78.2380026!3d27.209448299999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397468f1a6a0ae03%3A0x163b3da1754e348a!2sNorth%20Central%20Railway%20College!5e0!3m2!1sen!2sin!4v1745673403324!5m2!1sen!2sin" width="250" height="250"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
 
