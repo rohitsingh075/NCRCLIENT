@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <header className="w-full relative top-0 inset-x-0 z-50">
       {/* Top Navbar */}
-      <div className="w-full bg-gray-800 text-white py-2 px-4 flex justify-end items-center">
+      <div className="w-full bg-gray-800 text-white py-1 px-4 flex justify-end items-center">
         <div className="flex space-x-8 text-lg">
           <Link to="/login" className="hover:text-red-400 font-bold ">Login</Link>
           
@@ -23,8 +23,8 @@ const Navbar = () => {
         </div>
       </div>
 <hr className="border-white"/>
-      {/* Middle Navbar */}    {/* Logo Section */}
-      <div className="w-full bg-white py-4 flex justify-center items-center shadow-md">
+      {/* Middle Navbar /}    {/ Logo Section */}
+      <div className="w-full bg-white py-1  flex justify-center items-center shadow-md">
         <Link to="/">
           <img src={logo} alt="NCR COLLEGE" className="w-20 h-20" />
         </Link>
@@ -40,7 +40,7 @@ const Navbar = () => {
       <div className="w-full bg-gray-800 text-white shadow-md">
         <div className="max-w-screen-xl mx-auto flex items-center justify-evenly py-2 px-4">
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-10 items-center text-sm font-medium">
+          <div className="hidden md:flex space-x-10 items-center text-[1rem] font-medium">
             <nav>
               <div className="flex items-center space-x-6">
                 <Link to="/" className="hover:text-red-400">Home</Link>
