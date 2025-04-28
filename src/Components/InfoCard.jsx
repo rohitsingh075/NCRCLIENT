@@ -36,23 +36,28 @@ export default function InfoCard() {
       {/* Notice and Events section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Notices */}
-        <div className="bg-white rounded-2xl border-b-6 shadow p-5">
+        <div className=" rounded-2xl border-b-6 shadow p-6 ">
           <div className="border-b pb-3 mb-4">
             <h2 className="text-xl font-bold text-gray-800">Recent Notices:</h2>
             <p href="/notices" className="text-blue-600 text-sm hover:underline flex items-center mt-1 gap-2">
               View all <span className="mt-1"><FaLongArrowAltRight /></span>
             </p>
           </div>
-          <div className=" h-96 overflow-auto space-y-7">
-            <div className="flex flex-col  ">
-              {notices.length > 0 ? notices.map((notice, i) => (
-                <div key={i} >
-                  <p className="font-medium text-gray-700">{notice.title}</p>
-                  <p href={`/notice/${notice._id}`} className="text-blue-600 text-sm hover:underline">Read More...</p>
-                </div>
-              )) : <p className="text-gray-500">No notices available</p>}
-            </div>
-          </div>
+          <div className="h-120 overflow-y-auto relative">
+  <div className="flex flex-col animate-vertical-scroll ">
+    {notices.length > 0 ? notices.map((notice, i) => (
+      <div key={i} className="flex justify-between px-4 py-4">
+        <div className="flex justify-between w-full p-4 items-center rounded-lg border-2 box-border text-lg bg-yellow-500">
+          <p className="font-medium px-6 py-2 text-gray-700 bg-blue-200">{notice.date}</p>
+          <p className="font-medium px-6 py-2 text-gray-700 bg-blue-200">{notice.title}</p>
+          <p className="font-medium text-gray-700">href={notice.description}</p>
+          <p href={`/notice/${notice._id}`} className="text-blue-600 text-sm hover:underline">Read More...</p>
+        </div>
+      </div>
+    )) : <p className="text-gray-500">No notices available</p>}
+  </div>
+</div>
+
         </div>
 
         {/* Events */}
@@ -63,19 +68,21 @@ export default function InfoCard() {
               View all <span className="mt-1"><FaLongArrowAltRight /></span>
             </p>
           </div>
-          <div className=" h-96 overflow-auto">
-            <div className="flex flex-col gap-y-7  " >
+          <div className=" h-120 overflow-auto">
+            <div className="flex flex-col  gap-y-7  " >
               {events.length > 0 ? events.map((event, i) => (
-                <div key={i} className="flex flex-col items-center   border-blue-400 border-2 rounded-lg p-4">
+                <div key={i} className="flex  items-center border-blue-400 border-2 rounded-lg p-5">
+                  <div className="grid grid-cols-2">
                   <img
                     src={`${baseUrl}/${event.imagePath}`}
                     alt={event.name}
-                    className="object-fit w-96 h-72 p-6"
+                    className="object-fit w-full h-72 p-6 box-border"
                   />
                   <div className="flex flex-col justify-center gap-y-2 text-lg">
-                    <p className=" text-gray-700">Event Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae laboriosam aliquam nam inventore id quam harum minima. Fugit ipsum, optio laborum libero, explicabo perspiciatis odio laboriosam fuga eaque cum deserunt. Name:{event.name}</p>
+                    <p className=" text-gray-700"><span className="font-bold">Name:</span>  {event.name}</p>
                     <span className=" text-gray-700"><span className="font-bold">Date :</span> {new Date(event.date).toLocaleDateString()}</span>
                     <p className="font-medium text-gray-700"><span>Event-Time: </span>{event.time}</p>
+                  </div>
                   </div>
                 </div>
               )) : <p className="text-gray-500">No events available</p>}

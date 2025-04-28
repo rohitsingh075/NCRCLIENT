@@ -13,12 +13,21 @@ const Navbar = () => {
   const [showTrain, setShowTrain] = useState(true); // State to control train visibility
 
   useEffect(() => {
-    // Hide the train after 2-3 seconds
-    const timer = setTimeout(() => {
+    const trainShown = sessionStorage.getItem("trainShown");
+  
+    if (!trainShown) {
+      setShowTrain(true);
+      const timer = setTimeout(() => {
+        setShowTrain(false);
+        sessionStorage.setItem("trainShown", "true");
+      }, 2500); // Train runs for 2.5 seconds
+  
+      return () => clearTimeout(timer);
+    } else {
       setShowTrain(false);
-    }, 2500); // Train runs for 3 seconds
-    return () => clearTimeout(timer);
+    }
   }, []);
+  
 
   return (
     <header className="w-full relative top-0 inset-x-0 z-50 overflow">
