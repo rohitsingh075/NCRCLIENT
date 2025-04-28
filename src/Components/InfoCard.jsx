@@ -9,11 +9,11 @@ export default function InfoCard() {
   const [gallery, setGallery] = useState([]);
   const baseUrl = api.defaults.baseURL;
 
-  const goToEventPage = (id) => {
-    console.log(id);
-    navigate("/event-info");
+  const trimDate = (timestamp) => {
+    const date = new Date(timestamp);
+    if (isNaN(date.getTime())) throw new Error("Invalid timestamp");
+    return `${String(date.getUTCDate()).padStart(2, '0')}.${String(date.getUTCMonth() + 1).padStart(2, '0')}.${date.getUTCFullYear()}`;
   }
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -38,27 +38,28 @@ export default function InfoCard() {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 gap-6 p-6 bg-gray-100">
+    <div className="grid grid-cols-1 gap-6 p-6 bg-gray-300">
+
+
+
       {/* Notice and Events section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
         {/* Notices */}
-        <div className=" rounded-2xl border-b-6 shadow p-6 ">
+        <div className=" rounded-2xl border-b-6 shadow p-6  bg-white">
           <div className="border-b pb-3 mb-4">
             <h2 className="text-xl font-bold text-gray-800">Recent Notices:</h2>
-            <p href="/notices" className="text-blue-600 text-sm hover:underline flex items-center mt-1 gap-2">
-              View all <span className="mt-1"><FaLongArrowAltRight /></span>
-            </p>
+
           </div>
           <div className="h-120 overflow-y-auto relative">
             <div className="flex flex-col  ">
               {notices.length > 0 ? notices.map((notice, i) => (
                 <div key={i} className="flex   justify-between px-4 py-4">
-                  <div className="flex justify-between w-full animate-vertical-scroll p-4 items-center rounded-lg border-2 box-border text-lg bg-yellow-500">
-                    <p className="font-medium px-6 py-2 text-gray-700 bg-blue-200">{notice.date}</p>
+                  <div className="flex justify-between h-auto w-full animate-vertical-scroll p-4 items-center rounded-lg border-2 box-border text-lg bg-yellow-500">
                     <p className="font-medium px-6 py-2 text-gray-700 bg-blue-200">{notice.title}</p>
+                    <p className="font-medium px-6 py-2 text-gray-700 bg-blue-200">{trimDate(notice.date)}</p>
                     <p className="font-medium text-gray-700">href={notice.description}</p>
                     <Link to={`/notice-info/${notice._id}`} >
-                    <p  className="text-blue-600 text-sm hover:underline">Read More...</p>
+                      <p className="text-blue-600 text-sm hover:underline">Read More...</p>
                     </Link>
                   </div>
                 </div>
@@ -68,13 +69,13 @@ export default function InfoCard() {
 
         </div>
 
+
+
+
         {/* Events */}
         <div className="bg-white rounded-2xl border-b-6 shadow p-5 relative ">
           <div className="border-b pb-3  mb-4">
             <h2 className="text-xl font-bold text-gray-800">Upcoming Events:</h2>
-            <p href="/events" className="text-blue-600 text-sm hover:underline flex items-center mt-1 gap-2">
-              View all <span className="mt-1"><FaLongArrowAltRight /></span>
-            </p>
           </div>
           <div className=" h-120 overflow-auto ">
             <div className="flex flex-col  gap-y-7  " >
@@ -96,36 +97,39 @@ export default function InfoCard() {
                   </div>
                 </Link>
               )) : <p className="text-gray-500">No events available</p>}
+
             </div>
           </div>
+        </div>
+      </div>
+      
+      {/*School Teacher Commitee  */}
+      <div className="bg-white rounded-2xl border-b-6 shadow p-5">
+        <div className="border-b-1 pb-3 mb-4 flex items-center">
+          <h2 className=" mr-3 font-bold text-2xl text-gray-800">School Commitee</h2>
         </div>
       </div>
 
       {/* Gallery section */}
       <div className="bg-white rounded-2xl border-b-6 shadow p-5">
-        <div className="border-b-1 pb-3 mb-4 flex  items-center">
-          <h2 className="text-xl mr-3 font-bold text-gray-800">Gallery</h2>
-          <p
-            className="text-blue-600 mt-1  vtext-sm hover:underline flex items-center gap-1"
-          >
-            View all <span className="mt-1"><FaLongArrowAltRight /></span>
-          </p>
+        <div className="border-b-1 pb-3 mb-4 flex items-center">
+          <h2 className=" mr-3 font-bold text-2xl text-gray-800">Gallery</h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {gallery.length > 0 ? gallery.slice(0, 8).map((item, i) => (
             // Here in params item id i.e the first photo id of the gallery is being passed to 
             <Link to={`/gallery-info/${item._id}`}>
-            <div key={i} className="overflow-hidden rounded-lg shadow">
-              <p className="ml-7 font-semibold text-red-700">{item.title}</p>
-              {/* Pehla photo gallery ke photos array ka display karenge */}
-              {item.photos.length > 0 && (
-                <img
-                  src={`${baseUrl}/${item.photos[0]}`}
-                  alt={item.title}
-                  className="object-fit w-full h-72 p-6"
-                />
-              )}
-            </div></Link>
+              <div key={i} className="overflow-hidden rounded-lg shadow">
+                <p className="ml-7 text-2xl font-semibold text-red-700">{item.title}</p>
+                {/* Pehla photo gallery ke photos array ka display karenge */}
+                {item.photos.length > 0 && (
+                  <img
+                    src={`${baseUrl}/${item.photos[0]}`}
+                    alt={item.title}
+                    className="object-fit w-full h-72 p-6"
+                  />
+                )}
+              </div></Link>
           )) : (
             <p className="text-gray-500 col-span-full text-center">No gallery items available</p>
           )}
@@ -139,7 +143,7 @@ export default function InfoCard() {
             <h2 className="text-xl font-bold text-gray-800">Facebook</h2>
           </div>
           <div className="flex justify-center">
-            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fnrcollage&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="500" height="500" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fnrcollage&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="500" height="500" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
           </div>
         </div>
 
