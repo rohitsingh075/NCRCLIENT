@@ -69,7 +69,7 @@ export default function InfoCard() {
         </div>
 
         {/* Events */}
-        <div className="bg-white rounded- border-b-6 shadow p-5 relative ">
+        <div className="bg-white rounded-2xl border-b-6 shadow p-5 relative ">
           <div className="border-b pb-3  mb-4">
             <h2 className="text-xl font-bold text-gray-800">Upcoming Events:</h2>
             <p href="/events" className="text-blue-600 text-sm hover:underline flex items-center mt-1 gap-2">
