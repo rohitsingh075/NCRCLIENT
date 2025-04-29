@@ -14,7 +14,7 @@ const History = () => {
         {/* History Section */}
         <div className="max-w-7xl mx-auto px-6 py-6">
           {/* <h2 className="text-red-600 text-lg font-bold uppercase mb-2">History</h2> */}
-          <h1 className="text-4xl font-bold mb-6">The Legacy of North Central Railway College</h1>
+          <h1 className="text-4xl  text-red-700 font-bold mb-6">The Legacy of North Central Railway College</h1>
           <p className="text-gray-700 text-lg leading-relaxed mb-4">
             North Central Railway College, Tundla, has a remarkable history that dates back to its establishment in 1882. 
             Over the decades, the school has evolved into a prestigious institution, shaping the lives of countless students 
@@ -52,24 +52,24 @@ const History = () => {
         </div>
 
         {/* Milestones Section */}
-        <div className="bg-gray-100 py-12">
+        <div className="bg-gray-200 py-12">
           <div className="max-w-7xl mx-auto px-6">
-            <h2 className="text-3xl font-bold text-center mb-8">Key Milestones</h2>
+            <h2 className="text-3xl font-bold text-center  mb-8">Key Milestones</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="bg-white shadow-md rounded-lg p-6 text-center">
-                <h3 className="text-xl font-bold mb-4">1882</h3>
+                <h3 className="text-xl  font-bold text-red-700 mb-4">1882</h3>
                 <p className="text-gray-600">
                   The school was established to provide education to the children of railway employees.
                 </p>
               </div>
               <div className="bg-white shadow-md rounded-lg p-6 text-center">
-                <h3 className="text-xl font-bold mb-4">1950</h3>
+                <h3 className="text-xl font-bold  text-red-700 mb-4">1950</h3>
                 <p className="text-gray-600">
                   Expanded its facilities and opened admissions to students from all communities.
                 </p>
               </div>
               <div className="bg-white shadow-md rounded-lg p-6 text-center">
-                <h3 className="text-xl font-bold mb-4">2000</h3>
+                <h3 className="text-xl font-bold text-red-700 mb-4">2000</h3>
                 <p className="text-gray-600">
                   Introduced modern infrastructure, including smart classrooms and science labs.
                 </p>

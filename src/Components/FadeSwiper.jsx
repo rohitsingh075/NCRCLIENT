@@ -77,7 +77,7 @@ const FadeSwiper = () => {
               </div>
               {/* Overlay Content */}
               <div className="absolute top-1/8 left-20 text-white space-y-4 z-10">
-                <h1 className="text-4xl font-bold">
+                <h1 className="text-4xl text-white font-bold">
                   Welcome to North Central Railway College!
                 </h1>
                 <p className="text-lg max-w-md">
