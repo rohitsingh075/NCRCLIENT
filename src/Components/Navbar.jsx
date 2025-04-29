@@ -1,53 +1,88 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoMenu } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import logo from '../assets/logo.png';
+import logo from "../assets/logo.png";
+import train from "../assets/train.png";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [admissionOpen, setAdmissionOpen] = useState(false);
   const [academicOpen, setAcademicOpen] = useState(false);
+  const [showTrain, setShowTrain] = useState(true); // State to control train visibility
+
+  useEffect(() => {
+    const trainShown = sessionStorage.getItem("trainShown");
+  
+    if (!trainShown) {
+      setShowTrain(true);
+      const timer = setTimeout(() => {
+        setShowTrain(false);
+        sessionStorage.setItem("trainShown", "true");
+      }, 2500); // Train runs for 2.5 seconds
+  
+      return () => clearTimeout(timer);
+    } else {
+      setShowTrain(false);
+    }
+  }, []);
+  
 
   return (
-    <header className="w-full relative top-0 inset-x-0 z-50">
+    <header className="w-full relative top-0 inset-x-0 z-50 overflow">
+
+
       {/* Top Navbar */}
-      <div className="w-full bg-gray-800 text-white py-1 px-4 flex justify-end items-center">
-        <div className="flex space-x-8 text-lg">
-          <Link to="/login" className="hover:text-red-400 font-bold ">Login</Link>
-          
-          <button className="hover:text-red-400">
+      <div className="w-full bg-gray-700 text-white py-1 px-4 flex justify-end items-center">
+        {/* Train Animation */}
+            {showTrain && (
+              <div className="absolute top-0 left-0 w-full z-50">
+                <div className="train-animation h-[160px] py-1 z-0 px-4 flex justify-start items-center">
+                  <img src={train} alt="" width="800" />
+                </div>
+              </div>
+            )}
+
+        <div className="flex space-x-8 text-lg overflow-visible">
+          <Link to="/login" className="hover:text-green-300 font-bold">
+            Login
+          </Link>
+          <button className="hover:text-green-300">
             <i className="fas fa-search"></i> Search
           </button>
         </div>
       </div>
-<hr className="border-white"/>
-      {/* Middle Navbar */}    {/* Logo Section */}
-      <div className="w-full bg-white py-1  flex justify-center items-center shadow-md">
+      <hr className="border-white" />
+
+      {/* Middle Navbar */}
+      <div className="w-full bg-[#00001a] py-1 flex justify-center items-center shadow-md">
         <Link to="/">
           <img src={logo} alt="NCR COLLEGE" className="w-20 h-20" />
         </Link>
         <div>
-        <div className="text-3xl font-bold mx-4 flex items-center justify-center text-gray-800">North Central Railway College</div>
-        <div className="text-lg mx-4 text-gray-800">A School with a Difference</div>
+          <div className="text-3xl font-bold z-100 mx-4 flex items-center justify-center text-white">
+            North Central Railway College
+          </div>
+          <div className="text-lg mx-4 text-white">A School with a Difference</div>
+        </div>
       </div>
-      </div>
-      {/* <hr className="border-red-900"/> */}
-
+      <hr className="border-white" />
 
       {/* Bottom Navbar */}
-      <div className="w-full bg-gray-800 text-white shadow-md">
+      <div className="w-full bg-gray-700 text-white shadow-md">
         <div className="max-w-screen-xl mx-auto flex items-center justify-evenly py-2 px-4">
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-10 items-center text-[1rem] font-medium">
             <nav>
               <div className="flex items-center space-x-6">
-                <Link to="/" className="hover:text-red-400">Home</Link>
+                <Link to="/" className="hover:text-green-300">
+                  Home
+                </Link>
 
                 {/* About Us Dropdown */}
                 <div className="relative group">
-                  <button className="hover:text-red-400 flex items-center">
+                  <button className="hover:text-green-300 flex items-center">
                     About Us ▾
                   </button>
                   <div className="absolute left-0 mt-2 w-64 rounded-md bg-white text-gray-700 shadow-lg ring-1 ring-black/10 opacity-0 scale-y-95 group-hover:opacity-100 group-hover:scale-y-100 invisible group-hover:visible transform origin-top transition-all duration-300 ease-out">
@@ -73,7 +108,7 @@ const Navbar = () => {
 
                 {/* Mandatory Disclosure Dropdown */}
                 <div className="relative group">
-                  <button className="hover:text-red-400  flex items-center">
+                  <button className="hover:text-green-300  flex items-center">
                     Mandatory Disclosure ▾
                   </button>
                   <div className="absolute left-0 mt-2 w-64 rounded-md bg-white text-gray-700 shadow-lg ring-1 ring-black/10 opacity-0 scale-y-95 group-hover:opacity-100 group-hover:scale-y-100 invisible group-hover:visible transform origin-top transition-all duration-300 ease-out">
@@ -99,7 +134,7 @@ const Navbar = () => {
 
                 {/* Admission Dropdown */}
                 <div className="relative group">
-                  <button className="hover:text-red-400 flex items-center">
+                  <button className="hover:text-green-300 flex items-center">
                     Admission ▾
                   </button>
                   <div className="absolute left-0 mt-2 w-64 rounded-md bg-white text-gray-700 shadow-lg ring-1 ring-black/10 opacity-0 scale-y-95 group-hover:opacity-100 group-hover:scale-y-100 invisible group-hover:visible transform origin-top transition-all duration-300 ease-out">
@@ -116,7 +151,7 @@ const Navbar = () => {
 
                 {/* Rules & Regulations Dropdown */}
                 <div className="relative group">
-                  <button className="hover:text-red-400 flex items-center">
+                  <button className="hover:text-green-300 flex items-center">
                     Rules & Regulations ▾
                   </button>
                   <div className="absolute left-0 mt-2 w-64 rounded-md bg-white text-gray-700 shadow-lg ring-1 ring-black/10 opacity-0 scale-y-95 group-hover:opacity-100 group-hover:scale-y-100 invisible group-hover:visible transform origin-top transition-all duration-300 ease-out">
@@ -133,7 +168,7 @@ const Navbar = () => {
 
                 {/* Academics Dropdown */}
                 <div className="relative group">
-                  <button className="hover:text-red-400 flex items-center">
+                  <button className="hover:text-green-300 flex items-center">
                     Academics ▾
                   </button>
                   <div className="absolute left-0 mt-2 w-64 rounded-md bg-white text-gray-700 shadow-lg ring-1 ring-black/10 opacity-0 scale-y-95 group-hover:opacity-100 group-hover:scale-y-100 invisible group-hover:visible transform origin-top transition-all duration-300 ease-out">
@@ -154,7 +189,7 @@ const Navbar = () => {
                   </div>
                 </div>
 
-             
+
               </div>
             </nav>
           </div>

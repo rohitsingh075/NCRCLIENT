@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import api from "../../api";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function InfoCard() {
   const [notices, setNotices] = useState([]);
   const [events, setEvents] = useState([]);
   const [gallery, setGallery] = useState([]);
   const baseUrl = api.defaults.baseURL;
+
+  const goToEventPage = (id) => {
+    console.log(id);
+    navigate("/event-info");
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,46 +42,61 @@ export default function InfoCard() {
       {/* Notice and Events section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Notices */}
-        <div className="bg-white rounded-2xl border-b-6 shadow p-5">
+        <div className=" rounded-2xl border-b-6 shadow p-6 ">
           <div className="border-b pb-3 mb-4">
             <h2 className="text-xl font-bold text-gray-800">Recent Notices:</h2>
             <p href="/notices" className="text-blue-600 text-sm hover:underline flex items-center mt-1 gap-2">
               View all <span className="mt-1"><FaLongArrowAltRight /></span>
             </p>
           </div>
-          <div className="space-y-4">
-            {notices.length > 0 ? notices.map((notice, i) => (
-              <div key={i}>
-                <p className="font-medium text-gray-700">{notice.title}</p>
-                <p href={`/notice/${notice._id}`} className="text-blue-600 text-sm hover:underline">Read More...</p>
-              </div>
-            )) : <p className="text-gray-500">No notices available</p>}
+          <div className="h-120 overflow-y-auto relative">
+            <div className="flex flex-col  ">
+              {notices.length > 0 ? notices.map((notice, i) => (
+                <div key={i} className="flex   justify-between px-4 py-4">
+                  <div className="flex justify-between w-full animate-vertical-scroll p-4 items-center rounded-lg border-2 box-border text-lg bg-yellow-500">
+                    <p className="font-medium px-6 py-2 text-gray-700 bg-blue-200">{notice.date}</p>
+                    <p className="font-medium px-6 py-2 text-gray-700 bg-blue-200">{notice.title}</p>
+                    <p className="font-medium text-gray-700">href={notice.description}</p>
+                    <Link to={`/notice-info/${notice._id}`} >
+                    <p  className="text-blue-600 text-sm hover:underline">Read More...</p>
+                    </Link>
+                  </div>
+                </div>
+              )) : <p className="text-gray-500">No notices available</p>}
+            </div>
           </div>
+
         </div>
 
         {/* Events */}
-        <div className="bg-white rounded-2xl border-b-6 shadow p-5">
-          <div className="border-b pb-3 mb-4">
+        <div className="bg-white rounded-2xl border-b-6 shadow p-5 relative ">
+          <div className="border-b pb-3  mb-4">
             <h2 className="text-xl font-bold text-gray-800">Upcoming Events:</h2>
             <p href="/events" className="text-blue-600 text-sm hover:underline flex items-center mt-1 gap-2">
               View all <span className="mt-1"><FaLongArrowAltRight /></span>
             </p>
           </div>
-          <div >
-            {events.length > 0 ? events.map((event, i) => (
-              <div key={i} className="flex  items-center justify-center  border-blue-400 border-2 rounded-lg p-4">
-                <img
-                  src={`${baseUrl}/${event.imagePath}`}
-                  alt={event.name}
-                  className="object-fit w-96 h-72 p-6"
-                />
-                <div className="flex  justify-center items-center flex-col">
-                <p className="font-medium text-gray-700">Event Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae laboriosam aliquam nam inventore id quam harum minima. Fugit ipsum, optio laborum libero, explicabo perspiciatis odio laboriosam fuga eaque cum deserunt. Name:{event.name}</p>
-                <span className="font-medium text-gray-500">Date: {new Date(event.date).toLocaleDateString()}</span>
-                <p className="font-medium text-gray-700">Event:Time {event.time}</p>
-                </div>
-              </div>
-            )) : <p className="text-gray-500">No events available</p>}
+          <div className=" h-120 overflow-auto ">
+            <div className="flex flex-col  gap-y-7  " >
+              {events.length > 0 ? events.map((event, i) => (
+                <Link to={`/event-info/${event._id}`}>
+                  <div key={i} className="flex  items-center  border-blue-400 border-2 rounded-lg p-5">
+                    <div className="grid grid-cols-2">
+                      <img
+                        src={`${baseUrl}/${event.imagePath}`}
+                        alt={event.name}
+                        className="object-fit w-full h-72 p-6 box-border"
+                      />
+                      <div className="flex flex-col justify-center gap-y-2 text-lg">
+                        <p className=" text-gray-700"><span className="font-bold">Name:</span>  {event.name}</p>
+                        <span className=" text-gray-700"><span className="font-bold">Date :</span> {new Date(event.date).toLocaleDateString()}</span>
+                        <p className="font-medium text-gray-700"><span>Event-Time: </span>{event.time}</p>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              )) : <p className="text-gray-500">No events available</p>}
+            </div>
           </div>
         </div>
       </div>
@@ -85,7 +106,6 @@ export default function InfoCard() {
         <div className="border-b-1 pb-3 mb-4 flex  items-center">
           <h2 className="text-xl mr-3 font-bold text-gray-800">Gallery</h2>
           <p
-            href="/gallery"
             className="text-blue-600 mt-1  vtext-sm hover:underline flex items-center gap-1"
           >
             View all <span className="mt-1"><FaLongArrowAltRight /></span>
@@ -93,8 +113,10 @@ export default function InfoCard() {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {gallery.length > 0 ? gallery.slice(0, 8).map((item, i) => (
+            // Here in params item id i.e the first photo id of the gallery is being passed to 
+            <Link to={`/gallery-info/${item._id}`}>
             <div key={i} className="overflow-hidden rounded-lg shadow">
-              <p className="ml-7 font-semibold text-2xl text-gray-700">{item.title}</p>
+              <p className="ml-7 font-semibold text-red-700">{item.title}</p>
               {/* Pehla photo gallery ke photos array ka display karenge */}
               {item.photos.length > 0 && (
                 <img
@@ -103,12 +125,11 @@ export default function InfoCard() {
                   className="object-fit w-full h-72 p-6"
                 />
               )}
-            </div>
+            </div></Link>
           )) : (
             <p className="text-gray-500 col-span-full text-center">No gallery items available</p>
           )}
         </div>
-
       </div>
 
       <div className="flex flex-col md:flex-row justify-between gap-6 mt-6">

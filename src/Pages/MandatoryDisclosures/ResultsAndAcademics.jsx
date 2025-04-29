@@ -51,14 +51,14 @@ export default function ResultAndAcademics() {
 
   return (
     <div className="mx-auto ">
-      <div className="mt-4 mb-4">
+      <div className="">
         <Navbar />
       </div>
 
-      <div className="max-w-6xl mx-auto mt-30 p-4">
+      <div className="max-w-6xl mx-auto mt-5 p-4">
         <div className="border rounded p-4 bg-white shadow ">
           <h2 className="text-lg font-bold text-blue-700 border-b pb-2 mb-4">
-            MANDATORY DOCUMENTS
+            RESULT AND ACADEMICS
           </h2>
 
           {documentData.map((item, index) => (
@@ -85,7 +85,7 @@ export default function ResultAndAcademics() {
         </div>
       </div>
 
-      <div className="mt-60">
+      <div className="mt-35">
         <Footer />
       </div>
     </div>

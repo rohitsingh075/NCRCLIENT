@@ -245,16 +245,16 @@ const AcademicCurriculum = () => {
     <>
       <Navbar />
       <div className="min-h-screen bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          <h1 className="text-4xl font-extrabold text-center text-blue-700 mb-12">
+        <div className="max-w-8xl mx-auto px-6 py-4">
+          <h1 className="text-4xl font-extrabold text-center text-blue-700 mb-4">
             Academic Curriculum
           </h1>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-7">
             {curriculumData.map((item, index) => (
               <div
                 key={index}
-                className="bg-white shadow-lg rounded-lg p-6 border border-gray-200"
+                className="bg-white shadow-lg flex justify-between rounded-lg p-6 border border-gray-200"
               >
                 <h2 className="text-2xl font-bold text-blue-600 mb-4">
                   {item.class}

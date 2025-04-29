@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const disclosureData = [
   {
@@ -17,15 +18,15 @@ const disclosureData = [
   },
   {
     title: "Complete Address",
-    content: " TUNDLA, DISTT FIROZABAD, UTTAR PRADESH - 283204",
+    content: "TUNDLA, DISTT FIROZABAD, UTTAR PRADESH - 283204",
   },
   {
     title: "Principal Name & Qualification",
-    content: "Mr. M.P Sonkar ",
+    content: "Mr. M.P Sonkar",
   },
   {
     title: "Principal Qualification",
-    content: " M.Sc , M.Ed",
+    content: "M.Sc, M.Ed",
   },
   {
     title: "School Email Id",
@@ -45,40 +46,51 @@ export default function GeneralInformation() {
   };
 
   return (
-    <div className=" mx-auto ">
-      <div className="mt-4 mb-4">
-        <Navbar />
-      </div>
+    <>
+      {/* Navbar */}
+      <Navbar />
 
-    <div className="max-w-6xl mx-auto  mt-26 mb-12 p-6 ">
-    {/* <h1 className="text-3xl font-serif italic mb-2">Public Disclosure</h1> */}
-      {/* <p className="text-sm mb-6">Home &rarr; Mandatory Disclosure &rarr; Public Disclosure</p> */}
+      {/* Main Content */}
+      <div className="bg-gray-100 min-h-screen">
+        <div className="max-w-6xl mx-auto p-8">
+          <h1 className="text-3xl font-bold text-center text-red-700 mt-6 mb-6">
+            General Information
+          </h1>
+          <p className="text-center text-gray-600 mb-8">
+            Below is the general information about North Central Railway
+            College, Tundla. Click on each section to view more details.
+          </p>
 
-      <div className="border rounded p-4 bg-white shadow ">
-        <h2 className="text-lg font-bold text-blue-700 border-b pb-2 mb-4">GENERAL INFORMATION</h2>
-
-        {disclosureData.map((item, index) => (
-          <div key={index} className="mb-2 border-1 rounded overflow-hidden">
-            <button
-              onClick={() => toggleIndex(index)}
-              className="w-full text-left bg-gradient-to-b from-gray-100 to-gray-200 p-3 font-semibold hover:bg-gray-100"
-            >
-              <div>
-              {item.title}
+          <div className="bg-white shadow-lg rounded-lg p-6">
+            {disclosureData.map((item, index) => (
+              <div
+                key={index}
+                className="mb-4  rounded-lg overflow-hidden shadow-sm"
+              >
+                <button
+                  onClick={() => toggleIndex(index)}
+                  className="w-full flex justify-between items-center bg-gradient-to-r from-red-100 to-red-50 p-4 font-semibold text-gray-900 hover:bg-blue-200 transition"
+                >
+                  <span>{item.title}</span>
+                  {activeIndex === index ? (
+                    <FaChevronUp className="text-gray-700" />
+                  ) : (
+                    <FaChevronDown className="text-gray-700" />
+                  )}
+                </button>
+                {activeIndex === index && (
+                  <div className="p-4 bg-gray-50 text-gray-700 font-medium">
+                    {item.content}
+                  </div>
+                )}
               </div>
-            </button>
-            {activeIndex === index && (
-              <div className="p-3 text-gray-900 font-semibold bg-white border-t">{item.content}</div>
-            )}
+            ))}
           </div>
-        ))}
+        </div>
       </div>
-    </div>
 
-      {/* Footer added below */}
-      <div className="  ">
-        <Footer />
-      </div>
-    </div>
+      {/* Footer */}
+      <Footer />
+    </>
   );
 }

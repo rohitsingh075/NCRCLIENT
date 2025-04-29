@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade, Autoplay, Pagination } from "swiper/modules";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
+
 
 import image1 from "../assets/ncrimage1.jpg";
 import image2 from "../assets/ncrimage2.jpg";
@@ -49,7 +52,10 @@ const FadeSwiper = () => {
         <Swiper
           modules={[Navigation, EffectFade, Autoplay, Pagination]}
           effect="fade"
-          navigation
+          navigation={{
+            prevEl: ".swiper-button-prev",
+            nextEl: ".swiper-button-next",
+          }}
           pagination={{
             clickable: true,
             el: ".swiper-pagination",
@@ -58,21 +64,20 @@ const FadeSwiper = () => {
           loop
           autoplay={{ delay: 4000 }}
           className="w-full h-full"
-          style={{ height: `${viewportHeight}px` }} // ✅ Corrected here
+          style={{ height: `${viewportHeight}px` }}
         >
-
           {slides.map((slide) => (
             <SwiperSlide key={slide.id} className="overflow-hidden relative">
               <div className="zoom-animation w-full h-full">
                 <img
                   src={slide.image}
-                  className="w-full h-full object-cover select-none brightness-70"
-                  alt={`Slide ${slide.id}`} // corrected alt tag
+                  className="w-full h-full object-fit select-none brightness-55"
+                  alt={`Slide ${slide.id}`}
                 />
               </div>
               {/* Overlay Content */}
               <div className="absolute top-1/8 left-20 text-white space-y-4 z-10">
-                <h1 className="text-4xl font-bold">
+                <h1 className="text-4xl text-white font-bold">
                   Welcome to North Central Railway College!
                 </h1>
                 <p className="text-lg max-w-md">
@@ -88,6 +93,14 @@ const FadeSwiper = () => {
           ))}
           <div className="swiper-pagination absolute bottom-8 flex justify-center w-full z-10"></div>
         </Swiper>
+      </div>
+
+      {/* Custom navigation arrows using React Icons */}
+      <div className="swiper-button-prev absolute left-4 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer text-3xl text-white bg-opacity-50 hover:bg-opacity-100 p-2 rounded-full">
+        <FaChevronLeft />
+      </div>
+      <div className="swiper-button-next absolute right-4 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer text-3xl text-white bg-opacity-50 hover:bg-opacity-100 p-2 rounded-full">
+        <FaChevronRight />
       </div>
 
       {/* CSS for zoom animation and enhanced pagination */}
@@ -119,7 +132,7 @@ const FadeSwiper = () => {
         .swiper-pagination-bullet {
           width: 13px;
           height: 13px;
-          background-color: rgba(0, 0, 0, 0.1); /* corrected typo: was 0,1 */
+          background-color: rgba(0, 0, 0, 1);
           margin: 0 8px;
           border-radius: 50%;
           display: inline-block;

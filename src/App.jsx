@@ -29,6 +29,9 @@ import AcademicCurriculum from './Pages/AcademicPages/AcadminCurriculum.jsx';
 import AcademicCalender from './Pages/AcademicPages/AcademicCalender.jsx';
 import Facilities from './Pages/AcademicPages/Facilites.jsx';
 import NationalEducationPolicy from './Pages/AcademicPages/NationalEducationPolicy.jsx';
+import EventPage from './Pages/EventPage.jsx';
+import NoticePage from './Pages/NoticePage.jsx';
+import GalleryPage from './Pages/GalleryPage.jsx';
 
 
 
@@ -63,6 +66,9 @@ export const router = createBrowserRouter([
       { path: '/facilities', element: <Facilities /> },
       { path: '/academic-calendar', element: <AcademicCalender /> },
       { path: '/nep', element: <NationalEducationPolicy /> },
+      { path: '/notice-info/:id', element: <NoticePage/> },
+      { path: '/event-info/:id', element: <EventPage/> },
+      { path: '/gallery-info/:id', element: <GalleryPage/> },
     ]
   }
 ]);
