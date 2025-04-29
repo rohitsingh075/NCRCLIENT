@@ -13,7 +13,7 @@ const AboutSchool = () => {
         {/* About School Section */}
         <div className="max-w-7xl mx-auto px-6 py-12">
           {/* <h2 className="text-red-600 text-lg font-bold uppercase mb-2">About School</h2> */}
-          <h1 className="text-4xl font-bold mb-6">North Central Railway College, Tundla</h1>
+          <h1 className="text-4xl text-red-700 font-bold mb-6">North Central Railway College, Tundla</h1>
           {/* <p className="text-gray-700 text-lg leading-relaxed mb-6">
             There is only one way to face the world with confidence, and that’s education. At North Central Railway College, we prepare students to excel in every aspect of life.
           </p> */}
