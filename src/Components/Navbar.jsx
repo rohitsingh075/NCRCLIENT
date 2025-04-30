@@ -34,7 +34,7 @@ const Navbar = () => {
 
 
       {/* Top Navbar */}
-      <div className="w-full bg-gray-700 text-white py-1 px-4 flex justify-end items-center">
+      <div className="w-full bg-gray-100 text-gray-800 py-1 px-4 flex justify-end items-center">
         {/* Train Animation */}
             {showTrain && (
               <div className="absolute top-0 left-0 w-full z-50">
@@ -45,10 +45,10 @@ const Navbar = () => {
             )}
 
         <div className="flex space-x-8 text-lg overflow-visible">
-          <Link to="/login" className="hover:text-green-300 font-bold">
+          <Link to="/login" className="hover:text-red-700  text-red-500 font-bold">
             Login
           </Link>
-          <button className="hover:text-green-300">
+          <button className="hover:text-red-400">
             <i className="fas fa-search"></i> Search
           </button>
         </div>
@@ -70,19 +70,19 @@ const Navbar = () => {
       <hr className="border-white" />
 
       {/* Bottom Navbar */}
-      <div className="w-full bg-gray-700 text-white shadow-md">
+      <div className="w-full bg-gray-100 text-gray-800 shadow-md">
         <div className="max-w-screen-xl mx-auto flex items-center justify-evenly py-2 px-4">
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-10 items-center text-[1rem] font-medium">
             <nav>
               <div className="flex items-center space-x-6">
-                <Link to="/" className="hover:text-green-300">
+                <Link to="/" className="hover:text-red-400">
                   Home
                 </Link>
 
                 {/* About Us Dropdown */}
                 <div className="relative group">
-                  <button className="hover:text-green-300 flex items-center">
+                  <button className="hover:text-red-400 flex items-center">
                     About Us ▾
                   </button>
                   <div className="absolute left-0 mt-2 w-64 rounded-md bg-white text-gray-700 shadow-lg ring-1 ring-black/10 opacity-0 scale-y-95 group-hover:opacity-100 group-hover:scale-y-100 invisible group-hover:visible transform origin-top transition-all duration-300 ease-out">
@@ -108,7 +108,7 @@ const Navbar = () => {
 
                 {/* Mandatory Disclosure Dropdown */}
                 <div className="relative group">
-                  <button className="hover:text-green-300  flex items-center">
+                  <button className="hover:text-red-400  flex items-center">
                     Mandatory Disclosure ▾
                   </button>
                   <div className="absolute left-0 mt-2 w-64 rounded-md bg-white text-gray-700 shadow-lg ring-1 ring-black/10 opacity-0 scale-y-95 group-hover:opacity-100 group-hover:scale-y-100 invisible group-hover:visible transform origin-top transition-all duration-300 ease-out">
@@ -134,7 +134,7 @@ const Navbar = () => {
 
                 {/* Admission Dropdown */}
                 <div className="relative group">
-                  <button className="hover:text-green-300 flex items-center">
+                  <button className="hover:text-red-400 flex items-center">
                     Admission ▾
                   </button>
                   <div className="absolute left-0 mt-2 w-64 rounded-md bg-white text-gray-700 shadow-lg ring-1 ring-black/10 opacity-0 scale-y-95 group-hover:opacity-100 group-hover:scale-y-100 invisible group-hover:visible transform origin-top transition-all duration-300 ease-out">
@@ -151,7 +151,7 @@ const Navbar = () => {
 
                 {/* Rules & Regulations Dropdown */}
                 <div className="relative group">
-                  <button className="hover:text-green-300 flex items-center">
+                  <button className="hover:text-red-400 flex items-center">
                     Rules & Regulations ▾
                   </button>
                   <div className="absolute left-0 mt-2 w-64 rounded-md bg-white text-gray-700 shadow-lg ring-1 ring-black/10 opacity-0 scale-y-95 group-hover:opacity-100 group-hover:scale-y-100 invisible group-hover:visible transform origin-top transition-all duration-300 ease-out">
@@ -168,7 +168,7 @@ const Navbar = () => {
 
                 {/* Academics Dropdown */}
                 <div className="relative group">
-                  <button className="hover:text-green-300 flex items-center">
+                  <button className="hover:text-red-400 flex items-center">
                     Academics ▾
                   </button>
                   <div className="absolute left-0 mt-2 w-64 rounded-md bg-white text-gray-700 shadow-lg ring-1 ring-black/10 opacity-0 scale-y-95 group-hover:opacity-100 group-hover:scale-y-100 invisible group-hover:visible transform origin-top transition-all duration-300 ease-out">

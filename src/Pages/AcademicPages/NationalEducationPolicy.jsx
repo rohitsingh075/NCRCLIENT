@@ -7,14 +7,14 @@ const NationalEducationPolicy = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-100">
         <div className="max-w-7xl mx-auto px-6 py-12">
-          <h1 className="text-4xl font-extrabold text-center text-blue-700 mb-12">
+          <h1 className="text-4xl font-extrabold text-center text-red-700 mb-12">
             National Education Policy (NEP) 2020
           </h1>
 
           {/* Image Container */}
-          <div className="bg-white shadow-lg rounded-lg mb-8 overflow-hidden">
+          <div className="bg-gray-800 shadow-lg rounded-lg mb-8 overflow-hidden">
             <img
               src={nepImage}
               alt="National Education Policy"
@@ -23,11 +23,11 @@ const NationalEducationPolicy = () => {
           </div>
 
           {/* Introduction */}
-          <div className="bg-white shadow-lg rounded-lg mb-8 p-8">
-            <h2 className="text-3xl font-bold text-blue-600 mb-6">
+          <div className="bg-gray-800 shadow-lg rounded-lg mb-8 p-8">
+            <h2 className="text-3xl font-bold text-white mb-6">
               Introduction
             </h2>
-            <p className="text-gray-800 text-lg">
+            <p className="text-gray-300 text-lg">
               The National Education Policy (NEP) 2020 is a transformative
               framework introduced by the Government of India to overhaul the
               education system. It aims to make education more holistic,
@@ -37,57 +37,57 @@ const NationalEducationPolicy = () => {
           </div>
 
           {/* Key Ideas */}
-          <div className="bg-white shadow-lg rounded-lg mb-8 p-8">
-            <h2 className="text-3xl font-bold text-blue-600 mb-6">Key Ideas</h2>
-            <ul className="list-disc list-inside text-gray-800 space-y-4 text-lg">
+          <div className="bg-gray-800 shadow-lg rounded-lg mb-8 p-8">
+            <h2 className="text-3xl font-bold text-white mb-6">Key Ideas</h2>
+            <ul className="list-disc list-inside text-gray-300 space-y-4 text-lg">
               <li>
-                <strong>Holistic and Multidisciplinary Education:</strong> Focus
+                <strong> className="text-gray-100"Holistic and Multidisciplinary Education:</strong> Focus
                 on developing critical thinking, creativity, and problem-solving
                 skills.
               </li>
               <li>
-                <strong>Early Childhood Care and Education (ECCE):</strong>{" "}
+                <strong className="text-gray-100">Early Childhood Care and Education (ECCE):</strong>{" "}
                 Universal access to quality ECCE for children aged 3-6 years.
               </li>
               <li>
-                <strong>Flexible Curriculum:</strong> Introduction of
+                <strong className="text-gray-100">Flexible Curriculum:</strong> Introduction of
                 experiential learning, reduced syllabus, and vocational
                 education from Grade 6.
               </li>
               <li>
-                <strong>Mother Tongue as Medium of Instruction:</strong>{" "}
+                <strong className="text-gray-100">Mother Tongue as Medium of Instruction:</strong>{" "}
                 Emphasis on teaching in regional languages up to Grade 5.
               </li>
               <li>
-                <strong>Higher Education Reforms:</strong> Establishment of
+                <strong className="text-gray-100">Higher Education Reforms:</strong> Establishment of
                 multidisciplinary institutions and a single regulator for higher
                 education.
               </li>
               <li>
-                <strong>Digital Learning:</strong> Integration of technology in
+                <strong className="text-gray-100">Digital Learning:</strong> Integration of technology in
                 education through digital platforms and tools.
               </li>
             </ul>
           </div>
 
           {/* Impacts */}
-          <div className="bg-white shadow-lg rounded-lg mb-8 p-8">
-            <h2 className="text-3xl font-bold text-blue-600 mb-6">Impacts</h2>
-            <ul className="list-disc list-inside text-gray-800 space-y-4 text-lg">
+          <div className="bg-gray-800 shadow-lg rounded-lg mb-8 p-8">
+            <h2 className="text-3xl font-bold text-white mb-6">Impacts</h2>
+            <ul className="list-disc list-inside text-gray-300 space-y-4 text-lg">
               <li>
-                <strong>Improved Learning Outcomes:</strong> Focus on
+                <strong className="text-gray-100">Improved Learning Outcomes:</strong> Focus on
                 conceptual understanding and skill development.
               </li>
               <li>
-                <strong>Equity and Inclusion:</strong> Bridging the gap between
+                <strong  className="text-gray-100">Equity and Inclusion:</strong> Bridging the gap between
                 rural and urban education systems.
               </li>
               <li>
-                <strong>Global Competitiveness:</strong> Aligning the Indian
+                <strong  className="text-gray-100">Global Competitiveness:</strong> Aligning the Indian
                 education system with international standards.
               </li>
               <li>
-                <strong>Increased Employability:</strong> Vocational training
+                <strong  className="text-gray-100">Increased Employability:</strong> Vocational training
                 and skill development to prepare students for the workforce.
               </li>
               <li>
@@ -98,31 +98,31 @@ const NationalEducationPolicy = () => {
           </div>
 
           {/* Future Adoption Plans */}
-          <div className="bg-white shadow-lg rounded-lg mb-8 p-8">
-            <h2 className="text-3xl font-bold text-blue-600 mb-6">
+          <div className="bg-gray-800 shadow-lg rounded-lg mb-8 p-8">
+            <h2 className="text-3xl font-bold text-white mb-6">
               Future Adoption Plans
             </h2>
-            <ul className="list-disc list-inside text-gray-800 space-y-4 text-lg">
+            <ul className="list-disc list-inside text-gray-300 space-y-4 text-lg">
               <li>
-                <strong>Phased Implementation:</strong> Gradual rollout of NEP
+                <strong  className="text-gray-100">Phased Implementation:</strong> Gradual rollout of NEP
                 reforms across schools and higher education institutions.
               </li>
               <li>
-                <strong>Teacher Training:</strong> Comprehensive training
+                <strong  className="text-gray-100">Teacher Training:</strong> Comprehensive training
                 programs to equip teachers with the skills needed for NEP
                 implementation.
               </li>
               <li>
-                <strong>Infrastructure Development:</strong> Investment in
+                <strong  className="text-gray-100">Infrastructure Development:</strong> Investment in
                 digital infrastructure and resources to support online and
                 blended learning.
               </li>
               <li>
-                <strong>Monitoring and Evaluation:</strong> Regular assessment
+                <strong  className="text-gray-100">Monitoring and Evaluation:</strong> Regular assessment
                 of NEP implementation to ensure its effectiveness.
               </li>
               <li>
-                <strong>Public Awareness:</strong> Campaigns to educate
+                <strong  className="text-gray-100">Public Awareness:</strong> Campaigns to educate
                 stakeholders about the benefits and objectives of NEP 2020.
               </li>
             </ul>
