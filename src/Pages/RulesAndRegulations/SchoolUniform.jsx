@@ -2,9 +2,9 @@ import React from "react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 import kidsImage from "../../assets/ncrimage6.jpg";
-import summerImage from "../../assets/Summer.jpg"; // Replace with an actual image for Summer Uniform
-import winterImage from "../../assets/Winter.jpg"; // Replace with an actual image for Winter Uniform
-import commonImage from "../../assets/Common.jpg"; // Replace with an actual image for Common Items
+import summerImage from "../../assets/summer.jpg"; // Replace with an actual image for Summer Uniform
+import winterImage from "../../assets/winter.jpg"; // Replace with an actual image for Winter Uniform
+import commonImage from "../../assets/common.jpg"; // Replace with an actual image for Common Items
 
 const SchoolUniform = () => {
   return (
