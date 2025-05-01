@@ -37,7 +37,7 @@ export default function LoginPage() {
         try {
             // console.log(api.defaults.baseURL);
             console.log("Form data before submission:", formData); // Debugging line
-            const response = await api.post('/login', formData);
+            const response = await api.post('/login', formData,{withCredentials:true});
             setMessage("Login successful!");
             console.log("Server response:", response.data);
             navigate("/dashboard",{response});

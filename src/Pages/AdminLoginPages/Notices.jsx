@@ -24,15 +24,10 @@ const Notices = () => {
     setLoading(true);
     try {
       const response = await api.get("/notices/");
-      console.log("Response from server:", response);
-      console.log("Fetched notices:", response.data.data);
       if (response.data.data && Array.isArray(response.data.data)) {
         setNotices(response.data.data);
-        console.log("Notices final:", notices.data);
-        // toast.success("All notices fetched successfully!");
       } else {
         setNotices([]);
-        // toast.error("No notices found.");
       }
     } catch (error) {
       console.error("Error fetching notices:", error.message);
@@ -42,6 +37,10 @@ const Notices = () => {
     }
   };
 
+  useEffect(() => {
+    fetchNotices();
+  }, []);
+
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -49,16 +48,9 @@ const Notices = () => {
       [name]: type === "checkbox" ? checked : value,
     });
   };
-  useEffect(() => {
-    fetchNotices();
-  }, []);
-
-  // Handle input changes
 
   const handleFileChange = (e) => {
-    // Get the first file from the FileList
     setNoticeUpload(e.target.files[0]);
-    console.log("File selected:", e.target.files[0]); // Log the actual file object
   };
 
   // Handle form submission for creating or editing notices
@@ -75,22 +67,31 @@ const Notices = () => {
       // Add file if it exists
       if (noticeUpload) {
         data.append("noticeUpload", noticeUpload);
-        console.log("Appending file:", noticeUpload.name);
       }
 
-      // Debug what's in FormData
-      console.log("Form data entries:");
-      for (let pair of data.entries()) {
-        console.log(pair[0] + ': ' + pair[1]);
+      if (editingNoticeId) {
+        // Update existing notice
+        const id = editingNoticeId;
+        console.log(formData);
+        console.log(id);
+        const response = await api.put(`/notices/${id}`, data, {
+          withCredentials: true,
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        setNotices((prevNotices) =>
+          prevNotices.map((notice) =>
+            notice._id === editingNoticeId ? response.data.data : notice
+          )
+        );
+        toast.success("Notice updated successfully!");
+      } else {
+        // Create new notice
+        const response = await api.post("/notices/", data, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        setNotices((prevNotices) => [...prevNotices, response.data.data]);
+        toast.success("Notice created successfully!");
       }
-
-      const response = await api.post("/notices/", data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-
-      // Fix setEvents to setNotices
-      setNotices(prevNotices => [...prevNotices, response.data.data]);
-      toast.success("Notice created successfully!");
 
       // Reset form
       setFormData({
@@ -102,9 +103,10 @@ const Notices = () => {
         tags: "",
       });
       setNoticeUpload(null);
+      setEditingNoticeId(null);
     } catch (error) {
-      console.error("Error creating notice:", error);
-      toast.error("Failed to create notice. Please try again.");
+      console.error("Error submitting notice:", error.message);
+      toast.error("Failed to submit notice. Please try again.");
     }
   };
 
@@ -115,11 +117,11 @@ const Notices = () => {
       title: notice.title,
       description: notice.description,
       date: notice.date ? notice.date.split("T")[0] : "",
-      attachmentUrl: notice.attachmentUrl,
       issuedBy: notice.issuedBy,
       important: notice.important,
       tags: notice.tags.join(", "),
     });
+    setNoticeUpload(null); // Reset file input for editing
     setShowCreateForm(true);
     toast.info("Edit the notice details and click Submit.");
   };
@@ -171,7 +173,7 @@ const Notices = () => {
             <h2 className="text-lg font-bold mb-4">
               {editingNoticeId ? "Edit Notice" : "Create Notice"}
             </h2>
-            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4" >
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block font-medium mb-1">Title</label>
                 <input
@@ -195,24 +197,14 @@ const Notices = () => {
                   required
                 />
               </div>
-              {/* <div>
-                <label className="block font-medium mb-1">Attachment URL</label>
-                <input
-                  type="text"
-                  name="attachmentUrl"
-                  value={formData.attachmentUrl}
-                  onChange={handleInputChange}
-                  placeholder="Attachment URL"
-                  className="w-full px-4 py-2 border rounded-md"
-                />
-              </div> */}
-              <div >
+              <div>
                 <label className="block font-medium mb-1">Photos</label>
                 <input
                   type="file"
                   name="noticeUpload"
                   onChange={handleFileChange}
-                  className="w-full  px-4 py-1 border rounded-md  file:mr-4 file:py-1 file:px-4 file:h-8 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-200 file:text-blue-700 hover:file:bg-blue-500 hover:file:text-white" />
+                  className="w-full px-4 py-1 border rounded-md file:mr-4 file:py-1 file:px-4 file:h-8 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-200 file:text-blue-700 hover:file:bg-blue-500 hover:file:text-white"
+                />
               </div>
               <div>
                 <label className="block font-medium mb-1">Issued By</label>
@@ -272,15 +264,14 @@ const Notices = () => {
             {loading ? (
               <p>Loading...</p>
             ) : notices.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8">
                 {notices.map((notice) => (
                   <div
                     key={notice._id}
-                    className="h-64 w-fit max-w-full border rounded-lg shadow-md p-4 bg-gray-100 overflow-auto"
+                    className="h-full max-w-4xl w-full mx-auto border rounded-lg shadow-md p-4 bg-gray-100 overflow-auto"
                   >
-
-                    <div className="flex justify-between mb-4 gap-x-4">
-                      <h3 className="text-xl font-bold mb-2">{notice.title}</h3>
+                    <div className="flex flex-wrap justify-between mb-4 gap-x-4">
+                      <h3 className="text-xl flex-wrap font-bold mb-2">{notice.title}</h3>
                       <div className="flex gap-x-4">
                         <button
                           onClick={() => handleEdit(notice)}
@@ -296,30 +287,36 @@ const Notices = () => {
                         </button>
                       </div>
                     </div>
-                    {notice.noticeUpload && (console.log("Image URL:", notice.noticeUpload),
-                      <img
-                        src={`${baseUrl}/${notice.noticeUpload}`}
-                        alt={notice.name}
-                        className="w-96 h-62 object-fill mb-4"
-                      />
-                    )}
-                    <p className="text-gray-700 mb-1">
-                      <strong>Issued Date:</strong> {notice.date ? notice.date.split("T")[0] : "N/A"}
-                    </p>
-                    <p className="text-gray-700 mb-1">
-                      <strong>Issued By:</strong> {notice.issuedBy}
-                    </p>
-                    <p className="text-gray-700 mb-1">
-                      <strong>Tags:</strong> {notice.tags.join(", ")}
-                    </p>
-                    <p className="text-gray-700 mb-1">
-                      <strong>Important:</strong> {notice.important ? "Yes" : "No"}
-                    </p>
-                    <p className="text-gray-700">
-                      <strong>Description:</strong> {notice.description}
-                    </p>
-                    <div className="flex justify-between mt-4">
+
+                    <div className="flex items-center gap-x-6  ">
+                      <div >
+                        {notice.noticeUpload && (
+                          <img
+                            src={`${baseUrl}/${notice.noticeUpload}`}
+                            alt={notice.name}
+                            className="w-96 h-62 object-fill mb-4"
+                          />
+                        )}
+                      </div>
+                      <div className="mb-20">
+                        <p className="text-gray-700 mb-1">
+                          <strong>Issued Date:</strong> {notice.date ? notice.date.split("T")[0] : "N/A"}
+                        </p>
+                        <p className="text-gray-700 mb-1">
+                          <strong>Issued By:</strong> {notice.issuedBy}
+                        </p>
+                        <p className="text-gray-700 mb-1">
+                          <strong>Tags:</strong> {notice.tags.join(", ")}
+                        </p>
+                        <p className="text-gray-700 mb-1">
+                          <strong>Important:</strong> {notice.important ? "Yes" : "No"}
+                        </p>
+                        <p className="text-gray-700">
+                          <strong>Description:</strong> {notice.description}
+                        </p>
+                      </div>
                     </div>
+
                   </div>
                 ))}
               </div>

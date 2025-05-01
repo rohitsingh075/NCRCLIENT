@@ -18,9 +18,9 @@ export default function InfoCard() {
     const fetchData = async () => {
       try {
         const [noticeRes, eventRes, galleryRes] = await Promise.all([
-          api.get(`${baseUrl}/notices/`),
-          api.get(`${baseUrl}/events/`),
-          api.get(`${baseUrl}/gallery/view`),
+          api.get(`/notices/`),
+          api.get(`/events/`),
+          api.get(`/gallery/view`),
         ]);
         console.log("Notice Response:", noticeRes.data);
         console.log("Event Response:", eventRes.data);
@@ -102,7 +102,7 @@ export default function InfoCard() {
           </div>
         </div>
       </div>
-      
+
       {/*School Teacher Commitee  */}
       <div className="bg-white rounded-2xl shadow-xl/20 p-5">
         <div className="border-b-1 pb-3 mb-4 flex items-center">

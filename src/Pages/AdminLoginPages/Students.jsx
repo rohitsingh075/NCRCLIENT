@@ -58,13 +58,17 @@ const Students = () => {
       address: "",
     });
   };
-  
+
 
   const handleNewStudentChange = (e) => {
     const { name, value } = e.target;
     setNewStudent({ ...newStudent, [name]: value });
   };
 
+  const seeStudentDetails = (id) => {
+    navigate(`/student-details/${id}`);
+  };
+  
   const handleFilterSearch = async () => {
     setLoading(true);
     try {
@@ -96,9 +100,19 @@ const Students = () => {
 
   const handleCreateStudent = async () => {
     try {
-      setStudents([]);
-      console.log("Student :", newStudent);
-      const response = await api.post("/students/", newStudent);
+      const formData = new FormData();
+
+      // Append all fields to FormData
+      for (const key in newStudent) {
+        formData.append(key, newStudent[key]);
+      }
+
+      const response = await api.post("/students/", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
       setStudents([...students, response.data.student]);
       setNewStudent({
         srNo: "",
@@ -118,29 +132,30 @@ const Students = () => {
       toast.success("Student created successfully!");
       setClickedCreate(1);
     } catch (error) {
-      console.error("Error creating student:", error.message);
+      console.error("Error creating student:", error.response?.data || error.message);
       toast.error("Failed to create student. Please try again.");
     }
   };
 
+
   const handleEditStudent = async (id) => {
     try {
-      navigate("/update-student");
+      navigate(`/update-student/${id}`);
       // Fetch the student details from the API
-      const response = await api.put(`/students/${id}`);
-      const studentToEdit = response.data;
-  
-      if (studentToEdit) {
-        setNewStudent(studentToEdit); // Populate the form with the student's details
-        setShowCreateForm(true); // Switch to the Create form for editing
-        toast.info("Edit the student details and click Submit.");
-      }
+      //   const response = await api.put(`/students/${id}`);
+      //   const studentToEdit = response.data;
+
+      //   if (studentToEdit) {
+      //     setNewStudent(studentToEdit); // Populate the form with the student's details
+      //     setShowCreateForm(true); // Switch to the Create form for editing
+      //     toast.info("Edit the student details and click Submit.");
+      //   }
     } catch (error) {
       console.error("Error fetching student details:", error.message);
       toast.error("Failed to fetch student details. Please try again.");
     }
   };
-  
+
   const handleDeleteStudent = async (id) => {
     try {
       // Send a DELETE request to the API
@@ -162,14 +177,14 @@ const Students = () => {
         {/* Toggle Buttons */}
         <div className="flex justify-start mt-2 mb-6">
           <button
-            onClick={() => {setShowCreateForm(true),setClickedCreate(1),setStudents([])}}
+            onClick={() => { setShowCreateForm(true), setClickedCreate(1), setStudents([]) }}
             className={`px-15 py-2 text-md rounded-l-md ${showCreateForm ? "bg-gray-600 text-white" : "bg-gray-200 text-gray-600"
               } transition`}
           >
             Create
           </button>
           <button
-            onClick={() => {setShowCreateForm(false),setClickedCreate(0),setStudents([])}}
+            onClick={() => { setShowCreateForm(false), setClickedCreate(0), setStudents([]) }}
             className={`px-15 py-2 text-md rounded-r-md ${!showCreateForm ? "bg-gray-600 text-white" : "bg-gray-200 text-gray-600"
               } transition`}
           >
@@ -316,8 +331,9 @@ const Students = () => {
                 <input
                   type="file"
                   name="transferCertificate"
-                  value={newStudent.transferCertificate}
-                  onChange={handleNewStudentChange}
+                  // value={newStudent.transferCertificate}
+                  onChange={(e) =>
+                    setNewStudent({ ...newStudent, transferCertificate: e.target.files[0] })}
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
                 />
               </div>
@@ -513,7 +529,7 @@ const Students = () => {
 
         {/* Search Results */}
         <div className="bg-white shadow-md rounded-lg p-6 text-center">
-          <h2 className="text-lg font-bold mb-4 text-left">{clickedCreate ? "Created Student":"Search Results"}</h2>
+          <h2 className="text-lg font-bold mb-4 text-left">{clickedCreate ? "Created Student" : "Search Results"}</h2>
           {loading ? (
             <p>Loading...</p>
           ) : students.length > 0 ? (
@@ -539,18 +555,26 @@ const Students = () => {
                     <td className="border border-gray-300 px-4 py-2">{student.session}</td>
                     <td className="border border-gray-300 px-4 py-2">{student.gender}</td>
                     <td className="border border-gray-300 px-4 py-2">
-                      <button
-                        onClick={() => handleEditStudent(student._id)}
-                        className="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600 transition mr-2"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => handleDeleteStudent(student._id)}
-                        className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition"
-                      >
-                        Delete
-                      </button>
+                      <div className="flex justify-center gap-x-4">
+                        <button
+                          onClick={() => seeStudentDetails(student._id)}
+                          className="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-00 transition mr-2"
+                        >
+                          See Details
+                        </button>
+                        <button
+                          onClick={() => handleEditStudent(student._id)}
+                          className="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600 transition mr-2"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => handleDeleteStudent(student._id)}
+                          className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition"
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}

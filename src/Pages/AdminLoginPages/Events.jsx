@@ -1,10 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import api from "../../../api";
 import AdminHeader from "../../Components/AdminHeader";
 import toast from "react-hot-toast";
-
-
-
 
 const Events = () => {
   const [events, setEvents] = useState([]);
@@ -16,47 +13,46 @@ const Events = () => {
     location: "",
     organizer: "",
   });
-  const baseURL=(api.defaults.baseURL);
+  const [editingEventId, setEditingEventId] = useState(null); // Track the event being edited
   const [imageFile, setImageFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showCreateForm, setShowCreateForm] = useState(true);
+  const baseURL = api.defaults.baseURL;
 
   // Fetch all events
   const fetchAllEvents = async () => {
     setLoading(true);
     try {
       const response = await api.get("/events/");
-      console.log("Fetched events:", response);
       if (response.data.data && Array.isArray(response.data.data)) {
         setEvents(response.data.data);
-        console.log("Events:", events[0].imageUrl);
-        // toast.success("All events fetched successfully!");
       } else {
         setEvents([]);
         toast.error("No events found.");
       }
     } catch (error) {
       console.error("Error fetching events:", error.message);
-      // toast.error("Failed to fetch events. Please try again.");
+      toast.error("Failed to fetch events. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
-  // Handle input changes
+  useEffect(() => {
+    fetchAllEvents();
+  }, []);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle file change
   const handleFileChange = (e) => {
-    console.log("Image file:", imageFile);
     setImageFile(e.target.files[0]);
   };
 
-  // Handle form submission for creating events
-  const handleCreateEvent = async (e) => {
+  // Handle form submission for creating or updating events
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const data = new FormData();
@@ -65,30 +61,60 @@ const Events = () => {
       });
       if (imageFile) {
         data.append("eventImage", imageFile);
-        
       }
 
-      const response = await api.post("/events/", data, {
-        headers: { "Content-Type": "multipart/form-data" },
+      if (editingEventId) {
+        // Update existing event
+        console.log(formData);
+        const response = await api.put(`/events/${editingEventId}`, data, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        setEvents((prevEvents) =>
+          prevEvents.map((event) =>
+            event._id === editingEventId ? response.data.data : event
+          )
+        );
+        toast.success("Event updated successfully!");
+      } else {
+        // Create new event
+        const response = await api.post("/events/", data, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        setEvents([...events, response.data.data]);
+        toast.success("Event created successfully!");
+      }
+
+      // Reset form
+      setFormData({
+        name: "",
+        date: "",
+        time: "",
+        description: "",
+        location: "",
+        organizer: "",
       });
-
-      setEvents([...events, response.data]);
-      toast.success("Event created successfully!");
-
-      // Reset form fields
-      // setFormData({
-      //   name: "",
-      //   date: "",
-      //   time: "",
-      //   description: "",
-      //   location: "",
-      //   organizer: "",
-      // });
       setImageFile(null);
+      setEditingEventId(null);
     } catch (error) {
-      console.error("Error creating event:", error.message);
-      toast.error("Failed to create event. Please try again.");
+      console.error("Error submitting event:", error.message);
+      toast.error("Failed to submit event. Please try again.");
     }
+  };
+
+  // Handle edit event
+  const handleEditEvent = (event) => {
+    setEditingEventId(event._id); // Set the ID of the event being edited
+    setFormData({
+      name: event.name,
+      date: event.date ? event.date.split("T")[0] : "",
+      time: event.time,
+      description: event.description,
+      location: event.location,
+      organizer: event.organizer,
+    });
+    // setImageFile(null); // Reset file input for editing
+    setShowCreateForm(true);
+    toast.info("Edit the event details and click Submit.");
   };
 
   // Handle delete event
@@ -103,21 +129,6 @@ const Events = () => {
         toast.error("Failed to delete event. Please try again.");
       }
     }
-  };
-
-  // Handle edit event
-  const handleEditEvent = (event) => {
-    setShowCreateForm(true);
-    setFormData({
-      name: event.name,
-      date: event.date ? event.date.split("T")[0] : "",
-      time: event.time,
-      description: event.description,
-      location: event.location,
-      organizer: event.organizer,
-    });
-    setImageFile(null);
-    toast.info("Edit the event details and click Submit.");
   };
 
   return (
@@ -149,11 +160,13 @@ const Events = () => {
           </button>
         </div>
 
-        {/* Create Event Form */}
+        {/* Create or Edit Event Form */}
         {showCreateForm ? (
           <div className="bg-white shadow-md rounded-lg p-6 mb-8">
-            <h2 className="text-lg font-bold mb-4">Create Event</h2>
-            <form onSubmit={handleCreateEvent} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h2 className="text-lg font-bold mb-4">
+              {editingEventId ? "Edit Event" : "Create Event"}
+            </h2>
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block font-medium mb-1">Event Name</label>
                 <input
@@ -208,26 +221,16 @@ const Events = () => {
                   className="w-full px-4 py-2 border rounded-md"
                 />
               </div>
-
-              {/* <div>
+              <div>
                 <label className="block font-medium mb-1">Event Image</label>
                 <input
                   type="file"
                   accept="image/*"
+                  name="image"
                   onChange={handleFileChange}
                   className="w-full px-4 py-2 border rounded-md"
                 />
-              </div> */}
-
-              <div >
-                    <label className="block font-medium mb-1">Photos</label>
-                    <input
-                      type="file"
-                      multiple
-                      onChange={handleFileChange}
-                      className="w-full  px-4 py-1 border rounded-md  file:mr-4 file:py-1 file:px-4 file:h-8 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-200 file:text-blue-700 hover:file:bg-blue-500 hover:file:text-white" />
               </div>
-
               <div className="md:col-span-2">
                 <label className="block font-medium mb-1">Description</label>
                 <textarea
@@ -243,19 +246,18 @@ const Events = () => {
                 type="submit"
                 className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition md:col-span-2"
               >
-                {formData._id ? "Update Event" : "Create Event"}
+                {editingEventId ? "Update Event" : "Create Event"}
               </button>
             </form>
           </div>
         ) : (
           // Display All Events
-          <div className=" shadow-md rounded-lg  p-6 bg-gray-300">
+          <div className="bg-white shadow-md rounded-lg p-6">
             <h2 className="text-lg font-bold mb-4">All Events</h2>
             {loading ? (
               <p>Loading...</p>
             ) : events.length > 0 ? (
-              <div className="w-full flex justify-center ">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl p-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {events.map((event) => (
                   <div
                     key={event._id}
@@ -275,13 +277,13 @@ const Events = () => {
                         Delete
                       </button>
                     </div>
-                    {event.imagePath && (console.log("Image URL:", event.imagePath),
+                    {event.imagePath && (
                       <img
                         src={`${baseURL}/${event.imagePath}`}
                         alt={event.name}
-                        className="w-full h-40 object-fill mb-4"
+                        className="w-full h-40 object-cover mb-4"
                       />
-                    )} 
+                    )}
                     <h3 className="text-xl font-bold mb-2">{event.name}</h3>
                     <p className="text-gray-700 mb-1">
                       <strong>Date:</strong> {event.date ? event.date.split("T")[0] : "N/A"}
@@ -300,7 +302,6 @@ const Events = () => {
                     </p>
                   </div>
                 ))}
-              </div>
               </div>
             ) : (
               <p>No events found.</p>

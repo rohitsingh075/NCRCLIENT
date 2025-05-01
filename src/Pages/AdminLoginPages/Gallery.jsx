@@ -89,12 +89,12 @@ const Gallery = () => {
   };
 
   // Handle delete button click
-  const handleDelete = async (gallery) => {
+  const handleDelete = async (id) => {
+
     if (window.confirm("Are you sure you want to delete this gallery?")) {
       try {
-        const title = gallery.title;
-        console.log(title);
-        await api.delete(`/gallery/delete/${title}`);
+        console.log("test", id);
+        await api.delete(`/gallery/delete/${id}`, { withCredentials: true });
         setGalleries(galleries.filter((gallery) => gallery._id !== id));
         toast.success("Gallery deleted successfully!");
       } catch (error) {
@@ -161,13 +161,9 @@ const Gallery = () => {
                       type="file"
                       multiple
                       onChange={handleFileChange}
-                      className="w-full h-12 px-4 py-2 border-2 border-gray-300 rounded-md text-sm
-                 file:mr-4 file:py-1 file:px-4
-                 file:h-8 file:rounded-md file:border-0
-                 file:text-sm file:font-semibold
-                 file:bg-blue-50 file:text-blue-700
-                 hover:file:bg-blue-100"
+                      className="w-full h-12 px-4 py-2 border-2 border-gray-300 rounded-md text-smfile:mr-4 file:py-1 file:px-4 file:h-8 file:rounded-md file:border-0 file:text-sm file:font-semibold    file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                     />
+
                   </div>
                 </div>
 
@@ -190,9 +186,9 @@ const Gallery = () => {
               <p>Loading...</p>
             ) : galleries.length > 0 ? (
               <div className="flex flex-col gap-6">
-                {galleries.map((gallery) => (
+                {galleries.map((gallery) => (console.log(gallery._id),
                   <div
-                    key={gallery._id}
+                    key={gallery.id}
                     className="border rounded-lg shadow-md p-4 bg-gray-100 w-full"
                   >
                     <div className="flex gap-x-5 items-center mb-4">
@@ -213,7 +209,7 @@ const Gallery = () => {
                       </div>
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 gap-2 mb-4 h-auto">
-                      {gallery.photos.map((photo, index) => (console.log(`${baseUrl}/${photo}`),
+                      {gallery.photos.map((photo, index) => (console.log(``),
                         <img
                           key={index}
                           src={`${baseUrl}/${photo}`}
