@@ -3,6 +3,7 @@ import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 import ncclogo from "../../assets/nccLogo.jpg";
 import scoutlogo from "../../assets/scoutLogo.jpg";
+import ncrImage from "../../assets/ncrimage6.jpg"; 
 
 const facilitiesData = [
   {
@@ -71,9 +72,19 @@ const Facilities = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-50">
+
+{/* Banner Image */}
+      <div>
+        <img
+          src={ncrImage}
+          alt="School Infrastructure Banner"
+          className="w-full h-96 object-cover"
+        />
+      </div>
+
+      <div className="min-h-screen bg-gray-800">
         <div className="max-w-7xl mx-auto px-6 py-6">
-          <h1 className="text-4xl font-extrabold text-center text-gray-900 mb-6 ">
+          <h1 className="text-4xl font-extrabold text-center text-white mb-6 ">
             School Facilities
           </h1>
 
@@ -89,7 +100,7 @@ const Facilities = () => {
                   className="w-full h-58 my-4 object-contain "
                 />
                 <div className="p-6">
-                  <h2 className="text-2xl font-bold text-blue-600 mb-4">
+                  <h2 className="text-2xl font-bold text-red-600 mb-4">
                     {facility.name}
                   </h2>
                   <p className="text-gray-800 text-lg">{facility.description}</p>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import bannerImage from "../../assets/ncrimage6.jpg"; 
 
 const disclosureData = [
   {
@@ -49,6 +50,15 @@ export default function GeneralInformation() {
     <>
       {/* Navbar */}
       <Navbar />
+
+        {/* Banner Image */}
+            <div>
+              <img
+                src={bannerImage}
+                alt="School Infrastructure Banner"
+                className="w-full h-72 object-cover"
+              />
+            </div>
 
       {/* Main Content */}
       <div className="bg-gray-100 min-h-screen">

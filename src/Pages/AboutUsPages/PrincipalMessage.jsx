@@ -13,7 +13,7 @@ const PrincipalMessage = () => {
       {/* Main Content */}
       <div className="pt-2 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 py-5">
-          <h1 className="text-4xl font-bold mb-3 italic "> Principal's Message</h1>
+          <h1 className="text-4xl font-bold  text-red-700 mb-3 italic "> Principal's Message</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-center">
             {/* Left Section: Principal's Photo */}
             <div className="bg-red-700 -mt-12   mx-auto  rounded-lg shadow-xl overflow-hidden border-1 border-black">
