@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
-import resultImage from "../../assets/result.jpg"; 
+
 
 const documentData = [
   {
@@ -38,18 +38,10 @@ export default function ResultAndAcademics() {
   };
 
   return (
-    <div className="mx-auto">
+    <div className="mx-auto bg-gray-800">
       {/* Navbar */}
       <Navbar />
 
-        {/* Banner Image */}
-            <div>
-              <img
-                src={resultImage}
-                alt="School Infrastructure Banner"
-                className="w-full h-72 object-cover"
-              />
-            </div>
 
       {/* Main Content */}
       <div className="max-w-6xl mx-auto mt-5 p-4">

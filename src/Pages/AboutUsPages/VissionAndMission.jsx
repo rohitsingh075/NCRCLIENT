@@ -3,7 +3,7 @@ import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 import visionImage from "../../assets/vision.jpeg"; 
 import missionImage from "../../assets/mission.jpeg"; 
-import frontImage from "../../assets/front-vm.jpg"; 
+
 
 const VissionAndMission = () => {
   return (
@@ -12,7 +12,11 @@ const VissionAndMission = () => {
       <Navbar />
 
       
+<<<<<<< HEAD
+     
+=======
       <div><img src={frontImage} alt="" className="w-full max-h-85 object-contain select-none " /></div>
+>>>>>>> eed1815d5c74c45272dba5fea5e15c1597293462
       {/* Main Content */}
       <div className="bg-gray-200">
         {/* Vision and Mission Section */}
@@ -30,16 +34,16 @@ const VissionAndMission = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {/* Vision Section */}
-            <div className="bg-white shadow-lg rounded-lg p-6 hover:shadow-2xl transition duration-300 transform hover:scale-105">
+            <div className="bg-gray-800  shadow-lg rounded-lg p-6 hover:shadow-2xl transition duration-300 transform hover:scale-105">
               <img
                 src={visionImage}
                 alt="Vision"
                 className="w-full h-48 object-cover rounded-t-lg mb-4"
               />
-              <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-2xl font-bold text-gray-100 mb-4 flex items-center">
                 <span className="mr-2">🌟</span> Our Vision
               </h3>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-gray-300 leading-relaxed">
                 To be a leading institution that empowers students to achieve
                 their full potential and contribute positively to society. We
                 envision a future where every student is equipped with the
@@ -50,16 +54,16 @@ const VissionAndMission = () => {
             
 
             {/* Mission Section */}
-            <div className="bg-white shadow-lg rounded-lg p-6 hover:shadow-2xl transition duration-300 transform hover:scale-105">
+            <div className="bg-gray-800 shadow-lg rounded-lg p-6 hover:shadow-2xl transition duration-300 transform hover:scale-105">
               <img
                 src={missionImage}
                 alt="Mission"
                 className="w-full h-48 object-cover rounded-t-lg mb-4"
               />
-              <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-2xl font-bold text-gray-100 mb-4 flex items-center">
                 <span className="mr-2">🎯</span> Our Mission
               </h3>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-gray-300 leading-relaxed">
                 To provide quality education that fosters academic excellence,
                 character development, and lifelong learning. We are committed
                 to nurturing creativity, critical thinking, and a sense of

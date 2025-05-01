@@ -3,7 +3,7 @@ import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 import ncclogo from "../../assets/nccLogo.jpg";
 import scoutlogo from "../../assets/scoutLogo.jpg";
-import ncrImage from "../../assets/ncrimage6.jpg"; 
+
 
 const facilitiesData = [
   {
@@ -73,14 +73,6 @@ const Facilities = () => {
     <>
       <Navbar />
 
-{/* Banner Image */}
-      <div>
-        <img
-          src={ncrImage}
-          alt="School Infrastructure Banner"
-          className="w-full h-96 object-cover"
-        />
-      </div>
 
       <div className="min-h-screen bg-gray-800">
         <div className="max-w-7xl mx-auto px-6 py-6">
