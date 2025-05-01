@@ -30,7 +30,7 @@ const StudentDetails = () => {
   }, [id]);
 
   const handleBack = () => {
-    // Navigate back to the Students page with the same search data
+    // Navigate back to the Students page with the preserved state
     navigate("/students", { state: location.state });
   };
 
@@ -46,7 +46,7 @@ const StudentDetails = () => {
     <div>
       <AdminHeader title="Student Details" />
       <div className="ml-64 p-6 -mt-15">
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex justify-start gap-x-5 items-center mb-6">
           <h1 className="text-2xl font-bold">Student Details</h1>
           <button
             onClick={handleBack} // Navigate back to the Students page
@@ -104,8 +104,28 @@ const StudentDetails = () => {
                 <td className="px-4 py-2">{student.address}</td>
               </tr>
               <tr className="border border-gray-300">
-                <td className="px-4 py-2 font-medium">Mobile Number</td>
-                <td className="px-4 py-2">{student.mobileNo || "N/A"}</td>
+                <td className="px-4 py-2 font-medium">Phone Number</td>
+                <td className="px-4 py-2">{student.phoneNo || "N/A"}</td>
+              </tr>
+              <tr className="border border-gray-300">
+                <td className="px-4 py-2 font-medium">Rly Ward</td>
+                <td className="px-4 py-2">{student.rlyWard || "N/A"}</td>
+              </tr>
+              <tr className="border border-gray-300">
+                <td className="px-4 py-2 font-medium">Caste</td>
+                <td className="px-4 py-2">{student.caste || "N/A"}</td>
+              </tr>
+              <tr className="border border-gray-300">
+                <td className="px-4 py-2 font-medium">Aadhar Number</td>
+                <td className="px-4 py-2">{student.aadharNo || "N/A"}</td>
+              </tr>
+              <tr className="border border-gray-300">
+                <td className="px-4 py-2 font-medium">House</td>
+                <td className="px-4 py-2">{student.house || "N/A"}</td>
+              </tr>
+              <tr className="border border-gray-300">
+                <td className="px-4 py-2 font-medium">Religion</td>
+                <td className="px-4 py-2">{student.religion || "N/A"}</td>
               </tr>
               <tr className="border border-gray-300">
                 <td className="px-4 py-2 font-medium">Admission Date</td>

@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import AdminHeader from "../../Components/AdminHeader";
 import toast from "react-hot-toast";
 import api from "../../../api";
-import { useNavigate } from "react-router-dom";
-
-
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Students = () => {
-  const [filters, setFilters] = useState({
+  const location = useLocation(); // Access state passed from StudentDetails
+  const [filters, setFilters] = useState(location.state?.filters || {
     srNo: "",
     name: "",
     session: "",
@@ -16,6 +15,10 @@ const Students = () => {
     dob: "",
     gender: "",
     address: "",
+    rlyWard: "",
+    caste: "",
+    aadharNo: "",
+    house: "",
   });
 
   const [newStudent, setNewStudent] = useState({
@@ -32,14 +35,22 @@ const Students = () => {
     transferCertificate: "",
     admissionDate: "",
     schoolLeavingDate: "",
+    rlyWard: "",
+    caste: "",
+    aadharNo: "",
+    house: "",
+    religion: "",
+    phoneNo: "", // Added phoneNo to newStudent
   });
 
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
   const [clickedCreate, setClickedCreate] = useState(1);
-  const [showCreateForm, setShowCreateForm] = useState(true);
+  const [showCreateForm, setShowCreateForm] = useState(location.state?.showCreateForm ?? true); // Preserve active button
   const navigate = useNavigate();
 
+  // Reference for the search results div
+  const searchResultsRef = useRef(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -47,6 +58,7 @@ const Students = () => {
   };
 
   const clearFilters = () => {
+    // Reset filters to their default values
     setFilters({
       srNo: "",
       name: "",
@@ -56,9 +68,18 @@ const Students = () => {
       dob: "",
       gender: "",
       address: "",
+      rlyWard: "",
+      caste: "",
+      aadharNo: "",
+      house: "",
+      phoneNo: "", // Reset phoneNo as well
     });
-  };
 
+    // Clear the students list
+    setStudents([]);
+
+    // toast.success("Filters cleared successfully!");
+  };
 
   const handleNewStudentChange = (e) => {
     const { name, value } = e.target;
@@ -66,37 +87,60 @@ const Students = () => {
   };
 
   const seeStudentDetails = (id) => {
-    navigate(`/student-details/${id}`);
+    navigate(`/student-details/${id}`, {
+      state: { filters, showCreateForm }, // Pass current state to StudentDetails
+    });
   };
-  
+
   const handleFilterSearch = async () => {
+    // Check if all filters are empty
+    const isEmptyFilters = Object.values(filters).every((value) => value === "" || value === null);
+
+    if (isEmptyFilters) {
+      toast.error("No filters applied. Please fill at least one filter to search.");
+      return; // Exit the function without calling the API
+    }
+
     setLoading(true);
     try {
-      // console.log("Filters applied:", filters);
-      setStudents([]);
+      // Ensure filters are passed correctly to the API
       const response = await api.get("/students/filter", { params: filters });
       setStudents(response.data.students);
-      toast.success("Students Searched successfully!");
 
+      // Scroll to the search results div
+      if (searchResultsRef.current) {
+        searchResultsRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+
+      toast.success("Filter applied successfully!");
     } catch (error) {
-      console.error("Error fetching students:", error);
+      console.error("Error fetching filtered students:", error.message);
+      toast.error("Failed to apply filters. Please try again.");
     } finally {
       setLoading(false);
     }
   };
-  const handleSearchAll = async () => {
-    setLoading(true);
-    try {
-      const response = await api.get("/students/");
-      setStudents(response.data.students);
-      toast.success("Student Searched successfully!");
 
-    } catch (error) {
-      console.error("Error fetching students:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const handleSearchAll = async () => {
+  //   setLoading(true);
+  //   try {
+  //     // Fetch all students without filters
+  //     const response = await api.get("/students/");
+  //     setStudents(response.data.students);
+
+  //     // Scroll to the search results div
+  //     if (searchResultsRef.current) {
+  //       searchResultsRef.current.scrollIntoView({ behavior: "smooth" });
+  //     }
+
+  //     // toast.success("All students fetched successfully!");
+  //   } catch (error) {
+  //     console.error("Error fetching all students:", error.message);
+  //     toast.error("Failed to fetch all students. Please try again.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const handleCreateStudent = async () => {
     try {
@@ -128,8 +172,22 @@ const Students = () => {
         transferCertificate: "",
         admissionDate: "",
         schoolLeavingDate: "",
+        rlyWard: "",
+        caste: "",
+        aadharNo: "",
+        house: "",
+        religion: "",
+        phoneNo: "",
       });
+      set
+
       toast.success("Student created successfully!");
+
+      // Scroll to the search results div
+      if (searchResultsRef.current) {
+        searchResultsRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+
       setClickedCreate(1);
     } catch (error) {
       console.error("Error creating student:", error.response?.data || error.message);
@@ -137,19 +195,9 @@ const Students = () => {
     }
   };
 
-
   const handleEditStudent = async (id) => {
     try {
       navigate(`/update-student/${id}`);
-      // Fetch the student details from the API
-      //   const response = await api.put(`/students/${id}`);
-      //   const studentToEdit = response.data;
-
-      //   if (studentToEdit) {
-      //     setNewStudent(studentToEdit); // Populate the form with the student's details
-      //     setShowCreateForm(true); // Switch to the Create form for editing
-      //     toast.info("Edit the student details and click Submit.");
-      //   }
     } catch (error) {
       console.error("Error fetching student details:", error.message);
       toast.error("Failed to fetch student details. Please try again.");
@@ -158,15 +206,20 @@ const Students = () => {
 
   const handleDeleteStudent = async (id) => {
     try {
-      // Send a DELETE request to the API
+      window.confirm("Are you sure to delelte the student data")
       await api.delete(`/students/${id}`);
-      setStudents(students.filter((student) => student._id !== id)); // Remove the student from the list
+      setStudents(students.filter((student) => student._id !== id));
       toast.success("Student deleted successfully!");
     } catch (error) {
       console.error("Error deleting student:", error.message);
       toast.error("Failed to delete student. Please try again.");
     }
   };
+
+  useEffect(() => {
+    // Remove the automatic call to handleFilterSearch
+    // This ensures no API calls are made when toggling between Create and Search modes
+  }, [showCreateForm]);
 
   return (
     <div>
@@ -177,16 +230,27 @@ const Students = () => {
         {/* Toggle Buttons */}
         <div className="flex justify-start mt-2 mb-6">
           <button
-            onClick={() => { setShowCreateForm(true), setClickedCreate(1), setStudents([]) }}
-            className={`px-15 py-2 text-md rounded-l-md ${showCreateForm ? "bg-gray-600 text-white" : "bg-gray-200 text-gray-600"
-              } transition`}
+            onClick={() => {
+              setShowCreateForm(true);
+              setClickedCreate(1);
+              clearFilters();
+              setStudents([]); // Clear the students list when switching to Create mode
+            }}
+            className={`px-15 py-2 text-md rounded-l-md ${
+              showCreateForm ? "bg-gray-600 text-white" : "bg-gray-200 text-gray-600"
+            } transition`}
           >
             Create
           </button>
           <button
-            onClick={() => { setShowCreateForm(false), setClickedCreate(0), setStudents([]) }}
-            className={`px-15 py-2 text-md rounded-r-md ${!showCreateForm ? "bg-gray-600 text-white" : "bg-gray-200 text-gray-600"
-              } transition`}
+            onClick={() => {
+              setShowCreateForm(false);
+              setClickedCreate(0);
+              // No API call or filter logic here, just UI changes
+            }}
+            className={`px-15 py-2 text-md rounded-r-md ${
+              !showCreateForm ? "bg-gray-600 text-white" : "bg-gray-200 text-gray-600"
+            } transition`}
           >
             Search
           </button>
@@ -263,9 +327,6 @@ const Students = () => {
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
                 >
                   <option value="">Select Class</option>
-                  {/* <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option> */}
                   <option value="4">4</option>
                   <option value="5">5</option>
                   <option value="6">6</option>
@@ -331,7 +392,6 @@ const Students = () => {
                 <input
                   type="file"
                   name="transferCertificate"
-                  // value={newStudent.transferCertificate}
                   onChange={(e) =>
                     setNewStudent({ ...newStudent, transferCertificate: e.target.files[0] })}
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
@@ -348,6 +408,84 @@ const Students = () => {
                 />
               </div>
               <div>
+                <label className="block text-gray-700 font-medium mb-1">Rly Ward</label>
+                <select
+                  name="rlyWard"
+                  value={newStudent.rlyWard}
+                  onChange={handleNewStudentChange}
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                >
+                  <option value="">Select Rly Ward</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium mb-1">Caste</label>
+                <select
+                  name="caste"
+                  value={newStudent.caste}
+                  onChange={handleNewStudentChange}
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                >
+                  <option value="">Select Caste</option>
+                  <option value="General">General</option>
+                  <option value="OBC">OBC</option>
+                  <option value="SC">SC</option>
+                  <option value="ST">ST</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium mb-1">Aadhar Number</label>
+                <input
+                  type="text"
+                  name="aadharNo"
+                  value={newStudent.aadharNo}
+                  onChange={handleNewStudentChange}
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium mb-1">House</label>
+                <select
+                  name="house"
+                  value={newStudent.house}
+                  onChange={handleNewStudentChange}
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                >
+                  <option value="">Select House</option>
+                  <option value="S">S</option>
+                  <option value="T">T</option>
+                  <option value="A">A</option>
+                  <option value="P">P</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium mb-1">Religion</label>
+                <select
+                  name="religion"
+                  value={newStudent.religion}
+                  onChange={handleNewStudentChange}
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                >
+                  <option value="">Select Religion</option>
+                  <option value="Hindu">Hindu</option>
+                  <option value="Muslim">Muslim</option>
+                  <option value="Sikh">Sikh</option>
+                  <option value="Christian">Christian</option>
+                  <option value="Jain">Jain</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium mb-1">Phone Number</label>
+                <input
+                  type="text"
+                  name="phoneNo"
+                  value={newStudent.phoneNo}
+                  onChange={handleNewStudentChange}
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                />
               </div>
             </div>
             <button
@@ -407,10 +545,6 @@ const Students = () => {
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
                 >
                   <option value="">Select Class</option>
-                  {/* <option value="1">1</option>
-                  <option value="2">2</option>
-
-                  <option value="3">3</option> */}
                   <option value="4">4</option>
                   <option value="5">5</option>
                   <option value="6">6</option>
@@ -470,6 +604,59 @@ const Students = () => {
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
                 />
               </div>
+              <div>
+                <label className="block text-gray-700 font-medium mb-1">Rly Ward</label>
+                <select
+                  name="rlyWard"
+                  value={filters.rlyWard || ""}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                >
+                  <option value="">Select Rly Ward</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium mb-1">Caste</label>
+                <select
+                  name="caste"
+                  value={filters.caste || ""}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                >
+                  <option value="">Select Caste</option>
+                  <option value="General">General</option>
+                  <option value="OBC">OBC</option>
+                  <option value="SC">SC</option>
+                  <option value="ST">ST</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium mb-1">Aadhar Number</label>
+                <input
+                  type="text"
+                  name="aadharNo"
+                  value={filters.aadharNo || ""}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium mb-1">House</label>
+                <select
+                  name="house"
+                  value={filters.house || ""}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                >
+                  <option value="">Select House</option>
+                  <option value="S">S</option>
+                  <option value="T">T</option>
+                  <option value="A">A</option>
+                  <option value="P">P</option>
+                </select>
+              </div>
             </div>
             <button
               onClick={handleFilterSearch}
@@ -477,58 +664,24 @@ const Students = () => {
             >
               Filter Search
             </button>
-            <button
-              onClick={handleSearchAll}
-              className="mt-4 bg-blue-600 text-white px-15 py-2 ml-5 rounded-md hover:bg-blue-700 transition"
-            >
-              Search All
-            </button>
+            
             <button
               onClick={clearFilters}
               className="mt-4 bg-blue-600 text-white px-15 py-2 ml-5 rounded-md hover:bg-blue-700 transition"
             >
               Clear Filter
             </button>
+            {/* <button
+              onClick={handleSearchAll}
+              className="mt-4 bg-blue-600 text-white px-15 py-2 ml-5 rounded-md hover:bg-blue-700 transition"
+            >
+               All Students
+            </button> */}
           </div>
         )}
 
-        {/* Created Student */}
-        {/* <div className="bg-white shadow-md rounded-lg p-6 text-center">
-          <h2 className="text-lg font-bold mb-4 text-left">Created Results</h2>
-          {loading ? (
-            <p>Loading...</p>
-          ) : students.length > 0 ? (
-            <table className="w-full border-collapse border border-gray-300">
-              <thead>
-                <tr>
-                  <th className="border border-gray-300 px-4 py-2">Sr No</th>
-                  <th className="border border-gray-300 px-4 py-2">Name</th>
-                  <th className="border border-gray-300 px-4 py-2">Class</th>
-                  <th className="border border-gray-300 px-4 py-2">Section</th>
-                  <th className="border border-gray-300 px-4 py-2">Session</th>
-                  <th className="border border-gray-300 px-4 py-2">Gender</th>
-                </tr>
-              </thead>
-              <tbody>
-                {createdStudent.map((student) => (
-                  <tr key={student.srNo}>
-                    <td className="border border-gray-300 px-4 py-2">{student.srNo}</td>
-                    <td className="border border-gray-300 px-4 py-2">{student.name}</td>
-                    <td className="border border-gray-300 px-4 py-2">{student.class}</td>
-                    <td className="border border-gray-300 px-4 py-2">{student.section}</td>
-                    <td className="border border-gray-300 px-4 py-2">{student.session}</td>
-                    <td className="border border-gray-300 px-4 py-2">{student.gender}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            <p>No students found.</p>
-          )}
-        </div> */}
-
         {/* Search Results */}
-        <div className="bg-white shadow-md rounded-lg p-6 text-center">
+        <div ref={searchResultsRef} className="bg-white shadow-md rounded-lg p-6 text-center">
           <h2 className="text-lg font-bold mb-4 text-left">{clickedCreate ? "Created Student" : "Search Results"}</h2>
           {loading ? (
             <p>Loading...</p>
@@ -584,7 +737,6 @@ const Students = () => {
             <p>No students found.</p>
           )}
         </div>
-
       </div>
     </div>
   );

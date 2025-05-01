@@ -46,13 +46,9 @@ export default function ResultAndAcademics() {
       {/* Main Content */}
       <div className="max-w-6xl mx-auto mt-5 p-4">
         <div className="rounded  p-6 bg-gray-50 shadow-lg">
-          <h2 className="text-3xl font-bold text-center text-red-700 mb-6">
+          <h2 className="text-3xl font-bold text-center text-red-700 mb-14">
             RESULT AND ACADEMICS
           </h2>
-          <p className="text-center text-gray-600 mb-8">
-            Below is the detailed information about results and academics. Click
-            on any section to view the content.
-          </p>
 
           <div className="space-y-6">
             {documentData.map((item, index) => (

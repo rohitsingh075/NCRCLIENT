@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import AdminHeader from "../../Components/AdminHeader";
 import toast from "react-hot-toast";
 import api from "../../../api";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 
 const StudentEdit = () => {
   const { id } = useParams(); // Get the student ID from the route parameter
   const navigate = useNavigate();
+  const location = useLocation(); // Access state passed from the previous page
 
   const [student, setStudent] = useState({
     srNo: "",
@@ -22,6 +23,12 @@ const StudentEdit = () => {
     transferCertificate: "",
     admissionDate: "",
     schoolLeavingDate: "",
+    rlyWard: "", // Added RlyWard
+    caste: "", // Added Caste
+    aadharNo: "", // Added AadharNo
+    house: "", // Added House
+    religion: "", // Added Religion
+    phoneNo: "", // Added phoneNo to the state
   });
 
   const [loading, setLoading] = useState(false);
@@ -75,13 +82,18 @@ const StudentEdit = () => {
       });
 
       toast.success(`Student Sr No. ${student.srNo} updated successfully!`);
-      navigate("/students"); // Redirect to the students list page
+      navigate(`/student-details/${id}`); // Redirect to the StudentDetails page
     } catch (error) {
       console.error("Error updating student:", error.message);
       toast.error("Failed to update student. Please try again.");
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleBack = () => {
+    // Navigate back to the previous page with the preserved state
+    navigate("/students", { state: location.state });
   };
 
   if (loading) {
@@ -92,7 +104,15 @@ const StudentEdit = () => {
     <div>
       <AdminHeader title="Edit Student" />
       <div className="ml-64 p-6 -mt-15">
-        <h1 className="text-2xl font-bold mb-6">Edit Student</h1>
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-2xl font-bold">Edit Student</h1>
+          <button
+            onClick={handleBack} // Navigate back to the Students page with preserved state
+            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+          >
+            Back
+          </button>
+        </div>
 
         <div className="bg-white shadow-md rounded-lg p-3 mb-8 border-2 border-blue-400">
           <h2 className="text-lg font-bold mb-2">Edit Student Details</h2>
@@ -264,6 +284,86 @@ const StudentEdit = () => {
                   View Current Transfer Certificate
                 </a>
               )}
+            </div>
+            <div>
+              <label className="block text-gray-700 font-medium mb-1">Rly Ward</label>
+              <select
+                name="rlyWard"
+                value={student.rlyWard}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+              >
+                <option value="">Select Rly Ward</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-gray-700 font-medium mb-1">Caste</label>
+              <select
+                name="caste"
+                value={student.caste}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+              >
+                <option value="">Select Caste</option>
+                <option value="General">General</option>
+                <option value="OBC">OBC</option>
+                <option value="SC">SC</option>
+                <option value="ST">ST</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-gray-700 font-medium mb-1">Aadhar Number</label>
+              <input
+                type="text"
+                name="aadharNo"
+                value={student.aadharNo}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700 font-medium mb-1">House</label>
+              <select
+                name="house"
+                value={student.house}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+              >
+                <option value="">Select House</option>
+                <option value="S">S</option>
+                <option value="T">T</option>
+                <option value="A">A</option>
+                <option value="P">P</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-gray-700 font-medium mb-1">Religion</label>
+              <select
+                name="religion"
+                value={student.religion}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+              >
+                <option value="">Select Religion</option>
+                <option value="Hindu">Hindu</option>
+                <option value="Muslim">Muslim</option>
+                <option value="Sikh">Sikh</option>
+                <option value="Christian">Christian</option>
+                <option value="Jain">Jain</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-gray-700 font-medium mb-1">Phone Number</label>
+              <input
+                type="text"
+                name="phoneNo"
+                value={student.phoneNo}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+              />
             </div>
             <button
               type="submit"
