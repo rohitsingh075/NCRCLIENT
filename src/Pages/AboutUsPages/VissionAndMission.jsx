@@ -12,7 +12,7 @@ const VissionAndMission = () => {
       <Navbar />
 
       
-      <div><img src={frontImage} alt="" className="w-full max-h-100 object-contain select-none " /></div>
+      <div><img src={frontImage} alt="" className="w-full max-h-85 object-contain select-none " /></div>
       {/* Main Content */}
       <div className="bg-gray-200">
         {/* Vision and Mission Section */}

@@ -18,9 +18,9 @@ export default function InfoCard() {
     const fetchData = async () => {
       try {
         const [noticeRes, eventRes, galleryRes] = await Promise.all([
-          api.get(`${baseUrl}/notices/`),
-          api.get(`${baseUrl}/events/`),
-          api.get(`${baseUrl}/gallery/view`),
+          api.get(`/notices/`),
+          api.get(`/events/`),
+          api.get(`/gallery/view`),
         ]);
         console.log("Notice Response:", noticeRes.data);
         console.log("Event Response:", eventRes.data);
@@ -55,9 +55,8 @@ export default function InfoCard() {
               {notices.length > 0 ? notices.map((notice, i) => (
                 <div key={i} className="flex   justify-between px-4 py-4">
                   <div className="flex justify-between h-auto w-full animate-vertical-scroll p-4 items-center rounded-lg border-2 box-border text-lg bg-yellow-500">
-                    <p className="font-medium px-6 py-2 text-gray-700 bg-blue-200">{notice.title}</p>
                     <p className="font-medium px-6 py-2 text-gray-700 bg-blue-200">{trimDate(notice.date)}</p>
-                    <p className="font-medium text-gray-700">href={notice.description}</p>
+                    <p className="font-medium px-6 py-2 text-gray-700 bg-blue-200">{notice.title}</p>
                     <Link to={`/notice-info/${notice._id}`} >
                       <p className="text-blue-600 text-sm hover:underline">Read More...</p>
                     </Link>
@@ -102,7 +101,7 @@ export default function InfoCard() {
           </div>
         </div>
       </div>
-      
+
       {/*School Teacher Commitee  */}
       <div className="bg-white rounded-2xl border-b-6 shadow p-5">
         <div className="border-b-1 pb-3 mb-4 flex items-center">

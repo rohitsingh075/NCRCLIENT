@@ -8,12 +8,16 @@ const NoticePage = () => {
   const [loading, setLoading] = useState(true);
   console.log(id);
 
+  // const baseUrl=api.defaults.baseURL;
+  // console.log(baseUrl)
+
   
   useEffect(() => {
     const fetchNotice = async () => {
       try {
         const response = await api.get(`/notices/${id}`); // Fetch notice by ID
         setNotice(response.data.data);
+        // console.log(response.data.data);
       } catch (error) {
         console.error("Error fetching notice:", error.message);
       } finally {
@@ -36,6 +40,7 @@ const NoticePage = () => {
     <div className="p-6 bg-gray-100 min-h-screen">
       <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
         <h1 className="text-3xl font-bold text-gray-800 mb-4">{notice.title}</h1>
+        <img src={`${baseUrl}/${notice.noitceUpload}`} alt="" />
         <p className="text-gray-700 mb-2">
           <strong>Date:</strong> {notice.date ? notice.date.split("T")[0] : "N/A"}
         </p>

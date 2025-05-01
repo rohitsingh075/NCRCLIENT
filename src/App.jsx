@@ -1,7 +1,7 @@
 import './App.css'
-import { createBrowserRouter} from 'react-router-dom';
+import { createBrowserRouter, useNavigate } from 'react-router-dom';
 import { RouterProvider } from 'react-router-dom';
-import  Layout from "./Components/Layout.jsx"
+import Layout from "./Components/Layout.jsx"
 import ScrollToTop from './Components/ScrollToTop.jsx';
 import HomePage from './Pages/HomePage/HomePage.jsx';
 import AboutSchool from './Pages/AboutUsPages/AboutSchool.jsx';
@@ -32,6 +32,10 @@ import NationalEducationPolicy from './Pages/AcademicPages/NationalEducationPoli
 import EventPage from './Pages/EventPage.jsx';
 import NoticePage from './Pages/NoticePage.jsx';
 import GalleryPage from './Pages/GalleryPage.jsx';
+import AdminPrivateRoute from './Components/AdminPrivateRoute.jsx';
+import StudentEdit from './Pages/EditPages/StudentEdit.jsx';
+import { setNavigate } from '../api.js';
+import StudentDetails from './Pages/AdminLoginPages/StudentDetails.jsx';
 
 
 
@@ -49,11 +53,7 @@ export const router = createBrowserRouter([
       { path: '/principal-message', element: <PrincipalMessage /> },
       { path: '/student-guidelines', element: <StudentGuidelines /> },
       { path: '/school-uniform', element: <SchoolUniform /> },
-      { path: '/dashboard', element: <Dashboard /> },
-      { path: '/students', element: <Students /> },
-      { path: '/events', element: <Events /> },
-      { path: '/notices', element: <Notices /> },
-      { path: '/gallery', element: <Gallery /> },
+
       { path: '/mandatory-disclosures', element: <MandatoryDisclosure /> },
       { path: '/general-information', element: <GeneralInformation /> },
       { path: '/documents-and-information', element: <DocumentsAndInfomation /> },
@@ -66,17 +66,29 @@ export const router = createBrowserRouter([
       { path: '/facilities', element: <Facilities /> },
       { path: '/academic-calendar', element: <AcademicCalender /> },
       { path: '/nep', element: <NationalEducationPolicy /> },
-      { path: '/notice-info/:id', element: <NoticePage/> },
-      { path: '/event-info/:id', element: <EventPage/> },
-      { path: '/gallery-info/:id', element: <GalleryPage/> },
+      { path: '/notice-info/:id', element: <NoticePage /> },
+      { path: '/event-info/:id', element: <EventPage /> },
+      { path: '/gallery-info/:id', element: <GalleryPage /> },
+      { path: '/update-student/:id', element: <StudentEdit/> },
+      {
+        element: <AdminPrivateRoute />,
+        children: [
+          { path: '/dashboard', element: <Dashboard /> },
+          { path: '/students', element: <Students /> },
+          { path: '/notices', element: <Notices /> },
+          { path: '/events', element: <Events /> },
+          { path: '/gallery', element: <Gallery /> },
+          { path: '/student-details/:id', element: <StudentDetails/> },
+
+        ]
+      }
     ]
   }
 ]);
 
 
 function App() {
-
-
+ 
   return (
     <div>
       <RouterProvider router={router} />
