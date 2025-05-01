@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
-import kidsImage from "../../assets/ncrimage6.jpg";
+
 import summerImage from "../../assets/Summer.jpg"; // Replace with an actual image for Summer Uniform
 import winterImage from "../../assets/Winter.jpg"; // Replace with an actual image for Winter Uniform
 import commonImage from "../../assets/Common.jpg"; // Replace with an actual image for Common Items
@@ -11,19 +11,11 @@ const SchoolUniform = () => {
     <>
       <Navbar />
 
-      {/* Banner Image */}
-      <div>
-        <img
-          src={kidsImage}
-          alt="School Infrastructure Banner"
-          className="w-full h-96 object-cover"
-        />
-      </div>
 
       {/* Main Content */}
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-200">
         <div className="max-w-7xl mx-auto px-6 py-12">
-          <h1 className="text-5xl font-extrabold text-center text-red-700 mb-12">
+          <h1 className="text-5xl font-extrabold text-center text-red-500 mb-12">
             School Uniform
           </h1>
 

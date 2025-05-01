@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
-import bannerImage from "../../assets/ncrimage6.jpg"; 
+
 
 const documentData = [
   {
@@ -50,19 +50,12 @@ export default function DocumentsAndInfomation() {
   };
 
   return (
-    <div className="mx-auto">
+    <div className="mx-auto bg-gray-800">
       <div >
         <Navbar />
       </div>
 
-  {/* Banner Image */}
-      <div>
-        <img
-          src={bannerImage}
-          alt="School Infrastructure Banner"
-          className="w-full h-72 object-cover"
-        />
-      </div>
+
 
 
       <div className="max-w-6xl mx-auto mt-2 p-4">

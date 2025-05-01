@@ -2,7 +2,7 @@ import { useState } from "react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import bannerImage from "../../assets/ncrimage6.jpg"; 
+
 
 const disclosureData = [
   {
@@ -51,22 +51,15 @@ export default function GeneralInformation() {
       {/* Navbar */}
       <Navbar />
 
-        {/* Banner Image */}
-            <div>
-              <img
-                src={bannerImage}
-                alt="School Infrastructure Banner"
-                className="w-full h-72 object-cover"
-              />
-            </div>
+ 
 
       {/* Main Content */}
-      <div className="bg-gray-100 min-h-screen">
+      <div className="bg-gray-800 min-h-screen">
         <div className="max-w-6xl mx-auto p-8">
-          <h1 className="text-3xl font-bold text-center text-red-700 mt-6 mb-6">
+          <h1 className="text-3xl font-bold text-center text-red-500 mt-6 mb-6">
             General Information
           </h1>
-          <p className="text-center text-gray-600 mb-8">
+          <p className="text-center text-gray-100 mb-8">
             Below is the general information about North Central Railway
             College, Tundla. Click on each section to view more details.
           </p>

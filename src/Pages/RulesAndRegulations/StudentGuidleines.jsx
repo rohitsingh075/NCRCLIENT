@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
-import feeImage from "../../assets/ncrimage6.jpg";
+
 
 const StudentGuidelines = () => {
   return (
@@ -9,14 +9,6 @@ const StudentGuidelines = () => {
       {/* Navbar */}
       <Navbar />
 
-      {/* Banner Image */}
-      <div>
-        <img
-          src={feeImage}
-          alt="School Infrastructure Banner"
-          className="w-full h-96 object-cover"
-        />
-      </div>
 
       {/* Main Content */}
       <div className="pt-20 bg-gradient-to-b from-gray-700 to-gray-900">

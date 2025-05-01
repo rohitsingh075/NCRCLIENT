@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
-import admissionBanner from "../../assets/ncrimage4.jpg"; // Replace with an actual banner image
+
 import processImage from "../../assets/admisson.webp"; // Replace with an actual image for Admission Process
 import documentsImage from "../../assets/reqdoc.webp"; // Replace with an actual image for Required Documents
 import criteriaImage from "../../assets/academics.jpg"; // Replace with an actual image for Admission Criteria
@@ -12,14 +12,7 @@ const AdmissionProcedure = () => {
     <>
       <Navbar />
       <div className="min-h-screen bg-gray-50">
-        {/* Banner Section */}
-        <div>
-          <img
-            src={admissionBanner}
-            alt="Admission Banner"
-            className="w-full h-72 object-cover"
-          />
-        </div>
+  
 
         {/* Main Content */}
         <div className="max-w-7xl mx-auto px-6 py-12">
