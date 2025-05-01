@@ -54,9 +54,9 @@ export default function InfoCard() {
             <div className="flex flex-col text-gray-100 ">
               {notices.length > 0 ? notices.map((notice, i) => (
                 <div key={i} className="flex   justify-between px-4 py-4">
-                  <div className="flex justify-between h-auto w-full animate-vertical-scroll p-4 items-center rounded-lg border-2 box-border text-lg bg-yellow-500">
-                    <p className="font-medium px-6 py-2 text-gray-700 bg-blue-200">{notice.title}</p>
-                    <p className="font-medium px-6 py-2 text-gray-700 bg-blue-200">{trimDate(notice.date)}</p>
+                  <div className="flex justify-between h-auto w-full animate-vertical-scroll p-4 items-center rounded-lg border-2 box-border text-lg ">
+                    <p className="font-medium px-6 py-2 text-gray-100 ">{notice.title}</p>
+                    <p className="font-medium px-6 py-2 text-gray-100">{trimDate(notice.date)}</p>
                     <p className="font-medium text-gray-700">href={notice.description}</p>
                     <Link to={`/notice-info/${notice._id}`} >
                       <p className="text-blue-600 text-sm hover:underline">Read More...</p>
