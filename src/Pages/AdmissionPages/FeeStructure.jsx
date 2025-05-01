@@ -1,14 +1,25 @@
 import React from "react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
-
+import feeImage from "../../assets/ncrimage6.jpg"; 
 
 const FeeStructure = () => {
   return (
     <>
       <Navbar />
+
+   {/* Banner Image */}
+            <div>
+              <img
+                src={feeImage}
+                alt="School Infrastructure Banner"
+                className="w-full h-72 object-cover"
+              />
+            </div>
+
+
       <div className="min-h-screen bg-gray-50">
-        <div className="max-w-8xl mx-auto px-6 py-5">
+        <div className="max-w-8xl  mx-auto px-6 py-5">
           {/* <h1 className="text-2xl font-bold text-center text-blue-700 mt-200">
             Fee Structure
           </h1> */}
@@ -63,15 +74,15 @@ const FeeStructure = () => {
           </div> */}
 
           {/* PDF Viewer */}
-          <div className="bg-white shadow-lg rounded-lg p-5  ">
-            <h2 className="text-3xl font-bold text-blue-600 mb-2">
+          <div className=" text-red-700 bg-gray-200 text-center shadow-lg rounded-lg p-5 m-5  ">
+            <h2 className="text-4xl   font-bold  mb-8 mt-2">
                Fee Structure 
             </h2>
             <iframe
               src="/resultDocuments/Fees_Structure.pdf"
               width="100%"
               height="450px"
-              className="border rounded "
+              className=" rounded m-5 "
               title="Fee Structure "/>
           </div>
         </div>

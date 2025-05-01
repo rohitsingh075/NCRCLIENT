@@ -33,8 +33,8 @@ const GalleryPage = () => {
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      <div className="max-w-7xl mx-auto bg-white shadow-md rounded-lg p-6">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">{gallery.title}</h1>
+      <div className="max-w-7xl mx-auto bg-gray-800  rounded-lg p-6">
+        <h1 className="text-3xl font-bold text-white mb-4">{gallery.title}</h1>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {/* Here */}
           {gallery.photos.map((photo, index) => (

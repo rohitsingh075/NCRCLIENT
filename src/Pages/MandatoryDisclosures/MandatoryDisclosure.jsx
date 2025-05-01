@@ -49,7 +49,7 @@ export default function MandatoryDisclosure() {
       <p className="text-sm mb-6">Home &rarr; Mandatory Disclosure &rarr; Public Disclosure</p>
 
       <div className="border rounded p-4 bg-white shadow">
-        <h2 className="text-lg font-bold text-blue-700 border-b pb-2 mb-4">GENERAL INFORMATION</h2>
+        <h2 className="text-lg font-bold text-red-700 border-b pb-2 mb-4">GENERAL INFORMATION</h2>
 
         {disclosureData.map((item, index) => (
           <div key={index} className="mb-2 border rounded overflow-hidden">

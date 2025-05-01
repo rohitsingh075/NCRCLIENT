@@ -8,7 +8,7 @@ const AcademicCalender = () => {
       <Navbar />
       <div className="min-h-screen bg-gray-50">
         <div className="max-w-8xl mx-auto px-6 py-4">
-          <h1 className="text-4xl font-extrabold text-center  text-blue-700  ">
+          <h1 className="text-4xl font-extrabold text-center  text-red-700  ">
             Academic Calendar
           </h1>
 
