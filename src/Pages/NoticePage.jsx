@@ -37,10 +37,9 @@ const NoticePage = () => {
   }
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
+    <div className="p-6 bg-gray-800 min-h-screen">
       <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">{notice.title}</h1>
-        <img src={`${baseUrl}/${notice.noitceUpload}`} alt="" />
+        <h1 className="text-3xl font-bold text-red-700 mb-4">{notice.title}</h1>
         <p className="text-gray-700 mb-2">
           <strong>Date:</strong> {notice.date ? notice.date.split("T")[0] : "N/A"}
         </p>

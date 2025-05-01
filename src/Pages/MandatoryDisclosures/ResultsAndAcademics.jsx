@@ -1,15 +1,15 @@
 import { useState } from "react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
-
+import resultImage from "../../assets/result.jpg"; 
 
 const documentData = [
   {
-    title: "FEE STRUCTURE ",
+    title: "FEE STRUCTURE",
     pdf: "/resultDocuments/Fees_Structure.pdf",
   },
   {
-    title: "ANNUAL ACADEMIC CALENDER",
+    title: "ANNUAL ACADEMIC CALENDAR",
     pdf: "/resultDocuments/Academic_Calendar.pdf",
   },
   {
@@ -21,21 +21,9 @@ const documentData = [
     pdf: "/resultDocuments/PTA.pdf",
   },
   {
-    title: "LAST THREE-YEAR RESULT OF THE BOARD EXAMINATION ",
+    title: "LAST THREE-YEAR RESULT OF THE BOARD EXAMINATION",
     pdf: "/resultDocuments/Result.pdf",
   },
-//   {
-//     title: "COPY OF VALID FIRE SAFETY CERTIFICATE ISSUED BY THE COMPETENT AUTHORITY",
-//     pdf: "../../public/resultDocuments/Fire_Safety_certificate.pdf",
-//   },
-//   {
-//     title: "COPY OF THE SELF CERTIFICATION SUBMITTED BY THE SCHOOL FOR AFFILIATION/UPGRADATION/EXTENSION OF AFFILIATION",
-//     pdf: "../../public/resultDocuments/Self_certificate.pdf",
-//   },
-//   {
-//     title: "COPIES OF VALID WATER, HEALTH AND SANITATION CERTIFICATES",
-//     pdf: "../../public/resultDocuments/Waterhealth_certificate.pdf",
-//   },
 ];
 
 export default function ResultAndAcademics() {
@@ -50,44 +38,64 @@ export default function ResultAndAcademics() {
   };
 
   return (
-    <div className="mx-auto ">
-      <div className="">
-        <Navbar />
-      </div>
+    <div className="mx-auto">
+      {/* Navbar */}
+      <Navbar />
 
+        {/* Banner Image */}
+            <div>
+              <img
+                src={resultImage}
+                alt="School Infrastructure Banner"
+                className="w-full h-72 object-cover"
+              />
+            </div>
+
+      {/* Main Content */}
       <div className="max-w-6xl mx-auto mt-5 p-4">
-        <div className="border rounded p-4 bg-white shadow ">
-          <h2 className="text-lg font-bold text-blue-700 border-b pb-2 mb-4">
+        <div className="rounded  p-6 bg-gray-50 shadow-lg">
+          <h2 className="text-3xl font-bold text-center text-red-700 mb-6">
             RESULT AND ACADEMICS
           </h2>
+          <p className="text-center text-gray-600 mb-8">
+            Below is the detailed information about results and academics. Click
+            on any section to view the content.
+          </p>
 
-          {documentData.map((item, index) => (
-            <div key={index} className="mb-2 border rounded overflow-hidden">
-              <button
-                onClick={() => toggleDocument(index)}
-                className="w-full text-left bg-gradient-to-b from-gray-100 to-gray-200 p-3 font-semibold hover:bg-gray-100"
+          <div className="space-y-6">
+            {documentData.map((item, index) => (
+              <div
+                key={index}
+                className=" rounded-lg overflow-hidden shadow-sm"
               >
-                {item.title}
-              </button>
-              {openDocuments.includes(index) && (
-                <div className="p-3 bg-white border-t">
-                  <iframe
-                    src={item.pdf}
-                    width="100%"
-                    height="500px"
-                    className="border rounded"
-                    title={`PDF-${index}`}
-                  />
-                </div>
-              )}
-            </div>
-          ))}
+                <button
+                  onClick={() => toggleDocument(index)}
+                  className="w-full flex justify-between items-center bg-gradient-to-r from-red-100 to-red-50 p-4 font-semibold text-gray-900 hover:bg-red-200 transition"
+                >
+                  <span>{item.title}</span>
+                  <span className="text-gray-900">
+                    {openDocuments.includes(index) ? "▲" : "▼"}
+                  </span>
+                </button>
+                {openDocuments.includes(index) && (
+                  <div className="p-4 bg-white border-t">
+                    <iframe
+                      src={item.pdf}
+                      width="100%"
+                      height="500px"
+                      className="border rounded"
+                      title={`PDF-${index}`}
+                    />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      <div className="mt-35">
-        <Footer />
-      </div>
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

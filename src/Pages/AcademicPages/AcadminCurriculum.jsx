@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
+import ncrImage from "../../assets/ncrimage6.jpg";
 
 const curriculumData = [
   {
@@ -244,9 +245,21 @@ const AcademicCurriculum = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-50">
+
+
+  {/* Banner Image */}
+      <div>
+        <img
+          src={ncrImage}
+          alt="School Infrastructure Banner"
+          className="w-full h-96 object-cover"
+        />
+      </div>
+
+
+      <div className="min-h-screen bg-gray-700">
         <div className="max-w-8xl mx-auto px-6 py-4">
-          <h1 className="text-4xl font-extrabold text-center text-blue-700 mb-4">
+          <h1 className="text-4xl font-extrabold text-center text-white mb-4">
             Academic Curriculum
           </h1>
 
@@ -256,15 +269,15 @@ const AcademicCurriculum = () => {
                 key={index}
                 className="bg-white shadow-lg flex justify-between rounded-lg p-6 border border-gray-200"
               >
-                <h2 className="text-2xl font-bold text-blue-600 mb-4">
+                <h2 className="text-3xl font-bold text-red-500 mb-4">
                   {item.class}
                 </h2>
                 {item.subjects.map((subject, idx) => (
                   <div key={idx} className="mb-4">
-                    <h3 className="text-lg font-semibold text-red-600 mb-2">
+                    <h3 className="text-xl  font-bold  text-green-700 mb-2">
                       {subject.name}
                     </h3>
-                    <h4 className="text-black font-bold">Chapters:</h4>
+                    <h4 className="text-black font-semibold">Chapters:</h4>
                     <ul className="list-disc list-inside text-black space-y-1">
                       {subject.chapters.map((chapter, chapterIdx) => (
                         <li key={chapterIdx}>{chapter}</li>
