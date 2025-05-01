@@ -38,7 +38,7 @@ const EventPage = () => {
     return (
        <div>
         <Navbar/>
-         <div className="p-10 bg-gray-100 min-h-screen">
+         <div className="p-10 bg-gray-800 min-h-screen">
             <div className="max-w-5xl mx-auto grid grid-cols-2 gap-6 bg-white shadow-md rounded-lg p-6">
                 {event.imagePath && (
                     <img
@@ -48,7 +48,7 @@ const EventPage = () => {
                     />
                 )}
                 <div>
-                <h1 className="text-3xl font-bold text-gray-800 mb-4">{event.name}</h1>
+                <h1 className="text-3xl font-bold text-red-700 mb-4">{event.name}</h1>
                 <div className="">
                 <p className="text-gray-700 mb-2">
                     <strong>Date:</strong> {event.date ? event.date.split("T")[0] : "N/A"}
