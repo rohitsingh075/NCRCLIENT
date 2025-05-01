@@ -18,9 +18,9 @@ export default function InfoCard() {
     const fetchData = async () => {
       try {
         const [noticeRes, eventRes, galleryRes] = await Promise.all([
-          api.get(`${baseUrl}/notices/`),
-          api.get(`${baseUrl}/events/`),
-          api.get(`${baseUrl}/gallery/view`),
+          api.get(`/notices/`),
+          api.get(`/events/`),
+          api.get(`/gallery/view`),
         ]);
         console.log("Notice Response:", noticeRes.data);
         console.log("Event Response:", eventRes.data);
@@ -47,7 +47,7 @@ export default function InfoCard() {
         {/* Notices */}
         <div className=" rounded-2xl border-b-6 shadow p-6   bg-gray-800">
           <div className="border-b pb-3 mb-4">
-            <h2 className="text-xl font-bold text-gray-100">Recent Notices:</h2>
+            <h2 className="text-xl font-bold text-red-500">Recent Notices:</h2>
 
           </div>
           <div className="h-120 overflow-y-auto relative">
@@ -75,7 +75,7 @@ export default function InfoCard() {
         {/* Events */}
         <div className="bg-gray-800 rounded-2xl shadow-xl/20 p-5 relative ">
           <div className="border-b pb-3  mb-4">
-            <h2 className="text-xl font-bold text-white">Upcoming Events:</h2>
+            <h2 className="text-xl font-bold text-red-500">Upcoming Events:</h2>
           </div>
           <div className=" h-120 overflow-auto ">
             <div className="flex flex-col text-gray-100  gap-y-7  " >
@@ -102,7 +102,7 @@ export default function InfoCard() {
           </div>
         </div>
       </div>
-      
+
       {/*School Teacher Commitee  */}
       <div className="bg-white rounded-2xl shadow-xl/20 p-5">
         <div className="border-b-1 pb-3 mb-4 flex items-center">
@@ -140,7 +140,7 @@ export default function InfoCard() {
         {/* Facebook Page Embed Section */}
         <div className="bg-gray-800 rounded-2xl m-8 shadow-xl/20 p-5 w-full md:w-1/2">
           <div className="border-b pb-3 mb-4">
-            <h2 className="text-xl font-bold text-gray-100">Facebook</h2>
+            <h2 className="text-xl font-bold text-red-500">Facebook</h2>
           </div>
           <div className="flex justify-center">
             <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fnrcollage&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="500" height="500" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
@@ -150,7 +150,7 @@ export default function InfoCard() {
         {/* Second Facebook Page Embed Section */}
         <div className="bg-gray-800  rounded-2xl m-8  shadow-xl/20 p-5 w-full  md:w-1/2">
           <div className="border-b pb-3 mb-4">
-            <h2 className="text-xl font-bold text-gray-100">Facebook</h2>
+            <h2 className="text-xl font-bold text-red-500">Facebook</h2>
           </div>
           <div className="flex justify-center">
             <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fnrcollage&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="500" height="500" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>

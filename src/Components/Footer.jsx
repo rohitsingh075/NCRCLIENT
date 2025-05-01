@@ -75,7 +75,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="bg-gray-700 text-sm text-center py-3">
-        © 2025-2026 N.C.R. COLLEGE, TUNDLA. All Rights Reserved | Design By –  A.R.P Enterprises
+        © 2025-2026 N.C.R. COLLEGE, TUNDLA. All Rights Reserved | Designed By –  Excellent Computers
       </div>
     </footer>
   );

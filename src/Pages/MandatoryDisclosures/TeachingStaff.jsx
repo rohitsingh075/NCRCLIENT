@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
-import staffImage from "../../assets/ncrimage5.jpg"; 
+
 
 const teachingStaffData = [
   { title: "Principal", content: "MP SONKAR" },
@@ -22,19 +22,11 @@ export default function TeachingStaff() {
   };
 
   return (
-    <div className="mx-auto">
+    <div className="mx-auto bg-gray-800">
       {/* Navbar */}
       <Navbar />
 
 
-       {/* Banner Image */}
-            <div>
-              <img
-                src={staffImage}
-                alt="School Infrastructure Banner"
-                className="w-full h-72 object-cover"
-              />
-            </div>
 
 
       {/* Main Content */}

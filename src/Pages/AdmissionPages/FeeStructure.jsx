@@ -1,21 +1,13 @@
 import React from "react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
-import feeImage from "../../assets/ncrimage6.jpg"; 
+
 
 const FeeStructure = () => {
   return (
     <>
       <Navbar />
 
-   {/* Banner Image */}
-            <div>
-              <img
-                src={feeImage}
-                alt="School Infrastructure Banner"
-                className="w-full h-72 object-cover"
-              />
-            </div>
 
 
       <div className="min-h-screen bg-gray-50">

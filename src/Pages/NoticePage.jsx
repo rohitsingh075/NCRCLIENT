@@ -8,12 +8,16 @@ const NoticePage = () => {
   const [loading, setLoading] = useState(true);
   console.log(id);
 
+  // const baseUrl=api.defaults.baseURL;
+  // console.log(baseUrl)
+
   
   useEffect(() => {
     const fetchNotice = async () => {
       try {
         const response = await api.get(`/notices/${id}`); // Fetch notice by ID
         setNotice(response.data.data);
+        // console.log(response.data.data);
       } catch (error) {
         console.error("Error fetching notice:", error.message);
       } finally {

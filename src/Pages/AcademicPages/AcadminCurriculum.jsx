@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
-import ncrImage from "../../assets/ncrimage6.jpg";
+
 
 const curriculumData = [
   {
@@ -247,14 +247,6 @@ const AcademicCurriculum = () => {
       <Navbar />
 
 
-  {/* Banner Image */}
-      <div>
-        <img
-          src={ncrImage}
-          alt="School Infrastructure Banner"
-          className="w-full h-96 object-cover"
-        />
-      </div>
 
 
       <div className="min-h-screen bg-gray-700">
