@@ -259,7 +259,7 @@ const AcademicCurriculum = () => {
             {curriculumData.map((item, index) => (
               <div
                 key={index}
-                className="bg-white shadow-lg flex justify-between rounded-lg p-6 border border-gray-200"
+                className="bg-white shadow-lg flex flex-wrap justify-between rounded-lg p-6 border border-gray-200"
               >
                 <h2 className="text-3xl font-bold text-red-500 mb-4">
                   {item.class}

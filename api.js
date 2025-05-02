@@ -29,7 +29,7 @@ api.interceptors.response.use(
     const url = response.config.url;
     
     // Skip auth-check for certain routes (e.g., /user/protected, /user/logout)
-    const skipUrls = ['/user/protected', '/user/logout', '/login'];
+    const skipUrls = ['/user/protected', '/user/logout', '/login','/'];
     
     // Also skip auth check if current path is root '/'
     if (!skipUrls.some((skipUrl) => url.includes(skipUrl)) && currentPath !== '/' && currentPath !== '/login') {

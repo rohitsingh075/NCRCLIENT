@@ -3,16 +3,17 @@ import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 import visionImage from "../../assets/vision.jpeg"; 
 import missionImage from "../../assets/mission.jpeg"; 
+import frontImage from  "../../assets/front-vm.jpg"
 
 
 const VissionAndMission = () => {
   return (
     <>
-      {/* Navbar */}
+      {/* Navbar */} 
       <Navbar />
 
       
-      <div><img src={frontImage} alt="" className="w-full max-h-85 object-contain select-none " /></div>
+      {/* <div><img src={frontImage} alt="" className="w-full max-h-85 object-contain select-none " /></div> */}
       {/* Main Content */}
       <div className="bg-gray-200">
         {/* Vision and Mission Section */}
