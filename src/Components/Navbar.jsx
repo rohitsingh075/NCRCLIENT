@@ -64,7 +64,7 @@ const Navbar = () => {
           <div className="text-3xl font-bold z-100 mx-4 flex items-center justify-center text-white">
             North Central Railway College
           </div>
-          <div className="text-lg mx-4 text-white">A School with a Difference</div>
+          <div className="text-lg mx-4 text-white">Affilated to CBSE New Delhi (School Code-62013)</div>
         </div>
       </div>
       <hr className="border-white" />
