@@ -97,7 +97,7 @@ const FadeSwiper = () => {
                 </div>
                 <div>
                   <p className="text-red-500 text-4xl font-bold">98%</p>
-                  <p className="text-gray-200 text-base">Success</p>
+                  <p className="text-gray-200 text-base">Results</p>
                 </div>
               </div>
             </div>

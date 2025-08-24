@@ -18,21 +18,7 @@ const ActivitiesSection = () => {
       src: "https://www.youtube.com/embed/example3",
       title: "Campus View",
     },
-    {
-      id: 4,
-      src: "https://www.youtube.com/embed/example4",
-      title: "Library Book Review",
-    },
-    {
-      id: 5,
-      src: "https://www.youtube.com/embed/example5",
-      title: "Student Presentation",
-    },
-    {
-      id: 6,
-      src: "https://www.youtube.com/embed/example6",
-      title: "Library Showcase",
-    },
+    
   ];
 
   return (
@@ -73,33 +59,7 @@ const ActivitiesSection = () => {
       </div>
 
       {/* Buttons */}
-      <motion.div
-        className="mt-6 flex justify-center gap-4"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
-        viewport={{ once: false }}
-      >
-        <button className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-900 transition">
-          Load More...
-        </button>
-        <a
-          href="https://www.youtube.com/@YourChannel"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-4 py-2 bg-red-800 text-white rounded hover:bg-red-700 transition flex items-center gap-2"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            viewBox="0 0 24 24"
-            fill="white"
-          >
-            <path d="M10 15l5.19-3L10 9v6zm12-3c0-5.52-4.48-10-10-10S2 6.48 2 12s4.48 10 10 10 10-4.48 10-10z" />
-          </svg>
-          Subscribe
-        </a>
-      </motion.div>
+
 
       {/* Testimonials Section */}
       <motion.div

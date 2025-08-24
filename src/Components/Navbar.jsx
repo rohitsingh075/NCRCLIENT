@@ -75,7 +75,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-5 xl:gap-5 text-sm font-medium whitespace-nowrap">
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-5 text-md font-medium whitespace-nowrap">
             <Link to="/" className="hover:text-red-400">Home</Link>
 
             {/* About Us */}
