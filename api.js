@@ -15,26 +15,13 @@ export const updateCurrentPath = (path) => {
 };
 
 // Axios instance
-// const api = axios.create({
-//   baseURL: import.meta.env.VITE_API_BASE_URL,
-
-//  // Replace with your actual API URL
-//   headers: {
-//     'Content-Type': 'application/json',
-//   },
-//   withCredentials: true, // Send cookies with every request
-// });
-
 const api = axios.create({
-  baseURL: import.meta.env.MODE === "development"
-    ? "http://localhost:8181" 
-    : "https://api.ncrcollegetdledu.org.in",
+  baseURL: 'http://localhost:8181', // Replace with your actual API URL
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true,
+  withCredentials: true, // Send cookies with every request
 });
-
 
 // Interceptor
 api.interceptors.response.use(
@@ -42,7 +29,7 @@ api.interceptors.response.use(
     const url = response.config.url;
     
     // Skip auth-check for certain routes (e.g., /user/protected, /user/logout)
-    const skipUrls = ['/user/protected', '/user/logout', '/login','/'];
+    const skipUrls = ['/user/protected', '/user/logout', '/login'];
     
     // Also skip auth check if current path is root '/'
     if (!skipUrls.some((skipUrl) => url.includes(skipUrl)) && currentPath !== '/' && currentPath !== '/login') {
