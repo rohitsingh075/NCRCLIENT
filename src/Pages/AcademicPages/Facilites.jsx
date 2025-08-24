@@ -3,6 +3,14 @@ import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 import ncclogo from "../../assets/nccLogo.jpg";
 import scoutlogo from "../../assets/scoutLogo.jpg";
+import libraryImg from "../../assets/library_img.jpg";
+import ComputerLab from "../../assets/comp_lab.jpg";
+import physicsLabImg from "../../assets/phy_lab.jpg";
+import ChemistryLab from "../../assets/chem_lab.jpg";
+import playground from "../../assets/playground.jpg";
+import bioLab from "../../assets/bio_lab.jpg";
+import RoWater from "../../assets/roWater.png";
+import basketballCourt from "../../assets/Basketcourt.jpg";
 
 
 const facilitiesData = [
@@ -22,49 +30,49 @@ const facilitiesData = [
     name: "Computer Lab",
     description:
       "Our state-of-the-art computer lab is equipped with modern systems and high-speed internet to provide students with hands-on experience in technology and programming.",
-    image: "/path-to-images/computer-lab.jpg",
+    image: ComputerLab,
   },
   {
     name: "Library",
     description:
       "The school library houses a vast collection of books, journals, and digital resources. It provides a quiet and conducive environment for reading and research.",
-    image: "/path-to-images/library.jpg",
+    image: libraryImg,
   },
   {
     name: "Physics Lab",
     description:
       "The physics lab is well-equipped with modern apparatus to help students understand and experiment with the principles of physics.",
-    image: "/path-to-images/physics-lab.jpg",
+    image: physicsLabImg,
   },
   {
     name: "Chemistry Lab",
     description:
       "Our chemistry lab is designed to provide students with hands-on experience in chemical experiments, fostering a deeper understanding of the subject.",
-    image: "/path-to-images/chemistry-lab.jpg",
+    image: ChemistryLab,
   },
   {
     name: "Biology Lab",
     description:
       "The biology lab is equipped with microscopes, specimens, and models to help students explore the wonders of life sciences.",
-    image: "/path-to-images/biology-lab.jpg",
+    image: bioLab,
   },
   {
     name: "School Field",
     description:
       "The school field is a spacious area for outdoor activities, sports, and events. It promotes physical fitness and teamwork among students.",
-    image: "/path-to-images/school-field.jpg",
+    image: playground,
   },
   {
     name: "RO Water Plant",
     description:
       "The school has an RO water plant to ensure clean and safe drinking water for students and staff.",
-    image: "/path-to-images/ro-water-plant.jpg",
+    image: RoWater,
   },
   {
     name: "Basketball Court",
     description:
       "The basketball court provides students with an opportunity to engage in sports and develop their physical and mental fitness.",
-    image: "/path-to-images/basketball-court.jpg",
+    image: basketballCourt,
   },
 ];
 
@@ -73,35 +81,47 @@ const Facilities = () => {
     <>
       <Navbar />
 
-
-      <div className="min-h-screen bg-gray-800">
-        <div className="max-w-7xl mx-auto px-6 py-6">
-          <h1 className="text-4xl font-extrabold text-center text-white mb-6 ">
+      <div className="min-h-screen bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6 py-12">
+          {/* Heading */}
+          <h1 className="text-4xl md:text-5xl font-extrabold text-center text-red-600 mb-12 tracking-wide">
             School Facilities
           </h1>
+          <p className="text-center text-gray-600 mb-12">
+            Our school offers a wide range of facilities to support the holistic development of our students.
+          </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 gap-y-18">
+          {/* Facilities Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {facilitiesData.map((facility, index) => (
               <div
                 key={index}
-                className="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200"
+                className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200 overflow-hidden flex flex-col"
               >
-                <img
-                  src={facility.image}
-                  alt={facility.name}
-                  className="w-full h-58 my-4 object-contain "
-                />
-                <div className="p-6">
-                  <h2 className="text-2xl font-bold text-red-600 mb-4">
+                {/* Facility Image */}
+                <div className="h-52 w-full overflow-hidden">
+                  <img
+                    src={facility.image}
+                    alt={facility.name}
+                    className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+
+                {/* Facility Content */}
+                <div className="p-6 flex flex-col flex-grow">
+                  <h2 className="text-2xl font-semibold text-gray-900 mb-3">
                     {facility.name}
                   </h2>
-                  <p className="text-gray-800 text-lg">{facility.description}</p>
+                  <p className="text-gray-600 text-base flex-grow">
+                    {facility.description}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </div>
+
       <Footer />
     </>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 
@@ -242,54 +242,88 @@ const curriculumData = [
 ];
 
 const AcademicCurriculum = () => {
+  const [openClass, setOpenClass] = useState(null);
+
+  const toggleClass = (index) => {
+    setOpenClass(openClass === index ? null : index);
+  };
+
   return (
     <>
       <Navbar />
 
-
-
-
-      <div className="min-h-screen bg-gray-700">
-        <div className="max-w-8xl mx-auto px-6 py-4">
-          <h1 className="text-4xl font-extrabold text-center text-white mb-4">
+      <div className="min-h-screen bg-white">
+        <div className="max-w-6xl mx-auto px-6 py-12">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-center text-red-600 mb-10 tracking-wide">
             Academic Curriculum
           </h1>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-7">
+          <div className="space-y-6">
             {curriculumData.map((item, index) => (
               <div
                 key={index}
-                className="bg-white shadow-lg flex flex-wrap justify-between rounded-lg p-6 border border-gray-200"
+                className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-lg overflow-hidden transition-all duration-300"
               >
-                <h2 className="text-3xl font-bold text-red-500 mb-4">
-                  {item.class}
-                </h2>
-                {item.subjects.map((subject, idx) => (
-                  <div key={idx} className="mb-4">
-                    <h3 className="text-xl  font-bold  text-green-700 mb-2">
-                      {subject.name}
-                    </h3>
-                    <h4 className="text-black font-semibold">Chapters:</h4>
-                    <ul className="list-disc list-inside text-black space-y-1">
-                      {subject.chapters.map((chapter, chapterIdx) => (
-                        <li key={chapterIdx}>{chapter}</li>
-                      ))}
-                    </ul>
-                    <h4 className="text-gray-700 font-medium mt-2">
-                      Prescribed Books:
-                    </h4>
-                    <ul className="list-disc list-inside text-gray-700 space-y-1">
-                      {subject.books.map((book, bookIdx) => (
-                        <li key={bookIdx}>{book}</li>
-                      ))}
-                    </ul>
+                {/* Class Header */}
+                <button
+                  onClick={() => toggleClass(index)}
+                  className="w-full flex justify-between items-center px-6 py-4 text-left"
+                >
+                  <h2 className="text-2xl md:text-3xl font-semibold text-gray-700">
+                    {item.class}
+                  </h2>
+                  <span className="text-gray-700 text-lg transition-transform duration-300 transform">
+                    {openClass === index ? "▲" : "▼"}
+                  </span>
+                </button>
+
+                {/* Subjects (Expandable Section) */}
+                {openClass === index && (
+                  <div className="px-6 pb-6 space-y-6 animate-fadeIn">
+                    {item.subjects.map((subject, idx) => (
+                      <div
+                        key={idx}
+                        className="bg-white rounded-xl shadow-md p-5 transition-transform hover:scale-[1.02]"
+                      >
+                        <h3 className="text-xl font-bold text-gray-800 mb-2">
+                          {subject.name}
+                        </h3>
+
+                        <div className="grid md:grid-cols-2 gap-4">
+                          {/* Chapters */}
+                          <div>
+                            <h4 className="text-gray-700 font-semibold mb-1">
+                              Chapters:
+                            </h4>
+                            <ul className="list-disc list-inside text-gray-600 space-y-1">
+                              {subject.chapters.map((chapter, chapterIdx) => (
+                                <li key={chapterIdx}>{chapter}</li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          {/* Books */}
+                          <div>
+                            <h4 className="text-gray-700 font-semibold mb-1">
+                              Prescribed Books:
+                            </h4>
+                            <ul className="list-disc list-inside text-gray-600 space-y-1">
+                              {subject.books.map((book, bookIdx) => (
+                                <li key={bookIdx}>{book}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                )}
               </div>
             ))}
           </div>
         </div>
       </div>
+
       <Footer />
     </>
   );

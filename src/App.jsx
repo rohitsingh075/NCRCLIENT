@@ -36,6 +36,7 @@ import AdminPrivateRoute from './Components/AdminPrivateRoute.jsx';
 import StudentEdit from './Pages/EditPages/StudentEdit.jsx';
 import { setNavigate } from '../api.js';
 import StudentDetails from './Pages/AdminLoginPages/StudentDetails.jsx';
+import ContactPage from './Pages/ContactPage.jsx';
 
 
 
@@ -53,6 +54,7 @@ export const router = createBrowserRouter([
       { path: '/principal-message', element: <PrincipalMessage /> },
       { path: '/student-guidelines', element: <StudentGuidelines /> },
       { path: '/school-uniform', element: <SchoolUniform /> },
+      { path: '/contact', element: <ContactPage /> },
 
       { path: '/mandatory-disclosures', element: <MandatoryDisclosure /> },
       { path: '/general-information', element: <GeneralInformation /> },

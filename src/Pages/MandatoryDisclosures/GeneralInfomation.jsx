@@ -3,10 +3,9 @@ import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
-
 const disclosureData = [
   {
-    title: "Name of School",
+    title: "School Name",
     content: "North Central Railway College, Tundla",
   },
   {
@@ -19,23 +18,19 @@ const disclosureData = [
   },
   {
     title: "Complete Address",
-    content: "TUNDLA, DISTT FIROZABAD, UTTAR PRADESH - 283204",
+    content: "Tundla, Firozabad, Uttar Pradesh - 283204",
   },
   {
     title: "Principal Name & Qualification",
-    content: "Mr. M.P Sonkar",
+    content: "Mr. M.P. Sonkar, M.Sc, M.Ed",
   },
   {
-    title: "Principal Qualification",
-    content: "M.Sc, M.Ed",
-  },
-  {
-    title: "School Email Id",
+    title: "School Email",
     content: "ncrcollegetundla@rediffmail.com",
   },
   {
-    title: "School Contact Details",
-    content: "05612229463",
+    title: "Contact Number",
+    content: "0561-2229463",
   },
 ];
 
@@ -48,41 +43,38 @@ export default function GeneralInformation() {
 
   return (
     <>
-      {/* Navbar */}
       <Navbar />
 
- 
-
       {/* Main Content */}
-      <div className="bg-gray-800 min-h-screen">
-        <div className="max-w-6xl mx-auto p-8">
-          <h1 className="text-3xl font-bold text-center text-red-500 mt-6 mb-6">
+      <div className="bg-gray-50 min-h-screen py-12">
+        <div className="max-w-4xl mx-auto px-6">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-center text-red-600 mb-6">
             General Information
           </h1>
-          <p className="text-center text-gray-100 mb-8">
-            Below is the general information about North Central Railway
-            College, Tundla. Click on each section to view more details.
+          <p className="text-center text-gray-600 mb-12 text-lg">
+            Here is a detailed overview of North Central Railway College, Tundla. Click on each section to reveal additional information.
           </p>
 
-          <div className="bg-white shadow-lg rounded-lg p-6">
+          <div className="space-y-4">
             {disclosureData.map((item, index) => (
               <div
                 key={index}
-                className="mb-4  rounded-lg overflow-hidden shadow-sm"
+                className="border border-gray-200 rounded-xl overflow-hidden shadow hover:shadow-lg transition duration-300"
               >
                 <button
                   onClick={() => toggleIndex(index)}
-                  className="w-full flex justify-between items-center bg-gradient-to-r from-red-100 to-red-50 p-4 font-semibold text-gray-900 hover:bg-blue-200 transition"
+                  className="w-full flex justify-between items-center bg-white p-5 font-medium text-gray-800 hover:bg-gray-100 transition"
                 >
-                  <span>{item.title}</span>
+                  <span className="text-lg md:text-xl">{item.title}</span>
                   {activeIndex === index ? (
-                    <FaChevronUp className="text-gray-700" />
+                    <FaChevronUp className="text-gray-500" />
                   ) : (
-                    <FaChevronDown className="text-gray-700" />
+                    <FaChevronDown className="text-gray-500" />
                   )}
                 </button>
+
                 {activeIndex === index && (
-                  <div className="p-4 bg-gray-50 text-gray-700 font-medium">
+                  <div className="p-5 bg-gray-50 text-gray-700 text-base md:text-lg border-t border-gray-200">
                     {item.content}
                   </div>
                 )}
@@ -92,7 +84,6 @@ export default function GeneralInformation() {
         </div>
       </div>
 
-      {/* Footer */}
       <Footer />
     </>
   );

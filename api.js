@@ -16,9 +16,7 @@ export const updateCurrentPath = (path) => {
 
 // Axios instance
 const api = axios.create({
-  baseURL: 'https://api.ncrcollegetdledu.org.in',
-
- // Replace with your actual API URL
+  baseURL: 'http://localhost:8181', // Replace with your actual API URL
   headers: {
     'Content-Type': 'application/json',
   },
@@ -31,7 +29,7 @@ api.interceptors.response.use(
     const url = response.config.url;
     
     // Skip auth-check for certain routes (e.g., /user/protected, /user/logout)
-    const skipUrls = ['/user/protected', '/user/logout', '/login','/'];
+    const skipUrls = ['/user/protected', '/user/logout', '/login'];
     
     // Also skip auth check if current path is root '/'
     if (!skipUrls.some((skipUrl) => url.includes(skipUrl)) && currentPath !== '/' && currentPath !== '/login') {

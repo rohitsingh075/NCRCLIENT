@@ -2,39 +2,45 @@ import { useState } from "react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 
-
 const infrastructureData = [
   {
     title: "Total Campus Area",
-    content: "160000 Square Meter",
+    content: "160,000 Square Meters",
   },
   {
-    title: "Number and Size of Class Rooms",
+    title: "Number and Size of Classrooms",
     content: `Total: 35\nEach approx: 500 Sq. ft.`,
   },
   {
     title: "Number and Size of Laboratories",
-    content: `Composite Science Lab: 1 (600 Sq. ft)\nPhysics Lab: 1 (700 Sq. ft)\nChemistry Lab: 1 (700 Sq. ft)\nBiology Lab: 1 (700 Sq. ft)`,
+    content: `Composite Science Lab: 1 (600 Sq. ft)
+Physics Lab: 1 (700 Sq. ft)
+Chemistry Lab: 1 (700 Sq. ft)
+Biology Lab: 1 (700 Sq. ft)`,
   },
   {
     title: "Internet Facility",
-    content: "Yes, Available",
+    content: "Available throughout campus",
   },
   {
-    title: "No. of Girls Toilets",
+    title: "Number of Girls Toilets",
     content: "20",
   },
   {
-    title: "No. of Boys Toilets",
+    title: "Number of Boys Toilets",
     content: "25",
   },
   {
-    title: "No. of Activity Rooms",
+    title: "Number of Activity Rooms",
     content: "2",
   },
   {
     title: "Library",
-    content: `No. of Books: 6500\nPeriodicals: 10\nDailies: 4\nReference Books: 250\nMagazine: 12`,
+    content: `Number of Books: 6,500
+Periodicals: 10
+Dailies: 4
+Reference Books: 250
+Magazines: 12`,
   },
 ];
 
@@ -46,39 +52,45 @@ export default function SchoolInfra() {
   };
 
   return (
-    <div className="mx-auto bg-gray-800">
-      {/* Navbar */}
+    <div className="bg-gray-50 min-h-screen">
       <Navbar />
 
-
-      {/* Main Content */}
-      <div className="max-w-6xl mx-auto p-4 mt-5 mb-7">
-        <div className="rounded p-4 bg-white shadow">
-          <h2 className="text-3xl font-bold text-red-700 border-b pb-2 mb-4">
-            SCHOOL INFRASTRUCTURE DETAILS
-          </h2>
-
-          {infrastructureData.map((item, index) => (
-            <div key={index} className="mb-2 rounded overflow-hidden">
-              <button
-                onClick={() => toggleIndex(index)}
-                className="w-full text-left text-gray-900 bg-gradient-to-r from-red-100 to-red-50 p-2 font-semibold hover:text-gray-500 hover:bg-gray-100"
-              >
-                {item.title}
-              </button>
-              {activeIndex === index && (
-                <pre className="p-3 text-gray-900 font-semibold bg-white border-t whitespace-pre-wrap">
-                  {item.content}
-                </pre>
-              )}
-            </div>
-          ))}
-        </div>
+      {/* Page Header */}
+      <div className="max-w-5xl mx-auto py-12 px-6 text-center">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-red-600 mb-4">
+          School Infrastructure Details
+        </h1>
+        <p className="text-gray-600 text-lg md:text-xl">
+          Detailed information about the campus facilities, classrooms, laboratories, library, and other infrastructure available for students.
+        </p>
       </div>
 
-      {/* Footer */}
-      <Footer />
+      {/* Infrastructure Accordion */}
+      <div className="max-w-4xl mx-auto px-4 md:px-0 space-y-4">
+        {infrastructureData.map((item, index) => (
+          <div
+            key={index}
+            className="border border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden"
+          >
+            <button
+              onClick={() => toggleIndex(index)}
+              className="w-full flex justify-between items-center px-6 py-4 bg-white font-medium text-gray-800 text-lg hover:bg-gray-100 transition"
+            >
+              <span>{item.title}</span>
+              <span className="text-gray-500">
+                {activeIndex === index ? "▲" : "▼"}
+              </span>
+            </button>
+            {activeIndex === index && (
+              <pre className="p-4 bg-gray-50 border-t border-gray-200 text-gray-700 text-base md:text-lg whitespace-pre-wrap">
+                {item.content}
+              </pre>
+            )}
+          </div>
+        ))}
+      </div>
+<br /><br /><br /> <br /><br />
+      <Footer className="mt-12" />
     </div>
   );
 }
-
