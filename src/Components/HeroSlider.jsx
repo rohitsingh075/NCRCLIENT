@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade, Autoplay, Pagination } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
@@ -23,24 +23,8 @@ const slides = [
 ];
 
 const FadeSwiper = () => {
-  const [viewportHeight, setViewportHeight] = useState(0);
-
-  useEffect(() => {
-    const calculateHeight = () => {
-      const navbarHeight = 161;
-      const availableHeight = window.innerHeight - navbarHeight;
-      setViewportHeight(availableHeight);
-    };
-
-    calculateHeight();
-    window.addEventListener("resize", calculateHeight);
-    return () => {
-      window.removeEventListener("resize", calculateHeight);
-    };
-  }, []);
-
   return (
-    <div className="w-full h-full relative bg-black">
+    <div className="w-full h-screen relative bg-black">
       <Swiper
         modules={[Navigation, EffectFade, Autoplay, Pagination]}
         effect="fade"
@@ -55,21 +39,20 @@ const FadeSwiper = () => {
         }}
         loop
         autoplay={{ delay: 4000 }}
-        className="w-full h-full"
-        style={{ height: `${viewportHeight}px` }}
+        className="w-full h-screen"
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id} className="relative">
             <div className="zoom-animation w-full h-full">
               <img
                 src={slide.image}
-                className="w-full h-full object-cover select-none brightness-[0.35]" // darker image
+                className="w-full h-full object-cover select-none brightness-[0.35]"
                 alt={`Slide ${slide.id}`}
               />
             </div>
 
             {/* Overlay Content */}
-            <div className="absolute top-[20%] left-[8%] flex flex-col lg:flex-row items-start lg:items-center w-[90%] gap-14 z-10">
+            <div className="absolute top-[20%] left-[8%] flex flex-col lg:flex-row items-start lg:items-center w-[90%] gap-14 z-10 fade-in-up">
               {/* Left Text Section */}
               <div className="text-white max-w-2xl space-y-6">
                 <p className="text-red-500 tracking-widest uppercase text-lg font-semibold">
@@ -82,8 +65,9 @@ const FadeSwiper = () => {
                   Where Knowledge Meets Innovation
                 </p>
                 <p className="text-lg text-gray-300 leading-relaxed">
-                  Our comprehensive curriculum and state-of-the-art facilities ensure holistic
-                  development of every student through research-based learning approaches.
+                  Our comprehensive curriculum and state-of-the-art facilities
+                  ensure holistic development of every student through
+                  research-based learning approaches.
                 </p>
                 <div className="flex gap-6 mt-8">
                   <a
@@ -100,21 +84,22 @@ const FadeSwiper = () => {
                   </a>
                 </div>
               </div>
-                  {/* Right Stats Card */}
-                  <div className="bg-white/0 border-2 border-amber-50 backdrop-blur-md rounded-2xl shadow-lg px-14 py-10 flex gap-16 items-center min-w-[500px]">
-                    <div>
-                      <p className="text-red-500 text-4xl font-bold">100+</p>
-                      <p className="text-gray-300 text-base">Achievements</p>
-                    </div>
-                    <div>
-                      <p className="text-red-500 text-4xl font-bold">50+</p>
-                      <p className="text-gray-300 text-base">Programs</p>
-                    </div>
-                    <div>
-                      <p className="text-red-500 text-4xl font-bold">98%</p>
-                      <p className="text-gray-300 text-base">Success</p>
-                    </div>
-                  </div>
+
+              {/* Right Stats Card */}
+              <div className="bg-black/20 border-2 border-white backdrop-blur-md rounded-2xl shadow-lg px-14 py-10 flex gap-16 items-center min-w-[500px]">
+                <div>
+                  <p className="text-red-500 text-4xl font-bold">100+</p>
+                  <p className="text-gray-200 text-base">Achievements</p>
+                </div>
+                <div>
+                  <p className="text-red-500 text-4xl font-bold">50+</p>
+                  <p className="text-gray-200 text-base">Programs</p>
+                </div>
+                <div>
+                  <p className="text-red-500 text-4xl font-bold">98%</p>
+                  <p className="text-gray-200 text-base">Success</p>
+                </div>
+              </div>
             </div>
           </SwiperSlide>
         ))}
@@ -144,14 +129,31 @@ const FadeSwiper = () => {
             transform: scale(1.1);
           }
         }
-        .swiper-slide-active .zoom-animation {
+
+        /* Fade in + Slide up */
+        .fade-in-up {
+          animation: fadeInUp 1.2s ease forwards;
+        }
+        @keyframes fadeInUp {
+          0% {
+            opacity: 0;
+            transform: translateY(40px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .swiper-slide-active .fade-in-up {
           animation-play-state: running;
         }
-        .swiper-slide-next .zoom-animation,
-        .swiper-slide-prev .zoom-animation,
-        .swiper-slide-duplicate-active .zoom-animation {
+        .swiper-slide-next .fade-in-up,
+        .swiper-slide-prev .fade-in-up,
+        .swiper-slide-duplicate-active .fade-in-up {
           animation-play-state: paused;
         }
+
         .swiper-pagination-bullet {
           width: 35px;
           height: 5px;

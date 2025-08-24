@@ -15,15 +15,26 @@ export const updateCurrentPath = (path) => {
 };
 
 // Axios instance
-const api = axios.create({
-  baseURL: 'https://api.ncrcollegetdledu.org.in',
+// const api = axios.create({
+//   baseURL: import.meta.env.VITE_API_BASE_URL,
 
- // Replace with your actual API URL
+//  // Replace with your actual API URL
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+//   withCredentials: true, // Send cookies with every request
+// });
+
+const api = axios.create({
+  baseURL: import.meta.env.MODE === "development"
+    ? "http://localhost:8181" 
+    : "https://api.ncrcollegetdledu.org.in",
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true, // Send cookies with every request
+  withCredentials: true,
 });
+
 
 // Interceptor
 api.interceptors.response.use(

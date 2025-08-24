@@ -2,43 +2,42 @@ import { useState } from "react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 
-
 const documentData = [
   {
-    title: "AFFILIATION LETTER",
+    title: "Affiliation Letter",
     pdf: "/schoolDocuments/Affiliationletter.pdf",
   },
   {
-    title: "SCHOOL REGISTRATION CERTIFICATE",
+    title: "School Registration Certificate",
     pdf: "/schoolDocuments/School_registration.pdf",
   },
   {
-    title: "NO OBJECTION CERTIFICATE (NOC) ",
+    title: "No Objection Certificate (NOC)",
     pdf: "/schoolDocuments/NOC.pdf",
   },
   {
-    title: "RECOGNITION CERTIFICATE ",
+    title: "Recognition Certificate",
     pdf: "/schoolDocuments/Recognition_certificate.pdf",
   },
   {
-    title: "BUILDING SAFETY CERTIFICATE  ",
+    title: "Building Safety Certificate",
     pdf: "/schoolDocuments/Building_Safety_Certificate.pdf",
   },
   {
-    title: "FIRE SAFETY CERTIFICATE ",
+    title: "Fire Safety Certificate",
     pdf: "/schoolDocuments/Fire_Safety_certificate.pdf",
   },
   {
-    title: "SELF CERTIFICATION ",
+    title: "Self Certification",
     pdf: "/schoolDocuments/Self_certificate.pdf",
   },
   {
-    title: " WATER, HEALTH AND SANITATION CERTIFICATE",
+    title: "Water, Health and Sanitation Certificate",
     pdf: "/schoolDocuments/Waterhealth_certificate.pdf",
   },
 ];
 
-export default function DocumentsAndInfomation() {
+export default function DocumentsAndInformation() {
   const [openDocuments, setOpenDocuments] = useState([]);
 
   const toggleDocument = (index) => {
@@ -50,35 +49,43 @@ export default function DocumentsAndInfomation() {
   };
 
   return (
-    <div className="mx-auto bg-gray-800">
-      <div >
-        <Navbar />
+    <div className="bg-gray-50 min-h-screen">
+      <Navbar />
+
+      {/* Page Header */}
+      <div className="max-w-5xl mx-auto py-12 px-6 text-center">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-red-600 mb-4">
+          Mandatory School Documents
+        </h1>
+        <p className="text-gray-600 text-lg md:text-xl">
+          Access and view important official documents of North Central Railway College. Click on each item to preview the PDF.
+        </p>
       </div>
 
-
-
-
-      <div className="max-w-6xl mx-auto mt-2 p-4">
-        <div className=" rounded p-4 bg-white shadow">
-          <h2 className="text-3xl font-bold text-red-700 border-b pb-2 mb-4">
-            MANDATORY DOCUMENTS
-          </h2>
-
+      {/* Documents Accordion */}
+      <div className="max-w-4xl mx-auto px-4 md:px-0">
+        <div className="space-y-4">
           {documentData.map((item, index) => (
-            <div key={index} className="mb-2  rounded overflow-hidden">
+            <div
+              key={index}
+              className="border border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden"
+            >
               <button
                 onClick={() => toggleDocument(index)}
-                className="w-full text-left bg-gradient-to-r from-red-50 to-red-100 p-2.5  text-gray-900 font-semibold hover:bg-gray-100"
+                className="w-full flex justify-between items-center px-6 py-4 bg-white font-medium text-gray-800 text-lg hover:bg-gray-100 transition"
               >
-                {item.title}
+                <span>{item.title}</span>
+                <span className="text-gray-500">
+                  {openDocuments.includes(index) ? "▲" : "▼"}
+                </span>
               </button>
               {openDocuments.includes(index) && (
-                <div className="p-3 bg-white border-t">
+                <div className="p-4 bg-gray-50 border-t border-gray-200">
                   <iframe
                     src={item.pdf}
                     width="100%"
                     height="500px"
-                    className="border rounded"
+                    className="rounded shadow"
                     title={`PDF-${index}`}
                   />
                 </div>
@@ -87,10 +94,8 @@ export default function DocumentsAndInfomation() {
           ))}
         </div>
       </div>
-
-      <div className="mt-12 p-0">
-        <Footer />
-      </div>
+      <br /><br /><br /> <br /><br /><br /> 
+           <Footer className="mt-20" />
     </div>
   );
 }

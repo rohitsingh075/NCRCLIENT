@@ -50,7 +50,7 @@ const NoticePage = () => {
   return (
     <div>
       <Navbar />
-      <div className="p-6 bg-gray-800 min-h-screen">
+      <div className="p-6 bg-gray-100 min-h-screen">
         <div className="max-w-4xl mt-10 mx-auto bg-white shadow-md rounded-lg p-6">
           <h1 className="text-3xl font-bold text-red-700 mb-4">{notice.title}</h1>
           <p className="text-gray-700 mb-2">

@@ -1,90 +1,91 @@
 import React from "react";
+import { motion } from "framer-motion";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
-import kidsImage from "../../assets/ncrimage6.jpg";
-import summerImage from "../../assets/summer.jpg"; // Replace with an actual image for Summer Uniform
-import winterImage from "../../assets/winter.jpg"; // Replace with an actual image for Winter Uniform
-import commonImage from "../../assets/common.jpg"; // Replace with an actual image for Common Items
+import summerImage from "../../assets/summer.jpg";
+import winterImage from "../../assets/winter.jpg";
+import commonImage from "../../assets/common.jpg";
 
 const SchoolUniform = () => {
   return (
     <>
       <Navbar />
 
-
       {/* Main Content */}
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-200">
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          <h1 className="text-5xl font-extrabold text-center text-red-500 mb-12">
+      <div className="min-h-screen bg-gradient-to-b from-gray-100 via-white to-gray-100 font-sans">
+        <div className="max-w-7xl mx-auto px-6 py-16">
+          <motion.h1
+            className="text-4xl md:text-5xl font-bold text-center text-red-600 mb-14"
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             School Uniform
-          </h1>
+          </motion.h1>
 
-          {/* Boys' Summer Uniform */}
-          <div className="bg-gray-800 shadow-lg rounded-lg mb-8 p-8 hover:shadow-xl transition duration-300 flex flex-col md:flex-row items-center gap-x-6">
-            <div className="flex-1">
-              <h2 className="text-3xl font-bold text-white mb-6 flex items-center">
-                <span className="mr-3">☀️</span> Boys' Summer Uniform
-              </h2>
-              <ul className="list-disc list-inside text-gray-200 space-y-4 text-lg">
-                <li>Dark blue pant</li>
-                <li>White shirt</li>
-                <li>School belt</li>
-                <li>School tie</li>
-              </ul>
-            </div>
-            <div className="flex-1">
-              <img
-                src={summerImage}
-                alt="Boys' Summer Uniform"
-                className="w-full min-h-56 object-cover rounded-lg"
-              />
-            </div>
-          </div>
-
-          {/* Boys' Winter Uniform */}
-          <div className="bg-gray-800 shadow-lg rounded-lg mb-8 p-8 hover:shadow-xl transition duration-300 flex flex-col md:flex-row-reverse items-center gap-x-6">
-            <div className="flex-1">
-              <h2 className="text-3xl font-bold text-white mb-6 flex items-center">
-                <span className="mr-3">❄️</span> Boys' Winter Uniform
-              </h2>
-              <ul className="list-disc list-inside text-gray-200 space-y-4 text-lg">
-                <li>Dark blue pant</li>
-                <li>White shirt</li>
-                <li>Grey sweater</li>
-                <li>Navy blue blazer</li>
-                <li>Grey cap</li>
-                <li>School belt</li>
-                <li>School I-card</li>
-              </ul>
-            </div>
-            <div className="flex-1">
-              <img
-                src={winterImage}
-                alt="Boys' Winter Uniform"
-                className="w-full min-h-56 object-cover rounded-lg"
-              />
-            </div>
-          </div>
-
-          {/* Common Items */}
-          <div className="bg-gray-800 shadow-lg rounded-lg mb-8 p-8 hover:shadow-xl transition duration-300 flex flex-col md:flex-row items-center gap-x-6">
-            <div className="flex-1">
-              <h2 className="text-3xl font-bold text-white mb-6 flex items-center">
-                <span className="mr-3">🎒</span> Common Items for All Seasons
-              </h2>
-              <ul className="list-disc list-inside text-gray-200 space-y-4 text-lg">
-                <li>School belt</li>
-                <li>School I-card</li>
-              </ul>
-            </div>
-            <div className="flex-1">
-              <img
-                src={commonImage}
-                alt="Common Items"
-                className="w-full min-h-56 object-cover rounded-lg"
-              />
-            </div>
-          </div>
+          {/* Uniform Card Component */}
+          {[
+            {
+              title: "☀️ Boys' Summer Uniform",
+              items: ["Dark blue pant", "White shirt", "School belt", "School tie"],
+              image: summerImage,
+              reverse: false,
+            },
+            {
+              title: "❄️ Boys' Winter Uniform",
+              items: [
+                "Dark blue pant",
+                "White shirt",
+                "Grey sweater",
+                "Navy blue blazer",
+                "Grey cap",
+                "School belt",
+                "School I-card",
+              ],
+              image: winterImage,
+              reverse: true,
+            },
+            {
+              title: "🎒 Common Items for All Seasons",
+              items: ["School belt", "School I-card"],
+              image: commonImage,
+              reverse: false,
+            },
+          ].map((section, index) => (
+            <motion.div
+              key={index}
+              className={`bg-white/80 backdrop-blur-md shadow-lg hover:shadow-2xl rounded-2xl mb-12 p-8 flex flex-col ${
+                section.reverse ? "md:flex-row-reverse" : "md:flex-row"
+              } items-center gap-x-10 border border-gray-200 transition`}
+              whileHover={{ y: -6 }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: index * 0.2 }}
+            >
+              <div className="flex-1">
+                <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-6 flex items-center">
+                  {section.title}
+                </h2>
+                <ul className="list-disc list-inside text-gray-700 space-y-3 text-lg leading-relaxed">
+                  {section.items.map((item, idx) => (
+                    <li key={idx}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <motion.div
+                className="flex-1 mt-6 md:mt-0"
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.3 }}
+              >
+                <img
+                  src={section.image}
+                  alt={section.title}
+                  className="w-full h-64 object-cover rounded-xl border border-gray-300 shadow-md"
+                />
+              </motion.div>
+            </motion.div>
+          ))}
         </div>
       </div>
 

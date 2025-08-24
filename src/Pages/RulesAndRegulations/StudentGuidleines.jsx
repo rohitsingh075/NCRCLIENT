@@ -2,112 +2,115 @@ import React from "react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 
-
 const StudentGuidelines = () => {
   return (
     <>
       {/* Navbar */}
       <Navbar />
 
-
       {/* Main Content */}
-      <div className="pt-20 bg-gradient-to-b from-gray-700 to-gray-900">
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          <h2 className="text-red-500 text-lg font-bold uppercase mb-2 tracking-wider">
+      <div className="pt-20 bg-gradient-to-b from-gray-50 to-gray-100 font-sans">
+        <div className="max-w-6xl mx-auto px-6 py-16">
+          {/* Section Header */}
+          <h2 className="text-gray-700 text-sm font-semibold uppercase mb-3 tracking-widest text-center">
             Student Guidelines
           </h2>
-          <h1 className="text-5xl text-white font-extrabold mb-6">
+          <h1 className="text-4xl md:text-5xl text-red-600 font-extrabold mb-6 text-center">
             Rules and Regulations for Students
           </h1>
-          <p className="text-gray-300 text-lg leading-relaxed mb-8">
-            At North Central Railway College, we believe that discipline and
-            respect for rules are essential for creating a positive and
-            productive learning environment. All students are expected to
-            adhere to the following guidelines to ensure the smooth functioning
-            of the institution and to foster mutual respect and understanding.
+          <p className="text-gray-600 text-lg leading-relaxed max-w-3xl mx-auto text-center mb-12">
+            At North Central Railway College, discipline and respect for rules 
+            are essential for creating a positive and productive learning environment. 
+            Students are expected to adhere to the following guidelines to ensure 
+            smooth functioning of the institution and foster mutual respect.
           </p>
 
-          <div className="space-y-6">
-            {/* Rule Cards */}
+          {/* Rules */}
+          <div className="grid md:grid-cols-2 gap-8">
             {[
               {
-                title: "1. Attendance and Punctuality",
+                title: "Attendance and Punctuality",
                 content:
-                  "Students must attend school regularly and arrive on time. A minimum attendance of 75% is mandatory to be eligible for examinations. Late arrivals and absenteeism without prior notice will not be tolerated.",
+                  "Students must attend school regularly and arrive on time. A minimum attendance of 75% is mandatory to be eligible for examinations.",
                 icon: "⏰",
               },
               {
-                title: "2. Uniform and Appearance",
+                title: "Uniform and Appearance",
                 content:
-                  "Students are required to wear the prescribed school uniform and maintain a neat and tidy appearance. Any deviation from the dress code will result in disciplinary action.",
+                  "Students must wear the prescribed uniform and maintain a neat appearance. Any deviation will result in disciplinary action.",
                 icon: "👔",
               },
               {
-                title: "3. Respect for Teachers and Peers",
+                title: "Respect for Teachers and Peers",
                 content:
-                  "Students must show respect to teachers, staff, and fellow students at all times. Bullying, harassment, or any form of disrespectful behavior will not be tolerated.",
+                  "Respect for teachers, staff, and fellow students is mandatory. Bullying or harassment will not be tolerated.",
                 icon: "🤝",
               },
               {
-                title: "4. Use of School Property",
+                title: "Use of School Property",
                 content:
-                  "Students must handle school property with care. Any damage to school property, whether intentional or accidental, must be reported immediately, and the cost of repairs will be borne by the student responsible.",
+                  "Handle school property responsibly. Any damage must be reported and repaired at the student’s expense.",
                 icon: "🏫",
               },
               {
-                title: "5. Prohibited Items",
+                title: "Prohibited Items",
                 content:
-                  "Students are strictly prohibited from bringing mobile phones, electronic gadgets, or any other unauthorized items to school. Violation of this rule will result in confiscation of the item and further disciplinary action.",
+                  "Mobile phones, electronic gadgets, or unauthorized items are not allowed. Confiscated items will not be returned immediately.",
                 icon: "📵",
               },
               {
-                title: "6. Academic Integrity",
+                title: "Academic Integrity",
                 content:
-                  "Students must maintain academic honesty and integrity. Cheating, plagiarism, or any other form of academic misconduct will result in severe consequences.",
+                  "Maintain honesty in academics. Cheating, plagiarism, or misconduct will lead to strict consequences.",
                 icon: "📚",
               },
               {
-                title: "7. Participation in Activities",
+                title: "Participation in Activities",
                 content:
-                  "Students are encouraged to actively participate in co-curricular and extracurricular activities. Such participation is essential for holistic development and will be considered during evaluations.",
+                  "Students are encouraged to participate in extracurricular activities, which are essential for holistic development.",
                 icon: "🎨",
               },
               {
-                title: "8. Health and Hygiene",
+                title: "Health and Hygiene",
                 content:
-                  "Students must maintain personal hygiene and cleanliness. They are also expected to keep the school premises clean and dispose of waste responsibly.",
+                  "Maintain personal hygiene and keep school premises clean. Waste should be disposed of responsibly.",
                 icon: "🧼",
               },
               {
-                title: "9. Safety and Security",
+                title: "Safety and Security",
                 content:
-                  "Students must follow all safety rules and guidelines. Any unsafe behavior or actions that endanger others will result in strict disciplinary measures.",
+                  "Follow safety rules. Unsafe actions or endangering behavior will result in strict measures.",
                 icon: "🛡️",
               },
               {
-                title: "10. Communication with Parents",
+                title: "Communication with Parents",
                 content:
-                  "Parents are encouraged to maintain regular communication with the school. Students must ensure that all notices and circulars are delivered to their parents promptly.",
+                  "Ensure parents receive all notices promptly. Regular communication with school is encouraged.",
                 icon: "📩",
               },
             ].map((rule, index) => (
               <div
                 key={index}
-                className="bg-white shadow-md rounded-lg p-6 hover:shadow-lg hover:bg-red-50 transition duration-300 flex items-start gap-x-4"
+                className="bg-white/90 backdrop-blur-md border border-gray-200 shadow-md hover:shadow-xl rounded-2xl p-6 transition duration-300 flex items-start gap-x-5"
               >
-                <div className="text-4xl text-red-500">{rule.icon}</div>
+                {/* Icon */}
+                <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center rounded-full bg-red-100 text-red-600 text-2xl shadow-sm">
+                  {rule.icon}
+                </div>
+
+                {/* Content */}
                 <div>
-                  <h3 className="text-xl font-bold mb-2 text-gray-800">
+                  <h3 className="text-xl font-semibold text-gray-800 mb-2">
                     {rule.title}
                   </h3>
-                  <p className="text-gray-600">{rule.content}</p>
+                  <p className="text-gray-600 leading-relaxed">{rule.content}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </div>
-
+<br /><br /><br /><br />
       {/* Footer */}
       <Footer />
     </>

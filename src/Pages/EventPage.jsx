@@ -38,7 +38,7 @@ const EventPage = () => {
     return (
        <div>
         <Navbar/>
-         <div className="p-10 bg-gray-800 min-h-screen">
+         <div className="p-10 bg-gray-100 min-h-screen">
             <div className="max-w-5xl mx-auto grid grid-cols-2 gap-6 bg-white shadow-md rounded-lg p-6">
                 {event.imagePath && (
                     <img
