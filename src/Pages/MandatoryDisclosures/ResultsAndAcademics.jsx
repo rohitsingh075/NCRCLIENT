@@ -2,26 +2,25 @@ import { useState } from "react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 
-
 const documentData = [
   {
-    title: "FEE STRUCTURE",
+    title: "Fee Structure",
     pdf: "/resultDocuments/Fees_Structure.pdf",
   },
   {
-    title: "ANNUAL ACADEMIC CALENDAR",
+    title: "Annual Academic Calendar",
     pdf: "/resultDocuments/Academic_Calendar.pdf",
   },
   {
-    title: "SCHOOL MANAGEMENT COMMITTEE (SMC)",
+    title: "School Management Committee (SMC)",
     pdf: "/resultDocuments/SMC.pdf",
   },
   {
-    title: "PARENTS TEACHERS ASSOCIATION (PTA) MEMBERS",
+    title: "Parents Teachers Association (PTA) Members",
     pdf: "/resultDocuments/PTA.pdf",
   },
   {
-    title: "LAST THREE-YEAR RESULT OF THE BOARD EXAMINATION",
+    title: "Last Three-Year Board Exam Results",
     pdf: "/resultDocuments/Result.pdf",
   },
 ];
@@ -38,52 +37,53 @@ export default function ResultAndAcademics() {
   };
 
   return (
-    <div className="mx-auto bg-gray-800">
+    <div className="bg-gray-50 min-h-screen">
       {/* Navbar */}
       <Navbar />
 
-
-      {/* Main Content */}
-      <div className="max-w-6xl mx-auto mt-5 p-4">
-        <div className="rounded  p-6 bg-gray-50 shadow-lg">
-          <h2 className="text-3xl font-bold text-center text-red-700 mb-14">
-            RESULT AND ACADEMICS
-          </h2>
-
-          <div className="space-y-6">
-            {documentData.map((item, index) => (
-              <div
-                key={index}
-                className=" rounded-lg overflow-hidden shadow-sm"
-              >
-                <button
-                  onClick={() => toggleDocument(index)}
-                  className="w-full flex justify-between items-center bg-gradient-to-r from-red-100 to-red-50 p-4 font-semibold text-gray-900 hover:bg-red-200 transition"
-                >
-                  <span>{item.title}</span>
-                  <span className="text-gray-900">
-                    {openDocuments.includes(index) ? "▲" : "▼"}
-                  </span>
-                </button>
-                {openDocuments.includes(index) && (
-                  <div className="p-4 bg-white border-t">
-                    <iframe
-                      src={item.pdf}
-                      width="100%"
-                      height="500px"
-                      className="border rounded"
-                      title={`PDF-${index}`}
-                    />
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* Page Header */}
+      <div className="max-w-5xl mx-auto py-12 px-6 text-center">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-red-600 mb-4">
+          Result & Academic Information
+        </h1>
+        <p className="text-gray-600 text-lg md:text-xl">
+          Explore important academic documents including fee structure, annual calendar, committee details, and past board results. Click on each section to view the PDF.
+        </p>
       </div>
 
-      {/* Footer */}
-      <Footer />
+      {/* Documents Accordion */}
+      <div className="max-w-4xl mx-auto px-4 md:px-0 space-y-4">
+        {documentData.map((item, index) => (
+          <div
+            key={index}
+            className="border border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden"
+          >
+            <button
+              onClick={() => toggleDocument(index)}
+              className="w-full flex justify-between items-center px-6 py-4 bg-white font-medium text-gray-800 text-lg hover:bg-gray-100 transition"
+            >
+              <span>{item.title}</span>
+              <span className="text-gray-500">
+                {openDocuments.includes(index) ? "▲" : "▼"}
+              </span>
+            </button>
+            {openDocuments.includes(index) && (
+              <div className="p-4 bg-gray-50 border-t border-gray-200">
+                <iframe
+                  src={item.pdf}
+                  width="100%"
+                  height="500px"
+                  className="rounded shadow"
+                  title={`PDF-${index}`}
+                />
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+<br /> <br />
+<br /><br />
+      <Footer className="mt-12" />
     </div>
   );
 }

@@ -29,10 +29,10 @@ const api = axios.create({
 api.interceptors.response.use(
   async (response) => {
     const url = response.config.url;
-    
+
     // Skip auth-check for certain routes (e.g., /user/protected, /user/logout)
     const skipUrls = ['/user/protected', '/user/logout', '/login','/'];
-    
+
     // Also skip auth check if current path is root '/'
     if (!skipUrls.some((skipUrl) => url.includes(skipUrl)) && currentPath !== '/' && currentPath !== '/login') {
       try {
@@ -44,7 +44,7 @@ api.interceptors.response.use(
         return Promise.reject(err);
       }
     }
-    
+
     return response;
   },
   (error) => {

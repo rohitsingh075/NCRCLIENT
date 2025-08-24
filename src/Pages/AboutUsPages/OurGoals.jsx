@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 import academicImage from "../../assets/academic.jpeg";
@@ -60,46 +61,73 @@ const OurGoals = () => {
       <Navbar />
 
       {/* Main Content */}
-      <div className="pt-8 bg-gray-800">
-        {/* Goals Section */}
-        <div className="max-w-7xl mx-auto px-5 py-4">
-          <h1 className="text-4xl text-red-600 font-bold mb-3 text-center">
+      <div className="pt-12 bg-white">
+        <div className="max-w-7xl mx-auto px-6 py-16">
+          {/* Heading */}
+          <motion.h1
+            initial={{ opacity: 0, y: -40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl md:text-5xl text-red-700 font-bold mb-6 text-center"
+          >
             Our Aspirations for Excellence
-          </h1>
-          <p className="text-gray-100 text-lg leading-relaxed mb-8 text-center">
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
+            className="text-gray-700 text-lg leading-relaxed mb-16 text-center max-w-3xl mx-auto"
+          >
             At North Central Railway College, we strive to create an environment
             that fosters growth, learning, and excellence. Our goals are
             designed to ensure that every student reaches their full potential
             while becoming responsible and compassionate members of society.
-          </p>
+          </motion.p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {goals.map((goal) => (
-              <div
+          {/* Goals Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            {goals.map((goal, index) => (
+              <motion.div
                 key={goal.id}
-                className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition duration-300"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: index * 0.15 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300"
               >
-                <div className="relative h-48">
+                {/* Image */}
+                <div className="relative h-52">
                   <img
                     src={goal.image}
                     alt={goal.title}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gray-500 bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition duration-300">
-                    <h2 className="text-white text-2xl font-bold">
+                  <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition duration-300">
+                    <h2 className="text-white text-2xl font-bold drop-shadow-lg">
                       {goal.title}
                     </h2>
                   </div>
                 </div>
+
+                {/* Content */}
                 <div className="p-6">
-                  <h2 className="text-xl font-bold mb-4">{goal.title}</h2>
-                  <p className="text-gray-600">{goal.description}</p>
+                  <h2 className="text-xl font-bold text-red-700 mb-3">
+                    {goal.title}
+                  </h2>
+                  <p className="text-gray-600 leading-relaxed">
+                    {goal.description}
+                  </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </div>
+<br />
+<br />
+<br />
+<br />
 
       {/* Footer */}
       <Footer />

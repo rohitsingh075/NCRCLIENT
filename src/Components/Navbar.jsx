@@ -2,210 +2,173 @@ import React, { useState, useEffect } from "react";
 import { IoMenu } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import train from "../assets/train.png";
-import { Link } from "react-router-dom";
+import {
+  Phone, Mail, Clock,
+  Facebook, Twitter, Instagram, Linkedin
+} from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [admissionOpen, setAdmissionOpen] = useState(false);
   const [academicOpen, setAcademicOpen] = useState(false);
-  const [showTrain, setShowTrain] = useState(true); // State to control train visibility
+  const [showTrain, setShowTrain] = useState(true);
 
   useEffect(() => {
     const trainShown = sessionStorage.getItem("trainShown");
-  
     if (!trainShown) {
       setShowTrain(true);
       const timer = setTimeout(() => {
         setShowTrain(false);
         sessionStorage.setItem("trainShown", "true");
-      }, 2500); // Train runs for 2.5 seconds
-  
+      }, 2500);
       return () => clearTimeout(timer);
     } else {
       setShowTrain(false);
     }
   }, []);
-  
 
   return (
-    <header className="w-full relative top-0 inset-x-0 z-50 overflow">
+    <header className="w-full relative top-0 inset-x-0 z-50">
+      {/* Train Animation (first visit) */}
+      {showTrain && (
+        <div className="absolute top-0 left-0 w-full z-50">
+          <div className="train-animation h-[160px] py-1 z-0 px-4 flex justify-start items-center">
+            <img src={train} alt="train" width="800" />
+          </div>
+        </div>
+      )}
 
+      {/* ======= TOP BAR ======= */}
+      <div className="bg-[#00001a] text-red-100 text-sm ">
+        <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-4">
+          <div className="flex space-x-3">
+            <a href="#" className="hover:text-red-500 transition-colors"><Facebook size={16} /></a>
+            <a href="#" className="hover:text-red-500 transition-colors"><Twitter size={16} /></a>
+            <a href="#" className="hover:text-red-500 transition-colors"><Instagram size={16} /></a>
+            <a href="#" className="hover:text-red-500 transition-colors"><Linkedin size={16} /></a>
+          </div>
+          <div className="hidden md:flex space-x-6 items-center">
+            <span className="flex items-center gap-1"><Phone size={14} /> 05612229463</span>
+            <span className="flex items-center gap-1"><Mail size={14} /> ncrcollegetundla@rediffmail.com</span>
+            <span className="flex items-center gap-1"><Clock size={14} /> Mon - Fri (08AM - 10PM)</span>
+          </div>
+        </div>
+      </div>
 
-      {/* Top Navbar */}
-      <div className="w-full bg-gray-100 text-gray-800 py-1 px-4 flex justify-end items-center">
-        {/* Train Animation */}
-            {showTrain && (
-              <div className="absolute top-0 left-0 w-full z-50">
-                <div className="train-animation h-[160px] py-1 z-0 px-4 flex justify-start items-center">
-                  <img src={train} alt="" width="800" />
-                </div>
+      {/* ======= MAIN NAVBAR (merged middle + bottom) ======= */}
+      <div className="w-full bg-white text-[#00001a] shadow-md">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
+          {/* Brand */}
+          <Link to="/" className="min-w-0 flex items-center space-x-2 flex-shrink-0">
+            <img src={logo} alt="NCR COLLEGE" className="w-10 h-10" />
+            <div className="hidden sm:block">
+              <div className="text-base font-bold  leading-tight whitespace-nowrap">
+                North Central Railway College
               </div>
-            )}
-
-        <div className="flex space-x-8 text-lg overflow-visible">
-          <Link to="/login" className="hover:text-red-700  text-red-500 font-bold">
-            Login
+              <div className="text-[10px] text-gray-800 whitespace-nowrap">
+                Affiliated to CBSE, New Delhi (Code: 62013)
+              </div>
+            </div>
           </Link>
-          <button className="hover:text-red-400">
-            <i className="fas fa-search"></i> Search
+
+          {/* Desktop Nav */}
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-5 text-sm font-medium whitespace-nowrap">
+            <Link to="/" className="hover:text-red-400">Home</Link>
+
+            {/* About Us */}
+            <div className="relative group">
+              <button className="hover:text-red-400 flex items-center">
+                About Us ▾
+              </button>
+              <div className="absolute left-0 mt-2 w-56 bg-white text-gray-700 rounded-md shadow-lg ring-1 ring-black/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <Link to="/history" className="block px-4 py-2 hover:bg-rose-100">History</Link>
+                <Link to="/about" className="block px-4 py-2 hover:bg-rose-100">About School</Link>
+                <Link to="/vission-mission" className="block px-4 py-2 hover:bg-rose-100">Vision &amp; Mission</Link>
+                <Link to="/our-goals" className="block px-4 py-2 hover:bg-rose-100">Our Goals</Link>
+                <Link to="/principal-message" className="block px-4 py-2 hover:bg-rose-100">Principal&apos;s Message</Link>
+              </div>
+            </div>
+
+            {/* Mandatory Disclosure */}
+            <div className="relative group">
+              <button className="hover:text-red-400 flex items-center">
+                Mandatory Disclosure ▾
+              </button>
+              <div className="absolute left-0 mt-2 w-64 bg-white text-gray-700 rounded-md shadow-lg ring-1 ring-black/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <Link to="/general-information" className="block px-4 py-2 hover:bg-rose-100">General Information</Link>
+                <Link to="/documents-and-information" className="block px-4 py-2 hover:bg-rose-100">Documents &amp; Information</Link>
+                <Link to="/result-and-academics" className="block px-4 py-2 hover:bg-rose-100">Result &amp; Academics</Link>
+                <Link to="/teaching-staff" className="block px-4 py-2 hover:bg-rose-100">Staff (Teaching)</Link>
+                <Link to="/school-infrastructure" className="block px-4 py-2 hover:bg-rose-100">School Infrastructure</Link>
+              </div>
+            </div>
+
+            {/* Admission */}
+            <div className="relative group">
+              <button className="hover:text-red-400 flex items-center">
+                Admission ▾
+              </button>
+              <div className="absolute left-0 mt-2 w-56 bg-white text-gray-700 rounded-md shadow-lg ring-1 ring-black/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <Link to="/admission-procedure" className="block px-4 py-2 hover:bg-rose-100">Admission Procedure</Link>
+                <Link to="/fee-structure" className="block px-4 py-2 hover:bg-rose-100">Fee Structure</Link>
+              </div>
+            </div>
+
+            {/* Rules & Regulations (added back) */}
+            <div className="relative group">
+              <button className="hover:text-red-400 flex items-center">
+                Rules &amp; Regulations ▾
+              </button>
+              <div className="absolute left-0 mt-2 w-56 bg-white text-gray-700 rounded-md shadow-lg ring-1 ring-black/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <Link to="/student-guidelines" className="block px-4 py-2 hover:bg-rose-100">Student Guidelines</Link>
+                <Link to="/school-uniform" className="block px-4 py-2 hover:bg-rose-100">School Uniform</Link>
+              </div>
+            </div>
+
+            {/* Academics */}
+            <div className="relative group">
+              <button className="hover:text-red-400 flex items-center">
+                Academics ▾
+              </button>
+              <div className="absolute left-0 mt-2 w-64 bg-white text-gray-700 rounded-md shadow-lg ring-1 ring-black/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <Link to="/academic-curriculum" className="block px-4 py-2 hover:bg-rose-100">Academic Curriculum</Link>
+                <Link to="/facilities" className="block px-4 py-2 hover:bg-rose-100">Facilities</Link>
+                <Link to="/academic-calendar" className="block px-4 py-2 hover:bg-rose-100">Academic Calendar</Link>
+                <Link to="/nep" className="block px-4 py-2 hover:bg-rose-100">National Education Policy (NEP)</Link>
+              </div>
+            </div>
+
+            
+            <Link to="/contact" className="hover:text-red-400">Contact</Link>
+          
+
+            <Link
+              to="/login"
+              className="ml-1 bg-red-700 hover:bg-red-600 text-white px-4 py-1.5 rounded-md"
+            >
+              Login
+            </Link>
+          </nav>
+
+          {/* Mobile Toggle */}
+          <button
+            className="lg:hidden ml-2"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <RxCross1 size={24} /> : <IoMenu size={24} />}
           </button>
         </div>
-      </div>
-      <hr className="border-white" />
 
-      {/* Middle Navbar */}
-      <div className="w-full bg-[#00001a] py-1 flex justify-center items-center shadow-md">
-        <Link to="/">
-          <img src={logo} alt="NCR COLLEGE" className="w-20 h-20" />
-        </Link>
-        <div>
-          <div className="text-3xl font-bold z-100 mx-4 flex items-center justify-center text-white">
-            North Central Railway College
-          </div>
-          <div className="text-lg mx-4 text-white">Affiliated to CBSE New Delhi (School Code-62013)</div>
-        </div>
-      </div>
-      <hr className="border-white" />
-
-      {/* Bottom Navbar */}
-      <div className="w-full bg-gray-100 text-gray-800 shadow-md">
-        <div className="max-w-screen-xl mx-auto flex items-center justify-evenly py-2 px-4">
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-10 items-center text-[1rem] font-medium">
-            <nav>
-              <div className="flex items-center space-x-6">
-                <Link to="/" className="hover:text-red-400">
-                  Home
-                </Link>
-
-                {/* About Us Dropdown */}
-                <div className="relative group">
-                  <button className="hover:text-red-400 flex items-center">
-                    About Us ▾
-                  </button>
-                  <div className="absolute left-0 mt-2 w-64 rounded-md bg-white text-gray-700 shadow-lg ring-1 ring-black/10 opacity-0 scale-y-95 group-hover:opacity-100 group-hover:scale-y-100 invisible group-hover:visible transform origin-top transition-all duration-300 ease-out">
-                    <ul className="py-2">
-                      <Link to="/history">
-                        <li className="block px-4 py-2 hover:bg-rose-100">History</li>
-                      </Link>
-                      <Link to="/about">
-                        <li className="block px-4 py-2 hover:bg-rose-100">About School</li>
-                      </Link>
-                      <Link to="/vission-mission">
-                        <li className="block px-4 py-2 hover:bg-rose-100">Vision & Mission</li>
-                      </Link>
-                      <Link to="/our-goals">
-                        <li className="block px-4 py-2 hover:bg-rose-100">Our Goals</li>
-                      </Link>
-                      <Link to="/principal-message">
-                        <li className="block px-4 py-2 hover:bg-rose-100">Principal's Message</li>
-                      </Link>
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Mandatory Disclosure Dropdown */}
-                <div className="relative group">
-                  <button className="hover:text-red-400  flex items-center">
-                    Mandatory Disclosure ▾
-                  </button>
-                  <div className="absolute left-0 mt-2 w-64 rounded-md bg-white text-gray-700 shadow-lg ring-1 ring-black/10 opacity-0 scale-y-95 group-hover:opacity-100 group-hover:scale-y-100 invisible group-hover:visible transform origin-top transition-all duration-300 ease-out">
-                    <ul className="py-2">
-                      <Link to="/general-information">
-                        <li className="block px-4 py-2 hover:bg-rose-100">General Information</li>
-                      </Link>
-                      <Link to="/documents-and-information">
-                        <li className="block px-4 py-2 hover:bg-rose-100">Documents and Information</li>
-                      </Link>
-                      <Link to="/result-and-academics">
-                        <li className="block px-4 py-2 hover:bg-rose-100">Result and Academics</li>
-                      </Link>
-                      <Link to="/teaching-staff">
-                        <li className="block px-4 py-2 hover:bg-rose-100">Staff (Teaching)</li>
-                      </Link>
-                      <Link to="/school-infrastructure">
-                        <li className="block px-4 py-2 hover:bg-rose-100">School Infrastructure</li>
-                      </Link>
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Admission Dropdown */}
-                <div className="relative group">
-                  <button className="hover:text-red-400 flex items-center">
-                    Admission ▾
-                  </button>
-                  <div className="absolute left-0 mt-2 w-64 rounded-md bg-white text-gray-700 shadow-lg ring-1 ring-black/10 opacity-0 scale-y-95 group-hover:opacity-100 group-hover:scale-y-100 invisible group-hover:visible transform origin-top transition-all duration-300 ease-out">
-                    <ul className="py-2">
-                      <Link to="/admission-procedure">
-                        <li className="block px-4 py-2 hover:bg-rose-100">Admission Procedure</li>
-                      </Link>
-                      <Link to="/fee-structure">
-                        <li className="block px-4 py-2 hover:bg-rose-100">Fee Structure</li>
-                      </Link>
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Rules & Regulations Dropdown */}
-                <div className="relative group">
-                  <button className="hover:text-red-400 flex items-center">
-                    Rules & Regulations ▾
-                  </button>
-                  <div className="absolute left-0 mt-2 w-64 rounded-md bg-white text-gray-700 shadow-lg ring-1 ring-black/10 opacity-0 scale-y-95 group-hover:opacity-100 group-hover:scale-y-100 invisible group-hover:visible transform origin-top transition-all duration-300 ease-out">
-                    <ul className="py-2">
-                      <Link to="/student-guidelines">
-                        <li className="block px-4 py-2 hover:bg-rose-100">Student Guidelines</li>
-                      </Link>
-                      <Link to="/school-uniform">
-                        <li className="block px-4 py-2 hover:bg-rose-100">School Uniform</li>
-                      </Link>
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Academics Dropdown */}
-                <div className="relative group">
-                  <button className="hover:text-red-400 flex items-center">
-                    Academics ▾
-                  </button>
-                  <div className="absolute left-0 mt-2 w-64 rounded-md bg-white text-gray-700 shadow-lg ring-1 ring-black/10 opacity-0 scale-y-95 group-hover:opacity-100 group-hover:scale-y-100 invisible group-hover:visible transform origin-top transition-all duration-300 ease-out">
-                    <ul className="py-2">
-                      <Link to="/academic-curriculum">
-                        <li className="block px-4 py-2 hover:bg-rose-100">Academic Curriculum</li>
-                      </Link>
-                      <Link to="/facilities">
-                        <li className="block px-4 py-2 hover:bg-rose-100">Facilities</li>
-                      </Link>
-                      <Link to="/academic-calendar">
-                        <li className="block px-4 py-2 hover:bg-rose-100">Academic Calendar</li>
-                      </Link>
-                      <Link to="/nep">
-                        <li className="block px-4 py-2 hover:bg-rose-100">National Education Policy (NEP)</li>
-                      </Link>
-                    </ul>
-                  </div>
-                </div>
-
-
-              </div>
-            </nav>
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <div className="md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)}>
-              {isOpen ? <RxCross1 size={24} /> : <IoMenu size={24} />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Dropdown */}
+        {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden px-4 py-4 bg-blue-900 text-white border-t space-y-2 text-sm font-medium">
-            <Link to="/" className="block">Home</Link>
+          <div className="lg:hidden bg-[#0c0c2a] text-white px-4 py-4 space-y-2 text-sm font-medium border-t border-white/10">
+            <Link to="/" className="block py-2" onClick={() => setIsOpen(false)}>Home</Link>
+
+            {/* Admission */}
             <div>
               <button
                 onClick={() => setAdmissionOpen(!admissionOpen)}
@@ -215,28 +178,52 @@ const Navbar = () => {
               </button>
               {admissionOpen && (
                 <div className="pl-4 space-y-2">
-                  <Link to="/admission-procedure" className="block">Admission Procedure</Link>
-                  <Link to="/fee-structure" className="block">Fee Structure</Link>
+                  <Link to="/admission-procedure" onClick={() => setIsOpen(false)} className="block">Admission Procedure</Link>
+                  <Link to="/fee-structure" onClick={() => setIsOpen(false)} className="block">Fee Structure</Link>
                 </div>
               )}
             </div>
+
+            {/* Academics */}
             <div>
               <button
                 onClick={() => setAcademicOpen(!academicOpen)}
                 className="w-full flex justify-between items-center py-2"
               >
-                Academic {academicOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                Academics {academicOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </button>
               {academicOpen && (
                 <div className="pl-4 space-y-2">
-                  <Link to="/academic-curriculum" className="block">Academic Curriculum</Link>
-                  <Link to="/facilities" className="block">Facilities</Link>
-                  <Link to="/academic-calendar" className="block">Academic Calendar</Link>
-                  <Link to="/nep" className="block">NEP</Link>
+                  <Link to="/academic-curriculum" onClick={() => setIsOpen(false)} className="block">Academic Curriculum</Link>
+                  <Link to="/facilities" onClick={() => setIsOpen(false)} className="block">Facilities</Link>
+                  <Link to="/academic-calendar" onClick={() => setIsOpen(false)} className="block">Academic Calendar</Link>
+                  <Link to="/nep" onClick={() => setIsOpen(false)} className="block">National Education Policy</Link>
                 </div>
               )}
             </div>
-            <Link to="/contact" className="block">Contact</Link>
+
+            {/* Simple links */}
+            <Link to="/general-information" className="block py-2" onClick={() => setIsOpen(false)}>General Information</Link>
+            <Link to="/documents-and-information" className="block py-2" onClick={() => setIsOpen(false)}>Documents & Information</Link>
+            <Link to="/result-and-academics" className="block py-2" onClick={() => setIsOpen(false)}>Result & Academics</Link>
+            <Link to="/teaching-staff" className="block py-2" onClick={() => setIsOpen(false)}>Staff (Teaching)</Link>
+            <Link to="/school-infrastructure" className="block py-2" onClick={() => setIsOpen(false)}>School Infrastructure</Link>
+            <Link to="/student-guidelines" className="block py-2" onClick={() => setIsOpen(false)}>Student Guidelines</Link>
+            <Link to="/school-uniform" className="block py-2" onClick={() => setIsOpen(false)}>School Uniform</Link>
+            <Link to="/history" className="block py-2" onClick={() => setIsOpen(false)}>History</Link>
+            <Link to="/about" className="block py-2" onClick={() => setIsOpen(false)}>About School</Link>
+            <Link to="/vission-mission" className="block py-2" onClick={() => setIsOpen(false)}>Vision & Mission</Link>
+            <Link to="/our-goals" className="block py-2" onClick={() => setIsOpen(false)}>Our Goals</Link>
+            <Link to="/principal-message" className="block py-2" onClick={() => setIsOpen(false)}>Principal's Message</Link>
+           
+            <Link to="/contact" className="block py-2" onClick={() => setIsOpen(false)}>Contact</Link>
+            
+
+            <div className="pt-3 border-t border-white/10">
+              <Link to="/login" className="block bg-red-700 hover:bg-red-600 text-white px-4 py-2 rounded-md text-center" onClick={() => setIsOpen(false)}>
+                Login
+              </Link>
+            </div>
           </div>
         )}
       </div>

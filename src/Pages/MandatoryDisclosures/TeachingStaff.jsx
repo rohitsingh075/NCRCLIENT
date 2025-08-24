@@ -2,16 +2,15 @@ import { useState } from "react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 
-
 const teachingStaffData = [
-  { title: "Principal", content: "MP SONKAR" },
+  { title: "Principal", content: "MP Sonkar" },
   {
-    title: "Total No. of Teachers",
-    content: `Total No. of Teachers: 37 {PGT: 10, TGT: 17, PRT: 10}`,
+    title: "Total Number of Teachers",
+    content: "Total: 37 (PGT: 10, TGT: 17, PRT: 10)",
   },
-  { title: "Teachers Section Ratio", content: "1:40" },
-  { title: "Details of Special Educator", content: "NA" },
-  { title: "Details of Counsellor and Wellness Teacher", content: "NK Sharma" },
+  { title: "Teacher to Student Ratio", content: "1:40" },
+  { title: "Details of Special Educator", content: "N/A" },
+  { title: "Counsellor and Wellness Teacher", content: "NK Sharma" },
 ];
 
 export default function TeachingStaff() {
@@ -22,51 +21,47 @@ export default function TeachingStaff() {
   };
 
   return (
-    <div className="mx-auto bg-gray-800">
-      {/* Navbar */}
+    <div className="bg-gray-50 min-h-screen">
       <Navbar />
 
-
-
-
-      {/* Main Content */}
-      <div className="max-w-6xl mx-auto mt-5 p-4">
-        <div className="rounded p-6 bg-gray-50 shadow-lg">
-          <h2 className="text-3xl font-bold text-center text-red-700 mb-6">
-            TEACHING STAFF DETAILS
-          </h2>
-          <p className="text-center text-gray-600 mb-8">
-            Below are the details of the teaching staff at North Central Railway College. Click on each section to view more information.
-          </p>
-
-          <div className="space-y-6">
-            {teachingStaffData.map((item, index) => (
-              <div
-                key={index}
-                className=" rounded-lg overflow-hidden shadow-sm"
-              >
-                <button
-                  onClick={() => toggleIndex(index)}
-                  className="w-full flex justify-between items-center bg-gradient-to-r from-red-100 to-red-50 p-4 font-semibold text-gray-900 hover:bg-blue-200 transition"
-                >
-                  <span>{item.title}</span>
-                  <span className="text-gray-900">
-                    {activeIndex === index ? "▲" : "▼"}
-                  </span>
-                </button>
-                {activeIndex === index && (
-                  <div className="p-4 bg-white border-t">
-                    <p className="text-gray-900 font-medium">{item.content}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* Page Header */}
+      <div className="max-w-5xl mx-auto py-12 px-6 text-center">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-red-600 mb-4">
+          Teaching Staff Details
+        </h1>
+        <p className="text-gray-600 text-lg md:text-xl">
+          Here are the details of the teaching staff at North Central Railway College. Click on each section to view more information.
+        </p>
       </div>
 
-      {/* Footer */}
-      <Footer />
+      {/* Staff Accordion */}
+      <div className="max-w-4xl mx-auto px-4 md:px-0 space-y-4">
+        {teachingStaffData.map((item, index) => (
+          <div
+            key={index}
+            className="border border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden"
+          >
+            <button
+              onClick={() => toggleIndex(index)}
+              className="w-full flex justify-between items-center px-6 py-4 bg-white font-medium text-gray-800 text-lg hover:bg-gray-100 transition"
+            >
+              <span>{item.title}</span>
+              <span className="text-gray-500">
+                {activeIndex === index ? "▲" : "▼"}
+              </span>
+            </button>
+            {activeIndex === index && (
+              <div className="p-4 bg-gray-50 border-t border-gray-200">
+                <p className="text-gray-700 font-medium text-base md:text-lg">
+                  {item.content}
+                </p>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+<br /><br /><br /><br /><br />
+      <Footer className="mt-12" />
     </div>
   );
 }
