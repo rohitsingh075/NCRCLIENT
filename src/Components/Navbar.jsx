@@ -43,7 +43,7 @@ const Navbar = () => {
 
       {/* ======= TOP BAR ======= */}
       <div className="bg-[#00001a] text-red-100 text-sm ">
-        <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-4">
+        <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-2">
           <div className="flex space-x-3">
             <a href="#" className="hover:text-red-500 transition-colors"><Facebook size={16} /></a>
             <a href="#" className="hover:text-red-500 transition-colors"><Twitter size={16} /></a>
@@ -60,19 +60,21 @@ const Navbar = () => {
 
       {/* ======= MAIN NAVBAR (merged middle + bottom) ======= */}
       <div className="w-full bg-white text-[#00001a] shadow-md">
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
-          {/* Brand */}
-          <Link to="/" className="min-w-0 flex items-center space-x-2 flex-shrink-0">
-            <img src={logo} alt="NCR COLLEGE" className="w-10 h-10" />
-            <div className="hidden sm:block">
-              <div className="text-base font-bold  leading-tight whitespace-nowrap">
-                North Central Railway College
+        <div className="max-w-7xl mx-auto flex items-center justify-between  py-3 ">
+          <div className="scale-125 flex items-center justify-between  ">
+            {/* Brand */}
+            <Link to="/" className="min-w-0 flex items-center space-x-2 flex-shrink-0">
+              <img src={logo} alt="NCR COLLEGE" className="w-14 h-14" />
+              <div className="hidden sm:block">
+                <div className="text-base font-bold  leading-tight whitespace-nowrap">
+                  North Central Railway College
+                </div>
+                <div className="text-[10px] font-semibold text-gray-800 whitespace-nowrap">
+                  Affiliated to CBSE, New Delhi (Code: 62013)
+                </div>
               </div>
-              <div className="text-[10px] text-gray-800 whitespace-nowrap">
-                Affiliated to CBSE, New Delhi (Code: 62013)
-              </div>
-            </div>
-          </Link>
+            </Link>
+          </div>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-5 xl:gap-5 text-md font-medium whitespace-nowrap">
@@ -141,9 +143,9 @@ const Navbar = () => {
               </div>
             </div>
 
-            
+
             <Link to="/contact" className="hover:text-red-400">Contact</Link>
-          
+
 
             <Link
               to="/login"
@@ -215,9 +217,9 @@ const Navbar = () => {
             <Link to="/vission-mission" className="block py-2" onClick={() => setIsOpen(false)}>Vision & Mission</Link>
             <Link to="/our-goals" className="block py-2" onClick={() => setIsOpen(false)}>Our Goals</Link>
             <Link to="/principal-message" className="block py-2" onClick={() => setIsOpen(false)}>Principal's Message</Link>
-           
+
             <Link to="/contact" className="block py-2" onClick={() => setIsOpen(false)}>Contact</Link>
-            
+
 
             <div className="pt-3 border-t border-white/10">
               <Link to="/login" className="block bg-red-700 hover:bg-red-600 text-white px-4 py-2 rounded-md text-center" onClick={() => setIsOpen(false)}>
