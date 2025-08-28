@@ -53,14 +53,14 @@ const Navbar = () => {
           <div className="hidden md:flex space-x-6 items-center">
             <span className="flex items-center gap-1"><Phone size={14} /> 05612229463</span>
             <span className="flex items-center gap-1"><Mail size={14} /> ncrcollegetundla@rediffmail.com</span>
-            <span className="flex items-center gap-1"><Clock size={14} /> Mon - Fri (08AM - 10PM)</span>
+            {/* <span className="flex items-center gap-1"><Clock size={14} /> Mon - Fri (08AM - 10PM)</span>/ */}
           </div>
         </div>
       </div>
 
       {/* ======= MAIN NAVBAR (merged middle + bottom) ======= */}
       <div className="w-full bg-white text-[#00001a] shadow-md">
-        <div className="max-w-7xl mx-auto flex items-center justify-between  py-3 ">
+        <div className="max-w-8xl mx-auto flex items-center justify-between py-3 px-24">
           <div className="scale-125 flex items-center justify-between  ">
             {/* Brand */}
             <Link to="/" className="min-w-0 flex items-center space-x-2 flex-shrink-0">
