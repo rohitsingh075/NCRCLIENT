@@ -24,7 +24,10 @@ const slides = [
 
 const FadeSwiper = () => {
   return (
-    <div className="w-full h-screen relative bg-black">
+    <div
+      className="w-full relative bg-black"
+      style={{ height: "calc(100vh - 116px)" }} // 👈 Adjust 80px to your navbar height
+    >
       <Swiper
         modules={[Navigation, EffectFade, Autoplay, Pagination]}
         effect="fade"
@@ -39,7 +42,7 @@ const FadeSwiper = () => {
         }}
         loop
         autoplay={{ delay: 4000 }}
-        className="w-full h-screen"
+        className="w-full h-full"
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id} className="relative">

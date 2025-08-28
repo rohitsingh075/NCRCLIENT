@@ -61,7 +61,7 @@ const Navbar = () => {
       {/* ======= MAIN NAVBAR (merged middle + bottom) ======= */}
       <div className="w-full bg-white text-[#00001a] shadow-md">
         <div className="max-w-8xl mx-auto flex items-center justify-between py-3 px-24">
-          <div className="scale-125 flex items-center justify-between  ">
+          <div className="scale-130 flex items-center justify-between  ">
             {/* Brand */}
             <Link to="/" className="min-w-0 flex items-center space-x-2 flex-shrink-0">
               <img src={logo} alt="NCR COLLEGE" className="w-14 h-14" />
