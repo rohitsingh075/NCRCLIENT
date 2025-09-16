@@ -14,7 +14,7 @@ const History = () => {
         <img
           src={historyImage}
           alt="NCR College"
-          className="absolute inset-0 w-full h-full object-cover brightness-45"
+          className="absolute inset-0 w-full h-full object-fit brightness-45"
         />
         <div className="relative z-10 text-center text-white px-6">
           <motion.h1
@@ -100,7 +100,7 @@ const History = () => {
                 desc: "Expanded facilities and welcomed students from all communities.",
               },
               {
-                year: "2000",
+                year: "2023",
                 desc: "Introduced smart classrooms, labs, and modern infrastructure.",
               },
             ].map((milestone, index) => (

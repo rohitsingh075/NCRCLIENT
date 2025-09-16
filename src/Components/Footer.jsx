@@ -55,7 +55,7 @@ export default function Footer() {
             <li className="flex items-center gap-2"><FaPhoneAlt /> 05612229463</li>
             <li className="flex items-center gap-2"><FaEnvelope /> ncrcollegetundla@rediffmail.com</li>
             <li className="flex items-start gap-2"><FaMapMarkerAlt className="mt-1" /> 
-            665Q+Q6C, Company Bagh Road, Tundla, Tundla Rly. Colony, Uttar Pradesh 283204
+            Infront of Railway Hospital , Rest Camp Road , Tundla , Uttar Pradesh 283204
             </li>
           </ul>
           {/* Social Icons */}

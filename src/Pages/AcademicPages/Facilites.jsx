@@ -82,9 +82,9 @@ const Facilities = () => {
       <Navbar />
 
       <div className="min-h-screen bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="max-w-7xl mx-auto px-6 py-4">
           {/* Heading */}
-          <h1 className="text-4xl md:text-5xl font-extrabold text-center text-red-600 mb-12 tracking-wide">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-center text-red-600 mb-3 tracking-wide">
             School Facilities
           </h1>
           <p className="text-center text-gray-600 mb-12">
@@ -92,7 +92,7 @@ const Facilities = () => {
           </p>
 
           {/* Facilities Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {facilitiesData.map((facility, index) => (
               <div
                 key={index}
@@ -103,7 +103,7 @@ const Facilities = () => {
                   <img
                     src={facility.image}
                     alt={facility.name}
-                    className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-fill transform hover:scale-105 transition-transform duration-500"
                   />
                 </div>
 

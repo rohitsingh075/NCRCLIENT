@@ -9,22 +9,15 @@ const AboutSchool = () => {
   const features = [
     { icon: BookOpen, text: "A peaceful and academically stimulating environment." },
     { icon: Users, text: "Restricted class strength for personalized attention." },
-    { icon: MonitorSmartphone, text: "Spacious, fully-equipped Smart Classrooms." },
     { icon: Trophy, text: "Sports and physical education with opportunities for competitions, trophies, and medals." },
     { icon: Activity, text: "Activity-based learning methodology." },
     { icon: Sparkles, text: "Diverse range of co-curricular and extracurricular activities." },
     { icon: UserCheck, text: "Well-qualified and dedicated faculty and staff." },
     { icon: MessageSquare, text: "Regular parent–teacher interactions for holistic growth." },
-    { icon: Smartphone, text: "Computerized management with advanced software and Mobile App integration." },
-    { icon: Baby, text: "Safe, non-toxic, and child-friendly toys and equipment." },
-    { icon: ShieldCheck, text: "Separate hygienic washrooms for boys and girls." },
     { icon: Droplets, text: "Provision of cold, filtered drinking water through R.O. system." },
-    { icon: Flame, text: "Fire safety equipment installed across the campus." },
     { icon: Flag, text: "Celebration of important festivals and national events." },
     { icon: Camera, text: "Enhanced security with CCTV surveillance." },
-    { icon: Baby, text: "Dedicated play area for Kindergarten with modern, safe equipment." },
-    { icon: Laptop, text: "Comprehensive computer education with the latest software for global competency." },
-    { icon: Database, text: "Use of advanced Vidyalaya Educational Software for efficient administration." },
+    { icon: Laptop, text: "Comprehensive computer education with the latest software for global competency." },,
   ];
 
   return (

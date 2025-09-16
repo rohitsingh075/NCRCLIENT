@@ -60,11 +60,11 @@ const Navbar = () => {
 
       {/* ======= MAIN NAVBAR (merged middle + bottom) ======= */}
       <div className="w-full bg-white text-[#00001a] shadow-md">
-        <div className="max-w-8xl mx-auto flex items-center justify-between py-3 px-24">
-          <div className="scale-130 flex items-center justify-between  ">
+        <div className=" mx-auto flex items-center justify-between px-5  py-3 ">
+          <div className="scale-125 mx-8  flex items-center justify-between ">
             {/* Brand */}
-            <Link to="/" className="min-w-0 flex items-center space-x-2 flex-shrink-0">
-              <img src={logo} alt="NCR COLLEGE" className="w-14 h-14" />
+            <Link to="/" className="min-w-0 flex items-center  flex-shrink-0">
+              <img src={logo} alt="NCR COLLEGE" className="w-14 h-14 mr-1" />
               <div className="hidden sm:block">
                 <div className="text-base font-bold  leading-tight whitespace-nowrap">
                   North Central Railway College
@@ -77,15 +77,15 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-5 xl:gap-5 text-md font-medium whitespace-nowrap">
+          <nav className="hidden lg:flex items-center gap-3 xl:gap-4 text-md font-medium whitespace-nowrap ">
             <Link to="/" className="hover:text-red-400">Home</Link>
 
             {/* About Us */}
-            <div className="relative group">
-              <button className="hover:text-red-400 flex items-center">
+            <div className="relative group  ">
+              <button className="hover:text-red-400 flex items-center cursor-pointer">
                 About Us ▾
               </button>
-              <div className="absolute left-0 mt-2 w-56 bg-white text-gray-700 rounded-md shadow-lg ring-1 ring-black/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+              <div className="absolute left-0 mt-2 w-56 bg-white text-gray-700 rounded-md shadow-lg ring-1 ring-black/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 cursor-pointer">
                 <Link to="/history" className="block px-4 py-2 hover:bg-rose-100">History</Link>
                 <Link to="/about" className="block px-4 py-2 hover:bg-rose-100">About School</Link>
                 <Link to="/vission-mission" className="block px-4 py-2 hover:bg-rose-100">Vision &amp; Mission</Link>

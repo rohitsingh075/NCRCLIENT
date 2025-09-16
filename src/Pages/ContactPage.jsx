@@ -9,9 +9,9 @@ const ContactPage = () => {
   return (
     <div>
       <Navbar />
-      <div className="bg-gray-50 min-h-screen p-8">
+      <div className="bg-gray-50 min-h-screen p-3">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl font-bold text-center text-gray-800 mb-12">
+          <h1 className="text-4xl font-bold text-center text-gray-800 mb-4">
             Contact <span className="text-red-600">Us</span>
           </h1>
 
@@ -30,9 +30,7 @@ const ContactPage = () => {
               <div className="flex items-start space-x-4">
                 <MapPin className="text-red-600 w-6 h-6 mt-1" />
                 <p className="text-gray-600">
-                  665Q+Q6C, Company Bagh Road,<br />
-                   Tundla, Tundla Rly. Colony,<br />
-                   Uttar Pradesh 283204
+                  Infront of Railway Hospital ,<br /> Rest Camp Road ,<br /> Tundla , Uttar Pradesh 283204
                 </p>
               </div>
 
@@ -92,10 +90,7 @@ const ContactPage = () => {
                   className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:outline-none"
                 ></textarea>
 
-                {/* reCAPTCHA Placeholder */}
-                <div className="bg-gray-100 border p-4 rounded-lg text-center text-gray-500">
-                  [ reCAPTCHA Widget Here ]
-                </div>
+           
 
                 <button
                   type="submit"

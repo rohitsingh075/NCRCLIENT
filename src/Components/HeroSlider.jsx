@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade, Autoplay, Pagination } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
@@ -23,10 +23,18 @@ const slides = [
 ];
 
 const FadeSwiper = () => {
+  const [firstLoad, setFirstLoad] = useState(true);
+
+  useEffect(() => {
+    // After a short delay, disable "firstLoad"
+    const timer = setTimeout(() => setFirstLoad(false), 1500); // animation time
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div
       className="w-full relative bg-black"
-      style={{ height: "calc(100vh - 116px)" }} // 👈 Adjust 80px to your navbar height
+      style={{ height: "calc(100vh - 116px)" }}
     >
       <Swiper
         modules={[Navigation, EffectFade, Autoplay, Pagination]}
@@ -44,7 +52,7 @@ const FadeSwiper = () => {
         autoplay={{ delay: 4000 }}
         className="w-full h-full"
       >
-        {slides.map((slide) => (
+        {slides.map((slide, index) => (
           <SwiperSlide key={slide.id} className="relative">
             <div className="zoom-animation w-full h-full">
               <img
@@ -55,12 +63,14 @@ const FadeSwiper = () => {
             </div>
 
             {/* Overlay Content */}
-            <div className="absolute top-[20%] left-[8%] flex flex-col lg:flex-row items-start lg:items-center w-[90%] gap-14 z-10 fade-in-up">
+            <div
+              className={`absolute top-[9%] left-[6%] flex flex-col lg:flex-row items-start lg:items-center w-[90%] gap-1 z-10 ${
+                index === 0 && firstLoad ? "fade-in-up" : ""
+              }`} // 👈 Only animate first slide on first load
+            >
               {/* Left Text Section */}
-              <div className="text-white max-w-2xl space-y-6">
-                <p className="text-red-500 tracking-widest uppercase text-lg font-semibold">
-                  Building Brighter Futures
-                </p>
+              <div className="text-white max-w-2xl space-y-3">
+              
                 <h1 className="text-6xl font-extrabold leading-snug">
                   Excellence in <br /> Education
                 </h1>
@@ -89,7 +99,7 @@ const FadeSwiper = () => {
               </div>
 
               {/* Right Stats Card */}
-              <div className="bg-black/20 border-2 border-white backdrop-blur-md rounded-2xl shadow-lg px-14 py-10 flex gap-16 items-center min-w-[500px]">
+              <div className="bg-black/20 border-2 border-white backdrop-blur-sm rounded-2xl shadow-lg px-14 py-10 flex gap-16 items-center min-w-[500px]">
                 <div>
                   <p className="text-red-500 text-4xl font-bold">100+</p>
                   <p className="text-gray-200 text-base">Achievements</p>
@@ -146,15 +156,6 @@ const FadeSwiper = () => {
             opacity: 1;
             transform: translateY(0);
           }
-        }
-
-        .swiper-slide-active .fade-in-up {
-          animation-play-state: running;
-        }
-        .swiper-slide-next .fade-in-up,
-        .swiper-slide-prev .fade-in-up,
-        .swiper-slide-duplicate-active .fade-in-up {
-          animation-play-state: paused;
         }
 
         .swiper-pagination-bullet {

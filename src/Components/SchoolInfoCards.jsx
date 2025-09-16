@@ -154,12 +154,12 @@ const SchoolInfoCards = () => {
               </h3>
               <p className="text-red-600 font-medium mb-4">{card.subtitle}</p>
               <p className="text-gray-600 leading-relaxed">{card.description}</p>
-              <motion.button
+              {/* <motion.button
                 whileHover={{ scale: 1.1 }}
                 className="mt-6 text-red-700 font-semibold hover:text-red-800 transition-colors"
               >
                 Learn More →
-              </motion.button>
+              </motion.button> */}
             </div>
           </motion.div>
         ))}

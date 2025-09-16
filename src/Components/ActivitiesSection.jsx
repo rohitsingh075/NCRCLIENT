@@ -81,7 +81,7 @@ const ActivitiesSection = () => {
           {[
             {
               text: "North Central Railway College is one of the best schools providing quality education to all the students. The staff is cooperative, qualified, and dedicated to giving students the best learning experience!",
-              name: "Jasmine",
+              name: "Anjali Sharma",
               role: "Parent",
             },
             {
@@ -91,7 +91,7 @@ const ActivitiesSection = () => {
             },
             {
               text: "The college has excellent infrastructure, a well-kept library, labs, and a beautiful campus. The teachers are highly experienced and supportive.",
-              name: "Pooja Grover",
+              name: "Pooja Gupta",
               role: "Student",
             },
           ].map((testimonial, index) => (

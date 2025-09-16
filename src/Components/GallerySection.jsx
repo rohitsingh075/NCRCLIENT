@@ -10,7 +10,6 @@ const GallerySection = () => {
   useEffect(() => {
     const fetchGalleries = async () => {
       try {
-        // ✅ Corrected endpoint (backend uses /gallery/view)
         const response = await api.get("/gallery/view");
         console.log("Gallery API Response:", response.data);
 
@@ -41,11 +40,13 @@ const GallerySection = () => {
         <h2 className="text-4xl font-bold text-white tracking-wide">
           OUR GALLERY
         </h2>
-        <p className="text-gray-300 mt-2">A glimpse of our memories & moments</p>
+        <p className="text-gray-300 mt-2">
+          A glimpse of our memories & moments
+        </p>
       </motion.div>
 
       {/* Gallery Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 px-4 md:px-16">
+      <div className="grid grid-cols-3 gap-6 px-4 md:px-16">
         {loading ? (
           <p className="col-span-full text-center text-white">Loading...</p>
         ) : galleries.length === 0 ? (
@@ -53,8 +54,7 @@ const GallerySection = () => {
             No galleries found.
           </p>
         ) : (
-          galleries.slice(0, 10).map((gallery, index) => {
-            // ✅ Use first photo as cover
+          galleries.map((gallery, index) => {
             const coverPhoto = gallery.photos?.[0]
               ? `${api.defaults.baseURL}/${gallery.photos[0]}`
               : "https://via.placeholder.com/300x200?text=No+Image";
@@ -64,18 +64,18 @@ const GallerySection = () => {
                 key={gallery._id || index}
                 className="relative group overflow-hidden rounded-lg shadow-xl cursor-pointer"
                 initial={{ opacity: 0, scale: 0.85 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                whileInView={{ opacity: 1, scale: 0.95 }}
                 transition={{ duration: 0.6, delay: index * 0.05 }}
               >
                 <Link to={`/gallery-info/${gallery._id}`}>
                   <img
                     src={coverPhoto}
                     alt={gallery.title || "Untitled"}
-                    className="w-full h-40 object-cover transform transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-52 object-cover transform transition-transform duration-500 group-hover:scale-110"
                   />
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <h3 className="text-white text-lg font-semibold tracking-wide px-2 text-center">
+                    <h3 className="text-white text-2xl font-semibold tracking-wide px-2 text-center">
                       {gallery.title || "Untitled"}
                     </h3>
                   </div>
@@ -85,7 +85,6 @@ const GallerySection = () => {
           })
         )}
       </div>
-
     </section>
   );
 };

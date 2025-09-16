@@ -100,13 +100,23 @@ const EventsNotices = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <div className="flex items-center bg-gray-200 gap-3 mb-8">
-              <div className="p-3 bg-gray-800 rounded-md">
-                <Calendar className="w-5 h-5 text-white" />
+            <div className="flex items-center justify-between bg-gray-200 gap-3 mb-8">
+              <div className="flex justify-center items-center  gap-3">
+                <div className="p-3 bg-gray-800 rounded-md">
+                  <Calendar className="w-5 h-5 text-white" />
+                </div>
+                <h3 className="text-2xl font-semibold text-gray-800">
+                  Upcoming Events
+                </h3>
               </div>
-              <h3 className="text-2xl font-semibold text-gray-800">
-                Upcoming Events
-              </h3>
+              <div className="mr-4">
+                <Link
+                  to="/all-events"
+                  className="text-md text-red-700 font-medium hover:underline"
+                >
+                  View All
+                </Link>
+              </div>
             </div>
 
             <div className="space-y-6">
@@ -167,13 +177,25 @@ const EventsNotices = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <div className="flex items-center bg-gray-200 gap-3 mb-8">
-              <div className="p-3 bg-gray-800 rounded-md">
-                <Bell className="w-5 h-5 text-white" />
+            <div className="flex justify-between items-center  bg-gray-200 gap-3 mb-8">
+              <div className="flex items-center gap-3">
+                <div className="p-3 bg-gray-800 rounded-md">
+                  <Bell className="w-5 h-5 text-white" />
+                </div>
+                <h3 className="text-2xl font-semibold text-gray-800">
+                  Recent Notices
+                </h3>
               </div>
-              <h3 className="text-2xl font-semibold text-gray-800">
-                Recent Notices
-              </h3>
+              <div className="mr-4">
+                <Link
+                  to="/all-notices"
+                  className="text-md text-red-700 font-medium hover:underline"
+                >
+                  View All
+                </Link>
+              </div>
+
+
             </div>
 
             <div
@@ -217,8 +239,8 @@ const EventsNotices = () => {
                           {notice.description}
                         </p>
                         <div className="flex items-center justify-between text-sm">
-                          <div className="flex items-center gap-1 text-gray-500">
-                            <Clock className="w-4 h-4" />
+                          <div className="flex items-center gap-1 text-gray-900 font-bold">
+                            <Clock className="w-4 h-4 " />
                             {formatDate(notice.date)}
                           </div>
                           <Link
