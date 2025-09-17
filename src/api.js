@@ -2,9 +2,10 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL:  "https://ncrcollegetdledu.org.in", 
+  // for development use:
+  // baseURL:  "http://localhost:8181", 
   // For production use:
-  // baseURL: "https://ncrcollegetdledu.org.in/api",
+  baseURL: "https://api.ncrcollegetdledu.org.in",
   withCredentials: true, // if you are using cookies/JWT
 });
 
