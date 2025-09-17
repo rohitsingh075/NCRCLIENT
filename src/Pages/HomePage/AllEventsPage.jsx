@@ -13,7 +13,7 @@ const AllEventsPage = () => {
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                const res = await api.get("/events/");
+                const res = await api.get("/events");
                 // Sort events newest to oldest by date
                 const sorted = (res.data.data || []).sort(
                     (a, b) => new Date(b.date) - new Date(a.date)
