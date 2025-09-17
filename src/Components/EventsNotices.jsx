@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import { Calendar, Bell, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import api from "../../api"; // ✅ use your axios instance
+import api from "../../api"; 
 
 const EventsNotices = () => {
   const [events, setEvents] = useState([]);
