@@ -60,7 +60,8 @@ const AllEventsPage = () => {
                             events.map((event, index) => (
                                 <motion.div
                                     key={event._id}
-                                    className="bg-white border border-gray-200 rounded-lg p-6 shadow-md hover:shadow-xl transition duration-300"
+                                    className="bg-white border cursor-pointer border-gray-200 rounded-lg p-6 shadow-md hover:shadow-xl transition duration-300"
+                                    onClick={() => window.location.href = `/event-info/${event._id}`}
                                     initial={{ opacity: 0, y: 40 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.7, delay: index * 0.1 }}
