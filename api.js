@@ -17,7 +17,6 @@ export const updateCurrentPath = (path) => {
 // Axios instance
 const api = axios.create({
   baseURL: 'https://api.ncrcollegetdledu.org.in',
-  // baseURL: 'http://localhost:8181',
 
  // Replace with your actual API URL
   headers: {

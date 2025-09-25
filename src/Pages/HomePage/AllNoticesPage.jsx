@@ -75,11 +75,10 @@ const AllNoticesPage = () => {
                             notices.map((notice, index) => (
                                 <motion.div
                                     key={notice._id}
-                                    className="bg-white border cursor-pointer border-gray-200 rounded-lg p-6 shadow-md hover:shadow-xl transition duration-300"
+                                    className="bg-white border border-gray-200 rounded-lg p-6 shadow-md hover:shadow-xl transition duration-300"
                                     initial={{ opacity: 0, y: 40 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.7, delay: index * 0.1 }}
-                                    onClick={() => window.location.href = `/notice-info/${notice._id}`}
                                 >
                                     <div className="flex items-start gap-4">
                                         <div

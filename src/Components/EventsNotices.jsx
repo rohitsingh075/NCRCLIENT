@@ -119,13 +119,12 @@ const EventsNotices = () => {
               </div>
             </div>
 
-            <div className="space-y-6 ">
+            <div className="space-y-6">
               {events.length > 0 ? (
                 events.map((event, index) => (
                   <motion.div
                     key={event._id}
-                    className=" border border-gray-200 rounded-lg p-6 shadow-md hover:shadow-xl transition duration-300 cursor-pointer"
-                    onClick={() => window.location.href = `/event-info/${event._id}`}
+                    className="bg-white border border-gray-200 rounded-lg p-6 shadow-md hover:shadow-xl transition duration-300"
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: index * 0.2 }}
@@ -207,12 +206,11 @@ const EventsNotices = () => {
                 notices.concat(notices).map((notice, index) => (
                   <motion.div
                     key={`${notice._id}-${index}`}
-                    className="bg-white border cursor-pointer border-gray-200 rounded-lg p-6 shadow-md hover:shadow-xl transition duration-300"
+                    className="bg-white border border-gray-200 rounded-lg p-6 shadow-md hover:shadow-xl transition duration-300"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: index * 0.15 }}
                     viewport={{ once: true }}
-                    onClick={() => window.location.href = `/notice-info/${notice._id}`}
                   >
                     <div className="flex items-start gap-4">
                       <div
