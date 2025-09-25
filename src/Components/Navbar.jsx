@@ -62,17 +62,23 @@ const Navbar = () => {
       <div className="w-full bg-white text-[#00001a] shadow-md">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
           {/* Brand */}
-          <Link to="/" className="min-w-0 flex items-center space-x-2 flex-shrink-0">
-            <img src={logo} alt="NCR COLLEGE" className="w-10 h-10" />
-            <div className="hidden sm:block">
-              <div className="text-base font-bold  leading-tight whitespace-nowrap">
-                North Central Railway College
-              </div>
-              <div className="text-[10px] text-gray-800 whitespace-nowrap">
-                Affiliated to CBSE, New Delhi (Code: 62013)
-              </div>
-            </div>
-          </Link>
+         <div className="flex items-center min-w-0 flex-nowrap">
+  <Link to="/" className="min-w-0 flex items-center flex-shrink-0">
+    <img
+      src={logo}
+      alt="NCR COLLEGE"
+      className="w-8 h-8 mr-1 sm:w-12 sm:h-12 flex-shrink-0"
+    />
+    <div className="block min-w-0">
+      <div className="text-[11px] sm:text-base font-bold leading-tight whitespace-nowrap overflow-hidden truncate max-w-[100px] sm:max-w-none">
+        North Central Railway College
+      </div>
+      <div className="text-[7px] sm:text-[10px] font-semibold text-gray-800 whitespace-nowrap overflow-hidden truncate max-w-[100px] sm:max-w-none">
+        Affiliated to CBSE, New Delhi (Code: 62013)
+      </div>
+    </div>
+  </Link>
+</div>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-5 xl:gap-5 text-sm font-medium whitespace-nowrap">
