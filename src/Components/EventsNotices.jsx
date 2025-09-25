@@ -2,14 +2,14 @@ import { useRef, useEffect, useState } from "react";
 import { Calendar, Bell, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import api from "../../api"; // ✅ use your axios instance
+import api from "../../api"; 
 
 const EventsNotices = () => {
   const [events, setEvents] = useState([]);
   const [notices, setNotices] = useState([]);
   const baseUrl = api.defaults.baseURL;
 
-  // fetch events + notices
+  // Fetch events + notices
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,7 +28,7 @@ const EventsNotices = () => {
     fetchData();
   }, []);
 
-  // format date
+  // Format date
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     if (isNaN(date)) return "Invalid date";
@@ -40,7 +40,7 @@ const EventsNotices = () => {
     });
   };
 
-  // priority badge colors
+  // Priority badge colors
   const getPriorityStyles = (priority) => {
     switch (priority) {
       case "High":
@@ -72,7 +72,6 @@ const EventsNotices = () => {
 
     return () => clearInterval(scrollInterval);
   }, [notices]);
-
 
   return (
     <section className="bg-gray-50 py-10 sm:py-20">
@@ -123,7 +122,7 @@ const EventsNotices = () => {
                   >
                     <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
                       <img
-                        src={`${baseUrl}/${event.imagePath}`}
+                        src={`${baseUrl}${event.imagePath}`}
                         alt={event.name}
                         className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-md mb-2 sm:mb-0"
                       />
@@ -179,7 +178,7 @@ const EventsNotices = () => {
 
             <div
               ref={noticeRef}
-              className="space-y-4 sm:space-y-6 h-64 sm:h-96 overflow-hidden scrollbar-hide"
+              className="space-y-4 sm:space-y-6 h-64 sm:h-96 overflow-hidden"
             >
               {notices.length > 0 ? (
                 notices.concat(notices).map((notice, index) => (
@@ -242,7 +241,6 @@ const EventsNotices = () => {
       </div>
     </section>
   );
-
 };
 
 export default EventsNotices;

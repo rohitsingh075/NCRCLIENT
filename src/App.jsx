@@ -37,6 +37,8 @@ import StudentEdit from './Pages/EditPages/StudentEdit.jsx';
 import { setNavigate } from '../api.js';
 import StudentDetails from './Pages/AdminLoginPages/StudentDetails.jsx';
 import ContactPage from './Pages/ContactPage.jsx';
+import AllNoticesPage from './Pages/HomePage/AllNoticesPage.jsx';
+import AllEventsPage from './Pages/HomePage/AllEventsPage.jsx';
 
 
 
@@ -51,6 +53,8 @@ export const router = createBrowserRouter([
       { path: '/history', element: <History /> },
       { path: '/vission-mission', element: <VissionAndMission /> },
       { path: '/our-goals', element: <OurGoals /> },
+      { path: '/all-notices', element: <AllNoticesPage /> },
+      { path: '/all-events', element: <AllEventsPage /> },
       { path: '/principal-message', element: <PrincipalMessage /> },
       { path: '/student-guidelines', element: <StudentGuidelines /> },
       { path: '/school-uniform', element: <SchoolUniform /> },

@@ -1,4 +1,4 @@
-import { BookOpen, Users, Award, Globe, MapPin } from "lucide-react";
+import { BookOpen, Users, Award, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 
 const SchoolInfoCards = () => {
@@ -51,7 +51,6 @@ const SchoolInfoCards = () => {
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
-
   return (
     <div className="bg-gray-50">
       {/* Slim Banner Section */}
@@ -61,12 +60,12 @@ const SchoolInfoCards = () => {
           animate={{ y: [0, -20, 0] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           className="absolute w-40 h-40 sm:w-72 sm:h-72 bg-red-800 opacity-20 rounded-full blur-3xl -top-10 -left-10"
-        ></motion.div>
+        />
         <motion.div
           animate={{ y: [0, 20, 0] }}
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
           className="absolute w-32 h-32 sm:w-64 sm:h-64 bg-indigo-700 opacity-20 rounded-full blur-3xl bottom-0 right-0"
-        ></motion.div>
+        />
 
         <div className="relative z-10">
           <motion.h2
@@ -155,19 +154,12 @@ const SchoolInfoCards = () => {
               </h3>
               <p className="text-red-600 font-medium mb-4">{card.subtitle}</p>
               <p className="text-gray-600 leading-relaxed text-sm sm:text-base">{card.description}</p>
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                className="mt-6 text-red-700 font-semibold hover:text-red-800 transition-colors"
-              >
-                Learn More →
-              </motion.button>
             </div>
           </motion.div>
         ))}
       </motion.div>
     </div>
   );
-
 };
 
 export default SchoolInfoCards;

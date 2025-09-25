@@ -10,6 +10,8 @@ const NoticePage = () => {
   const [loading, setLoading] = useState(true);
   const baseUrl = api.defaults.baseURL;
 
+  
+
   useEffect(() => {
     const fetchNotice = async () => {
       try {

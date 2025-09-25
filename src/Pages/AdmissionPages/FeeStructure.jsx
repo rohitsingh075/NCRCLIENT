@@ -8,7 +8,7 @@ const FeeStructure = () => {
       <Navbar />
 
       <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 flex flex-col">
-        <div className="max-w-6xl mx-auto px-6 py-16 flex-grow">
+        <div className="max-w-7xl w-full mx-auto px-6 py-16 flex-grow">
           {/* Title Section */}
           <div className="text-center mb-12">
             <h1 className="text-5xl font-extrabold text-red-700 drop-shadow-sm">
@@ -22,7 +22,7 @@ const FeeStructure = () => {
           </div>
 
           {/* PDF Viewer */}
-          <div className="bg-white shadow-2xl rounded-2xl p-6 md:p-10 transition hover:shadow-red-300">
+          <div className="bg-white  w-full shadow-2xl rounded-2xl p-6 md:p-10 transition hover:shadow-red-300">
             <iframe
               src="/resultDocuments/Fees_Structure.pdf"
               width="100%"

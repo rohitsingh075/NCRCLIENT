@@ -18,26 +18,25 @@ const ActivitiesSection = () => {
       src: "https://www.youtube.com/embed/example3",
       title: "Campus View",
     },
-
   ];
 
   const testimonials = [
-  {
-    text: "Great school with supportive teachers!",
-    name: "Amit Sharma",
-    role: "Parent"
-  },
-  {
-    text: "I love the campus and activities.",
-    name: "Priya Singh",
-    role: "Student"
-  },
-  {
-    text: "Excellent learning environment.",
-    name: "Ravi Kumar",
-    role: "Teacher"
-  }
-];
+    {
+      text: "Great school with supportive teachers!",
+      name: "Amit Sharma",
+      role: "Parent",
+    },
+    {
+      text: "I love the campus and activities.",
+      name: "Priya Singh",
+      role: "Student",
+    },
+    {
+      text: "Excellent learning environment.",
+      name: "Ravi Kumar",
+      role: "Teacher",
+    },
+  ];
 
   return (
     <section className="py-12 bg-white text-center">
@@ -131,7 +130,9 @@ const ActivitiesSection = () => {
               transition={{ duration: 0.8, delay: index * 0.2 }}
               viewport={{ once: false }}
             >
-              <p className="italic text-gray-800 text-sm sm:text-base">{testimonial.text}</p>
+              <p className="italic text-gray-800 text-sm sm:text-base">
+                {testimonial.text}
+              </p>
               <div className="mt-4 text-center">
                 <p className="text-red-700 font-semibold">{testimonial.name}</p>
                 <p className="text-gray-600">{testimonial.role}</p>
@@ -140,7 +141,6 @@ const ActivitiesSection = () => {
           ))}
         </div>
       </motion.div>
-
     </section>
   );
 };
