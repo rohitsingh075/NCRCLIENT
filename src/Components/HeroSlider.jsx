@@ -26,8 +26,7 @@ const FadeSwiper = () => {
   const [firstLoad, setFirstLoad] = useState(true);
 
   useEffect(() => {
-    // After a short delay, disable "firstLoad"
-    const timer = setTimeout(() => setFirstLoad(false), 1500); // animation time
+    const timer = setTimeout(() => setFirstLoad(false), 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -52,7 +51,7 @@ const FadeSwiper = () => {
         autoplay={{ delay: 4000 }}
         className="w-full h-full"
       >
-        {slides.map((slide, index) => (
+        {slides.map((slide) => (
           <SwiperSlide key={slide.id} className="relative">
             <div className="zoom-animation w-full h-full">
               <img
@@ -63,35 +62,33 @@ const FadeSwiper = () => {
             </div>
 
             {/* Overlay Content */}
-            <div
-              className={`absolute top-[9%] left-[6%] flex flex-col lg:flex-row items-start lg:items-center w-[90%] gap-1 z-10 ${
-                index === 0 && firstLoad ? "fade-in-up" : ""
-              }`} // 👈 Only animate first slide on first load
-            >
+            <div className="absolute lg:px-16 top-[12%] left-0 w-full px-2 flex flex-col lg:flex-row items-start lg:items-center gap-4 lg:gap-14 z-10 fade-in-up">
               {/* Left Text Section */}
-              <div className="text-white max-w-2xl space-y-3">
-              
-                <h1 className="text-6xl font-extrabold leading-snug">
+              <div className="text-white w-full lg:max-w-2xl space-y-3 sm:space-y-6">
+                <p className="text-red-500 tracking-widest uppercase text-base sm:text-lg font-semibold">
+                  Building Brighter Futures
+                </p>
+                <h1 className="text-2xl sm:text-4xl md:text-6xl font-extrabold leading-snug">
                   Excellence in <br /> Education
                 </h1>
-                <p className="text-2xl text-gray-300 font-medium">
+                <p className="text-sm sm:text-2xl text-gray-300 font-medium">
                   Where Knowledge Meets Innovation
                 </p>
-                <p className="text-lg text-gray-300 leading-relaxed">
+                <p className="text-xs sm:text-lg text-gray-300 leading-relaxed">
                   Our comprehensive curriculum and state-of-the-art facilities
                   ensure holistic development of every student through
                   research-based learning approaches.
                 </p>
-                <div className="flex gap-6 mt-8">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 mt-4 sm:mt-8">
                   <a
                     href="/learn-more"
-                    className="bg-red-600 hover:bg-red-700 px-8 py-4 rounded-md text-lg text-white font-semibold shadow-md transition"
+                    className="bg-red-600 hover:bg-red-700 px-4 py-2 sm:px-8 sm:py-4 rounded-md text-sm sm:text-lg text-white font-semibold shadow-md transition"
                   >
                     Learn More →
                   </a>
                   <a
                     href="/admissions"
-                    className="border-2 border-white hover:bg-white hover:text-black px-8 py-4 rounded-md text-lg font-semibold transition"
+                    className="border-2 border-white hover:bg-white hover:text-black px-4 py-2 sm:px-8 sm:py-4 rounded-md text-sm sm:text-lg font-semibold transition"
                   >
                     Admissions Open
                   </a>
@@ -99,18 +96,20 @@ const FadeSwiper = () => {
               </div>
 
               {/* Right Stats Card */}
-              <div className="bg-black/20 border-2 border-white backdrop-blur-sm rounded-2xl shadow-lg px-14 py-10 flex gap-16 items-center min-w-[500px]">
+              <div className="bg-black/20 border-2 border-white backdrop-blur-md rounded-2xl shadow-lg px-4 py-4 sm:px-10 sm:py-8 lg:px-14 lg:py-10 flex flex-col sm:flex-row gap-4 sm:gap-16 items-center min-w-0 w-full sm:w-auto mt-4 lg:mt-0">
                 <div>
-                  <p className="text-red-500 text-4xl font-bold">100+</p>
-                  <p className="text-gray-200 text-base">Achievements</p>
+                  <p className="text-red-500 text-base sm:text-4xl font-bold">
+                    100+
+                  </p>
+                  <p className="text-gray-200 text-xs sm:text-base">Achievements</p>
                 </div>
                 <div>
-                  <p className="text-red-500 text-4xl font-bold">50+</p>
-                  <p className="text-gray-200 text-base">Programs</p>
+                  <p className="text-red-500 text-base sm:text-4xl font-bold">50+</p>
+                  <p className="text-gray-200 text-xs sm:text-base">Programs</p>
                 </div>
                 <div>
-                  <p className="text-red-500 text-4xl font-bold">98%</p>
-                  <p className="text-gray-200 text-base">Results</p>
+                  <p className="text-red-500 text-base sm:text-4xl font-bold">98%</p>
+                  <p className="text-gray-200 text-xs sm:text-base">Success</p>
                 </div>
               </div>
             </div>
@@ -121,10 +120,10 @@ const FadeSwiper = () => {
       </Swiper>
 
       {/* Custom Navigation Arrows */}
-      <div className="swiper-button-prev absolute left-4 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer text-3xl text-white bg-black/40 hover:bg-black p-2 rounded-full">
+      <div className="swiper-button-prev lg:left-10 absolute left-4 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer text-3xl text-white hover:bg-black p-2 rounded-full">
         <FaChevronLeft />
       </div>
-      <div className="swiper-button-next absolute right-4 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer text-3xl text-white bg-black/40 hover:bg-black p-2 rounded-full">
+      <div className="swiper-button-next lg:right-10 absolute right-4 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer text-3xl text-white hover:bg-black p-2 rounded-full">
         <FaChevronRight />
       </div>
 
@@ -143,7 +142,6 @@ const FadeSwiper = () => {
           }
         }
 
-        /* Fade in + Slide up */
         .fade-in-up {
           animation: fadeInUp 1.2s ease forwards;
         }
