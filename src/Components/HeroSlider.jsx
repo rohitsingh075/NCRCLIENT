@@ -24,7 +24,6 @@ const slides = [
 
 const FadeSwiper = () => {
   const [firstLoad, setFirstLoad] = useState(true);
-
   useEffect(() => {
     const timer = setTimeout(() => setFirstLoad(false), 1500);
     return () => clearTimeout(timer);
@@ -32,46 +31,44 @@ const FadeSwiper = () => {
 
   return (
     <div
-      className="w-full relative bg-black"
-      style={{ height: "calc(100vh - 116px)" }}
+      className="relative w-full min-h-screen bg-black overflow-hidden"
+      /* overflow-hidden prevents right-side scroll */
     >
       <Swiper
         modules={[Navigation, EffectFade, Autoplay, Pagination]}
         effect="fade"
-        navigation={{
-          prevEl: ".swiper-button-prev",
-          nextEl: ".swiper-button-next",
-        }}
-        pagination={{
-          clickable: true,
-          el: ".swiper-pagination",
-          type: "bullets",
-        }}
         loop
         autoplay={{ delay: 4000 }}
-        className="w-full h-full"
+        navigation={{ prevEl: ".swiper-button-prev", nextEl: ".swiper-button-next" }}
+        pagination={{ clickable: true, el: ".swiper-pagination" }}
+        className="w-full min-h-screen"
       >
         {slides.map((slide) => (
-          <SwiperSlide key={slide.id} className="relative">
-            <div className="zoom-animation w-full h-full">
-              <img
-                src={slide.image}
-                className="w-full h-full object-cover select-none brightness-[0.35]"
-                alt={`Slide ${slide.id}`}
-              />
-            </div>
+          <SwiperSlide key={slide.id} className="relative min-h-screen">
+            <img
+              src={slide.image}
+              alt={`Slide ${slide.id}`}
+              className="w-full h-full min-h-screen object-cover select-none brightness-[0.35]"
+            />
 
-            {/* Overlay Content */}
-            <div className="absolute lg:px-16 top-[12%] left-0 w-full px-2 flex flex-col lg:flex-row items-start lg:items-center gap-4 lg:gap-14 z-10 fade-in-up">
-              {/* Left Text Section */}
+            {/* Overlay */}
+            <div
+              className="absolute top-[12%] left-0 w-full
+                         px-4 sm:px-6 lg:px-16
+                         flex flex-col lg:flex-row
+                         items-start lg:items-center
+                         gap-6 lg:gap-14
+                         z-10 fade-in-up"
+            >
+              {/* Text */}
               <div className="text-white w-full lg:max-w-2xl space-y-3 sm:space-y-6">
-                <p className="text-red-500 tracking-widest uppercase text-base sm:text-lg font-semibold">
+                <p className="text-red-500 tracking-widest uppercase text-sm sm:text-lg font-semibold">
                   Building Brighter Futures
                 </p>
-                <h1 className="text-2xl sm:text-4xl md:text-6xl font-extrabold leading-snug">
+                <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold leading-snug">
                   Excellence in <br /> Education
                 </h1>
-                <p className="text-sm sm:text-2xl text-gray-300 font-medium">
+                <p className="text-xs sm:text-xl text-gray-300 font-medium">
                   Where Knowledge Meets Innovation
                 </p>
                 <p className="text-xs sm:text-lg text-gray-300 leading-relaxed">
@@ -95,72 +92,59 @@ const FadeSwiper = () => {
                 </div>
               </div>
 
-              {/* Right Stats Card */}
-              <div className="bg-black/20 border-2 border-white backdrop-blur-md rounded-2xl shadow-lg px-4 py-4 sm:px-10 sm:py-8 lg:px-14 lg:py-10 flex flex-col sm:flex-row gap-4 sm:gap-16 items-center min-w-0 w-full sm:w-auto mt-4 lg:mt-0">
+              {/* Stats Card */}
+              <div
+                className="bg-black/20 border-2 border-white backdrop-blur-md
+                           rounded-2xl shadow-lg
+                           px-6 py-6 sm:px-10 sm:py-8 lg:px-14 lg:py-10
+                           flex flex-col sm:flex-row
+                           gap-6 sm:gap-16 items-center
+                           w-full sm:w-auto mt-6 lg:mt-0"
+              >
                 <div>
-                  <p className="text-red-500 text-base sm:text-4xl font-bold">
-                    100+
-                  </p>
-                  <p className="text-gray-200 text-xs sm:text-base">Achievements</p>
+                  <p className="text-red-500 text-xl sm:text-4xl font-bold">100+</p>
+                  <p className="text-gray-200 text-sm sm:text-base">Achievements</p>
                 </div>
                 <div>
-                  <p className="text-red-500 text-base sm:text-4xl font-bold">50+</p>
-                  <p className="text-gray-200 text-xs sm:text-base">Programs</p>
+                  <p className="text-red-500 text-xl sm:text-4xl font-bold">50+</p>
+                  <p className="text-gray-200 text-sm sm:text-base">Programs</p>
                 </div>
                 <div>
-                  <p className="text-red-500 text-base sm:text-4xl font-bold">98%</p>
-                  <p className="text-gray-200 text-xs sm:text-base">Success</p>
+                  <p className="text-red-500 text-xl sm:text-4xl font-bold">98%</p>
+                  <p className="text-gray-200 text-sm sm:text-base">Success</p>
                 </div>
               </div>
             </div>
           </SwiperSlide>
         ))}
 
-        <div className="swiper-pagination absolute bottom-8 flex justify-center w-full z-10"></div>
+        <div className="swiper-pagination absolute bottom-6 flex justify-center w-full z-10"></div>
       </Swiper>
 
-      {/* Custom Navigation Arrows */}
-      <div className="swiper-button-prev lg:left-10 absolute left-4 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer text-3xl text-white hover:bg-black p-2 rounded-full">
+      {/* Navigation Arrows */}
+      <div className="swiper-button-prev absolute left-3 lg:left-10 top-1/2 -translate-y-1/2 z-10 cursor-pointer text-2xl sm:text-3xl text-white bg-black/40 hover:bg-black p-2 rounded-full">
         <FaChevronLeft />
       </div>
-      <div className="swiper-button-next lg:right-10 absolute right-4 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer text-3xl text-white hover:bg-black p-2 rounded-full">
+      <div className="swiper-button-next absolute right-3 lg:right-10 top-1/2 -translate-y-1/2 z-10 cursor-pointer text-2xl sm:text-3xl text-white bg-black/40 hover:bg-black p-2 rounded-full">
         <FaChevronRight />
       </div>
 
       {/* CSS */}
       <style jsx="true">{`
-        .zoom-animation {
-          animation: zoomEffect 10s forwards;
-          animation-timing-function: linear;
-        }
-        @keyframes zoomEffect {
-          0% {
-            transform: scale(1);
-          }
-          100% {
-            transform: scale(1.1);
-          }
-        }
+        .zoom-animation { animation: zoomEffect 10s forwards linear; }
+        @keyframes zoomEffect { 0% {transform:scale(1);} 100% {transform:scale(1.1);} }
 
-        .fade-in-up {
-          animation: fadeInUp 1.2s ease forwards;
-        }
+        .fade-in-up { animation: fadeInUp 1.2s ease forwards; }
         @keyframes fadeInUp {
-          0% {
-            opacity: 0;
-            transform: translateY(40px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          0% { opacity:0; transform:translateY(40px); }
+          100% { opacity:1; transform:translateY(0); }
         }
 
         .swiper-pagination-bullet {
-          width: 35px;
+          width: 25px;
           height: 5px;
           background-color: white;
-          margin: 0 5px;
+          margin: 0 3px;
           border-radius: 10px;
           opacity: 0.6;
           transition: all 0.3s ease;
