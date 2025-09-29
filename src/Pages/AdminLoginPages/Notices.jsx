@@ -15,9 +15,11 @@ const Notices = () => {
   });
   const [editingNoticeId, setEditingNoticeId] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [showCreateForm, setShowCreateForm] = useState(true);
+  const [showCreateForm, setShowCreateForm] = useState(true); // <-- Add this line
   const [noticeUpload, setNoticeUpload] = useState(null);
   const baseUrl = api.defaults.baseURL;
+
+
 
   // Fetch all notices
   const fetchNotices = async () => {
@@ -143,15 +145,14 @@ const Notices = () => {
   return (
     <div>
       <AdminHeader title="Notices" />
-      <div className="ml-64 p-6 -mt-15">
-        <h1 className="text-2xl font-bold mb-6">Manage Notices</h1>
+      <div className="min-h-screen bg-gray-100 px-4 sm:px-6 md:px-8 py-6 w-full md:ml-64 transition-all duration-300">
+        <h1 className="text-2xl font-bold mb-6 text-center md:text-left">Manage Notices</h1>
 
         {/* Toggle Buttons */}
-        <div className="flex justify-start mt-2 mb-6 font-semibold text-lg">
+        <div className="flex justify-center md:justify-start mb-6 font-semibold text-lg gap-2">
           <button
             onClick={() => setShowCreateForm(true)}
-            className={`px-15 py-2 text-md rounded-l-md ${showCreateForm ? "bg-gray-600 text-white" : "bg-gray-200 text-gray-600"
-              } transition`}
+            className={`px-6 py-2 rounded-l-md ${showCreateForm ? "bg-gray-600 text-white" : "bg-gray-200 text-gray-600"} transition`}
           >
             Create
           </button>
@@ -160,8 +161,7 @@ const Notices = () => {
               setShowCreateForm(false);
               fetchNotices();
             }}
-            className={`px-15 py-2 text-md rounded-r-md ${!showCreateForm ? "bg-gray-600 text-white" : "bg-gray-200 text-gray-600"
-              } transition`}
+            className={`px-6 py-2 rounded-r-md ${!showCreateForm ? "bg-gray-600 text-white" : "bg-gray-200 text-gray-600"} transition`}
           >
             All Notices
           </button>
@@ -169,11 +169,11 @@ const Notices = () => {
 
         {/* Create Notice Form */}
         {showCreateForm ? (
-          <div className="bg-white shadow-md rounded-lg p-6 mb-8">
-            <h2 className="text-lg font-bold mb-4">
+          <div className="bg-white shadow-md rounded-lg p-4 sm:p-6 mb-8 max-w-lg mx-auto w-full">
+            <h2 className="text-lg font-bold mb-4 text-center">
               {editingNoticeId ? "Edit Notice" : "Create Notice"}
             </h2>
-            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block font-medium mb-1">Title</label>
                 <input
@@ -203,7 +203,7 @@ const Notices = () => {
                   type="file"
                   name="noticeUpload"
                   onChange={handleFileChange}
-                  className="w-full px-4 py-1 border rounded-md file:mr-4 file:py-1 file:px-4 file:h-8 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-200 file:text-blue-700 hover:file:bg-blue-500 hover:file:text-white"
+                  className="w-full px-4 py-1 border rounded-md"
                 />
               </div>
               <div>
@@ -238,7 +238,7 @@ const Notices = () => {
                 />
                 <label className="font-medium">Mark as Important</label>
               </div>
-              <div className="md:col-span-2">
+              <div>
                 <label className="block font-medium mb-1">Description</label>
                 <textarea
                   name="description"
@@ -251,7 +251,7 @@ const Notices = () => {
               </div>
               <button
                 type="submit"
-                className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition md:col-span-2"
+                className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition w-full"
               >
                 {editingNoticeId ? "Update Notice" : "Create Notice"}
               </button>
@@ -259,64 +259,54 @@ const Notices = () => {
           </div>
         ) : (
           // Display All Notices
-          <div className="bg-white shadow-md rounded-lg p-6">
-            <h2 className="text-lg font-bold mb-4">All Notices</h2>
+          <div className="bg-white shadow-md rounded-lg p-4 sm:p-6">
+            <h2 className="text-lg font-bold mb-4 text-center">All Notices</h2>
             {loading ? (
               <p>Loading...</p>
             ) : notices.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
                 {notices.map((notice) => (
                   <div
                     key={notice._id}
-                    className="h-full max-w-4xl w-full mx-auto border rounded-lg shadow-md p-4 bg-gray-100 overflow-auto"
+                    className="border rounded-lg shadow-md p-4 bg-gray-100 flex flex-col"
                   >
-                    <div className="flex flex-wrap justify-between mb-4 gap-x-4">
-                      <h3 className="text-xl flex-wrap font-bold mb-2">{notice.title}</h3>
-                      <div className="flex gap-x-4">
-                        <button
-                          onClick={() => handleEdit(notice)}
-                          className="bg-yellow-500 text-white px-6 py-0.5 rounded-md hover:bg-yellow-600 transition"
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={() => handleDelete(notice._id)}
-                          className="bg-red-500 text-white px-3 py-0.5 rounded-md hover:bg-red-600 transition"
-                        >
-                          Delete
-                        </button>
-                      </div>
+                    <div className="flex justify-end gap-x-3 mb-4">
+                      <button
+                        onClick={() => handleEdit(notice)}
+                        className="bg-yellow-500 text-white px-4 py-1 rounded-md hover:bg-yellow-600 transition"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDelete(notice._id)}
+                        className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition"
+                      >
+                        Delete
+                      </button>
                     </div>
-
-                    <div className="flex items-center gap-x-6  ">
-                      <div >
-                        {notice.noticeUpload && (
-                          <img
-                            src={`${baseUrl}/${notice.noticeUpload}`}
-                            alt={notice.name}
-                            className="w-96 h-62 object-fill mb-4"
-                          />
-                        )}
-                      </div>
-                      <div className="mb-20">
-                        <p className="text-gray-700 mb-1">
-                          <strong>Issued Date:</strong> {notice.date ? notice.date.split("T")[0] : "N/A"}
-                        </p>
-                        <p className="text-gray-700 mb-1">
-                          <strong>Issued By:</strong> {notice.issuedBy}
-                        </p>
-                        <p className="text-gray-700 mb-1">
-                          <strong>Tags:</strong> {notice.tags.join(", ")}
-                        </p>
-                        <p className="text-gray-700 mb-1">
-                          <strong>Important:</strong> {notice.important ? "Yes" : "No"}
-                        </p>
-                        <p className="text-gray-700">
-                          <strong>Description:</strong> {notice.description}
-                        </p>
-                      </div>
-                    </div>
-
+                    {notice.noticeUpload && (
+                      <img
+                        src={`${baseUrl}/${notice.noticeUpload}`}
+                        alt={notice.title}
+                        className="w-full h-40 object-cover mb-4 rounded"
+                      />
+                    )}
+                    <h3 className="text-xl font-bold mb-2">{notice.title}</h3>
+                    <p className="text-gray-700 mb-1">
+                      <strong>Issued Date:</strong> {notice.date ? notice.date.split("T")[0] : "N/A"}
+                    </p>
+                    <p className="text-gray-700 mb-1">
+                      <strong>Issued By:</strong> {notice.issuedBy}
+                    </p>
+                    <p className="text-gray-700 mb-1">
+                      <strong>Tags:</strong> {Array.isArray(notice.tags) ? notice.tags.join(", ") : notice.tags}
+                    </p>
+                    <p className="text-gray-700 mb-1">
+                      <strong>Important:</strong> {notice.important ? "Yes" : "No"}
+                    </p>
+                    <p className="text-gray-700">
+                      <strong>Description:</strong> {notice.description}
+                    </p>
                   </div>
                 ))}
               </div>
