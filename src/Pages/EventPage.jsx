@@ -1,78 +1,88 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import api from "../../api";
 import Navbar from "../Components/Navbar";
 
 const EventPage = () => {
-    const [event, setEvent] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const {id} = useParams(); // Get the  ID from the route parameter
+  const [event, setEvent] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const { id } = useParams(); // Get the ID from the route parameter
 
+  useEffect(() => {
+    const fetchEvent = async () => {
+      try {
+        const response = await api.get(`/events/${id}`);
+        setEvent(response.data.data);
+      } catch (error) {
+        console.error("Error fetching event:", error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    console.log("event id", id);
+    fetchEvent();
+  }, [id]);
 
-    useEffect(() => {
-        const fetchEvent = async () => {
-            try {
-                const response = await api.get(`/events/${id}`); // Fetch event by ID
-                console.log(response.data);
-                setEvent(response.data.data);
-            } catch (error) {
-                console.error("Error fetching event:", error.message);
-            } finally {
-                setLoading(false);
-            }
-        };
+  if (loading) {
+    return <p className="text-center text-gray-500 mt-10">Loading...</p>;
+  }
 
-        fetchEvent();
-    }, [id]);
+  if (!event) {
+    return <p className="text-center text-gray-500 mt-10">Event not found.</p>;
+  }
 
-    if (loading) {
-        return <p className="text-center text-gray-500">Loading...</p>;
-    }
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <div className="flex-grow p-4 sm:p-6 bg-gray-100">
+        <div
+          className="
+            max-w-5xl mx-auto bg-white shadow-md rounded-lg 
+            p-4 sm:p-6 
+            grid grid-cols-1 md:grid-cols-2 gap-6
+          "
+        >
+          {/* Event Image */}
+          {event.imagePath && (
+            <img
+              src={`${api.defaults.baseURL}/${event.imagePath}`}
+              alt={event.name}
+              className="
+                w-full h-60 sm:h-80 md:h-96 
+                object-cover rounded-md
+              "
+            />
+          )}
 
-    if (!event) {
-        return <p className="text-center text-gray-500">Event not found.</p>;
-    }
+          {/* Event Details */}
+          <div>
+            <h1 className="text-2xl sm:text-3xl font-bold text-red-700 mb-4 break-words">
+              {event.name}
+            </h1>
 
-    return (
-       <div>
-        <Navbar/>
-         <div className="p-10 bg-gray-100 min-h-screen">
-            <div className="max-w-5xl mx-auto grid grid-cols-2 gap-6 bg-white shadow-md rounded-lg p-6">
-                {event.imagePath && (
-                    <img
-                        src={`${api.defaults.baseURL}/${event.imagePath}`}
-                        alt={event.name}
-                        className="w-full h-108 object-cover rounded-md mb-4"
-                    />
-                )}
-                <div>
-                <h1 className="text-3xl font-bold text-red-700 mb-4">{event.name}</h1>
-                <div className="">
-                <p className="text-gray-700 mb-2">
-                    <strong>Date:</strong> {event.date ? event.date.split("T")[0] : "N/A"}
-                </p>
-                <p className="text-gray-700 mb-2">
-                    <strong>Time:</strong> {event.time || "N/A"}
-                </p>
-                </div>
-                <div className="" >
-                <p className="text-gray-700 mb-2">
-                    <strong>Location:</strong> {event.location || "N/A"}
-                </p>
-                <p className="text-gray-700 mb-2">
-                    <strong>Organizer:</strong> {event.organizer || "N/A"}
-                </p>
-                <p className="text-gray-700">
-                    <strong>Description:</strong> {event.description || "N/A"}
-                </p>
-                </div>
-                </div>
+            <div className="space-y-2 text-sm sm:text-base text-gray-700">
+              <p>
+                <strong>Date:</strong>{" "}
+                {event.date ? event.date.split("T")[0] : "N/A"}
+              </p>
+              <p>
+                <strong>Time:</strong> {event.time || "N/A"}
+              </p>
+              <p>
+                <strong>Location:</strong> {event.location || "N/A"}
+              </p>
+              <p>
+                <strong>Organizer:</strong> {event.organizer || "N/A"}
+              </p>
+              <p className="break-words">
+                <strong>Description:</strong> {event.description || "N/A"}
+              </p>
             </div>
+          </div>
         </div>
-       </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default EventPage;
