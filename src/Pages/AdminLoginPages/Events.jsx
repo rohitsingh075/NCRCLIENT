@@ -131,183 +131,185 @@ const Events = () => {
     }
   };
 
+
   return (
     <div>
       <AdminHeader title="Events" />
-      <div className="ml-64 p-6 -mt-15">
-        <h1 className="text-2xl font-bold mb-6">Manage Events</h1>
+      {/* Responsive main wrapper */}
+      <div className="min-h-screen bg-gray-100 relative z-0">
+        <div className="px-4 sm:px-6 md:px-8 py-6 w-full md:ml-64 transition-all duration-300">
+          <h1 className="text-2xl font-bold mb-6 text-center md:text-left">Manage Events</h1>
 
-        {/* Toggle Buttons */}
-        <div className="flex justify-start mt-2 mb-6 font-semibold text-lg">
-          <button
-            onClick={() => setShowCreateForm(true)}
-            className={`px-15 py-2 text-md rounded-l-md ${
-              showCreateForm ? "bg-gray-600 text-white" : "bg-gray-200 text-gray-600"
-            } transition`}
-          >
-            Create
-          </button>
-          <button
-            onClick={() => {
-              setShowCreateForm(false);
-              fetchAllEvents();
-            }}
-            className={`px-15 py-2 text-md rounded-r-md ${
-              !showCreateForm ? "bg-gray-600 text-white" : "bg-gray-200 text-gray-600"
-            } transition`}
-          >
-            All Events
-          </button>
-        </div>
-
-        {/* Create or Edit Event Form */}
-        {showCreateForm ? (
-          <div className="bg-white shadow-md rounded-lg p-6 mb-8">
-            <h2 className="text-lg font-bold mb-4">
-              {editingEventId ? "Edit Event" : "Create Event"}
-            </h2>
-            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block font-medium mb-1">Event Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  placeholder="Event Name"
-                  className="w-full px-4 py-2 border rounded-md"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block font-medium mb-1">Event Date</label>
-                <input
-                  type="date"
-                  name="date"
-                  value={formData.date}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border rounded-md"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block font-medium mb-1">Event Time</label>
-                <input
-                  type="time"
-                  name="time"
-                  value={formData.time}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border rounded-md"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block font-medium mb-1">Location</label>
-                <input
-                  type="text"
-                  name="location"
-                  value={formData.location}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border rounded-md"
-                />
-              </div>
-              <div>
-                <label className="block font-medium mb-1">Organizer</label>
-                <input
-                  type="text"
-                  name="organizer"
-                  value={formData.organizer}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border rounded-md"
-                />
-              </div>
-              <div>
-                <label className="block font-medium mb-1">Event Image</label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  name="image"
-                  onChange={handleFileChange}
-                  className="w-full px-4 py-2 border rounded-md"
-                />
-              </div>
-              <div className="md:col-span-2">
-                <label className="block font-medium mb-1">Description</label>
-                <textarea
-                  name="description"
-                  value={formData.description}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border rounded-md"
-                  placeholder="Event Description"
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition md:col-span-2"
-              >
-                {editingEventId ? "Update Event" : "Create Event"}
-              </button>
-            </form>
+          {/* Toggle Buttons */}
+          <div className="flex justify-center md:justify-start mb-6 font-semibold text-lg gap-2">
+            <button
+              onClick={() => setShowCreateForm(true)}
+              className={`px-6 py-2 rounded-l-md ${showCreateForm ? "bg-gray-600 text-white" : "bg-gray-200 text-gray-600"} transition`}
+            >
+              Create
+            </button>
+            <button
+              onClick={() => {
+                setShowCreateForm(false);
+                fetchAllEvents();
+              }}
+              className={`px-6 py-2 rounded-r-md ${!showCreateForm ? "bg-gray-600 text-white" : "bg-gray-200 text-gray-600"} transition`}
+            >
+              All Events
+            </button>
           </div>
-        ) : (
-          // Display All Events
-          <div className="bg-white shadow-md rounded-lg p-6">
-            <h2 className="text-lg font-bold mb-4">All Events</h2>
-            {loading ? (
-              <p>Loading...</p>
-            ) : events.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {events.map((event) => (
-                  <div
-                    key={event._id}
-                    className="border rounded-lg shadow-md p-4 bg-gray-100"
-                  >
-                    <div className="flex justify-end gap-x-3 mb-4">
-                      <button
-                        onClick={() => handleEditEvent(event)}
-                        className="bg-yellow-500 text-white px-6 py-1 rounded-md hover:bg-yellow-600 transition"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => handleDeleteEvent(event._id)}
-                        className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                    {event.imagePath && (
-                      <img
-                        src={`${baseURL}/${event.imagePath}`}
-                        alt={event.name}
-                        className="w-full h-40 object-cover mb-4"
-                      />
-                    )}
-                    <h3 className="text-xl font-bold mb-2">{event.name}</h3>
-                    <p className="text-gray-700 mb-1">
-                      <strong>Date:</strong> {event.date ? event.date.split("T")[0] : "N/A"}
-                    </p>
-                    <p className="text-gray-700 mb-1">
-                      <strong>Time:</strong> {event.time}
-                    </p>
-                    <p className="text-gray-700 mb-1">
-                      <strong>Location:</strong> {event.location}
-                    </p>
-                    <p className="text-gray-700 mb-1">
-                      <strong>Organizer:</strong> {event.organizer}
-                    </p>
-                    <p className="text-gray-700">
-                      <strong>Description:</strong> {event.description}
-                    </p>
+
+          {/* Create or Edit Event Form */}
+          {showCreateForm ? (
+            <div className="bg-white shadow-md rounded-lg p-4 sm:p-6 mb-8 max-w-lg mx-auto w-full">
+              <h2 className="text-lg font-bold mb-4 text-center">
+                {editingEventId ? "Edit Event" : "Create Event"}
+              </h2>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label className="block font-medium mb-1">Event Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="Event Name"
+                    className="w-full px-4 py-2 border rounded-md"
+                    required
+                  />
+                </div>
+                <div className="flex gap-4 flex-col sm:flex-row">
+                  <div className="flex-1">
+                    <label className="block font-medium mb-1">Event Date</label>
+                    <input
+                      type="date"
+                      name="date"
+                      value={formData.date}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-2 border rounded-md"
+                      required
+                    />
                   </div>
-                ))}
-              </div>
-            ) : (
-              <p>No events found.</p>
-            )}
-          </div>
-        )}
+                  <div className="flex-1">
+                    <label className="block font-medium mb-1">Event Time</label>
+                    <input
+                      type="time"
+                      name="time"
+                      value={formData.time}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-2 border rounded-md"
+                      required
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block font-medium mb-1">Location</label>
+                  <input
+                    type="text"
+                    name="location"
+                    value={formData.location}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border rounded-md"
+                  />
+                </div>
+                <div>
+                  <label className="block font-medium mb-1">Organizer</label>
+                  <input
+                    type="text"
+                    name="organizer"
+                    value={formData.organizer}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border rounded-md"
+                  />
+                </div>
+                <div>
+                  <label className="block font-medium mb-1">Event Image</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    name="image"
+                    onChange={handleFileChange}
+                    className="w-full px-4 py-2 border rounded-md"
+                  />
+                </div>
+                <div>
+                  <label className="block font-medium mb-1">Description</label>
+                  <textarea
+                    name="description"
+                    value={formData.description}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border rounded-md"
+                    placeholder="Event Description"
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition w-full"
+                >
+                  {editingEventId ? "Update Event" : "Create Event"}
+                </button>
+              </form>
+            </div>
+          ) : (
+            // Display All Events
+            <div className="bg-white shadow-md rounded-lg p-4 sm:p-6">
+              <h2 className="text-lg font-bold mb-4 text-center">All Events</h2>
+              {loading ? (
+                <p>Loading...</p>
+              ) : events.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {events.map((event) => (
+                    <div
+                      key={event._id}
+                      className="border rounded-lg shadow-md p-4 bg-gray-100 flex flex-col"
+                    >
+                      <div className="flex justify-end gap-x-3 mb-4">
+                        <button
+                          onClick={() => handleEditEvent(event)}
+                          className="bg-yellow-500 text-white px-4 py-1 rounded-md hover:bg-yellow-600 transition"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => handleDeleteEvent(event._id)}
+                          className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                      {event.imagePath && (
+                        <img
+                          src={`${baseURL}/${event.imagePath}`}
+                          alt={event.name}
+                          className="w-full h-40 object-cover mb-4 rounded"
+                        />
+                      )}
+                      <h3 className="text-xl font-bold mb-2">{event.name}</h3>
+                      <p className="text-gray-700 mb-1">
+                        <strong>Date:</strong> {event.date ? event.date.split("T")[0] : "N/A"}
+                      </p>
+                      <p className="text-gray-700 mb-1">
+                        <strong>Time:</strong> {event.time}
+                      </p>
+                      <p className="text-gray-700 mb-1">
+                        <strong>Location:</strong> {event.location}
+                      </p>
+                      <p className="text-gray-700 mb-1">
+                        <strong>Organizer:</strong> {event.organizer}
+                      </p>
+                      <p className="text-gray-700">
+                        <strong>Description:</strong> {event.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p>No events found.</p>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
