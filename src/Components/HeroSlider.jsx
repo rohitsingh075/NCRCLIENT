@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, EffectFade, Autoplay, Pagination } from "swiper/modules";
+import { EffectFade, Autoplay, Pagination, Navigation } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 import image1 from "../assets/ncrimage1.jpg";
@@ -11,8 +11,8 @@ import image5 from "../assets/ncrimage5.jpg";
 
 import "swiper/css";
 import "swiper/css/effect-fade";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 const slides = [
   { id: 1, image: image1 },
@@ -22,140 +22,127 @@ const slides = [
   { id: 5, image: image5 },
 ];
 
-const FadeSwiper = () => {
-  const [firstLoad, setFirstLoad] = useState(true);
-  useEffect(() => {
-    const timer = setTimeout(() => setFirstLoad(false), 1500);
-    return () => clearTimeout(timer);
-  }, []);
-
+const HeroSlider = () => {
   return (
-    <div
-      className="relative w-full min-h-screen bg-black overflow-hidden"
-      /* overflow-hidden prevents right-side scroll */
-    >
+    <section className="relative w-full overflow-hidden h-[620px] md:h-[720px]">
       <Swiper
-        modules={[Navigation, EffectFade, Autoplay, Pagination]}
+        modules={[EffectFade, Autoplay, Pagination, Navigation]}
         effect="fade"
         loop
-        autoplay={{ delay: 4000 }}
-        navigation={{ prevEl: ".swiper-button-prev", nextEl: ".swiper-button-next" }}
-        pagination={{ clickable: true, el: ".swiper-pagination" }}
-        className="w-full min-h-screen"
+        autoplay={{ delay: 4000, disableOnInteraction: false }}
+        pagination={{ clickable: true }}
+        navigation={{
+          prevEl: ".hero-prev",
+          nextEl: ".hero-next",
+        }}
+        className="h-full"
       >
         {slides.map((slide) => (
-          <SwiperSlide key={slide.id} className="relative min-h-screen">
+          <SwiperSlide key={slide.id} className="relative h-full">
+            {/* Background */}
             <img
               src={slide.image}
-              alt={`Slide ${slide.id}`}
-              className="w-full h-full min-h-screen object-cover select-none brightness-[0.35]"
+              alt="Campus"
+              className="absolute inset-0 w-full h-full object-cover"
             />
 
             {/* Overlay */}
-            <div
-              className="absolute top-[12%] left-0 w-full
-                         px-4 sm:px-6 lg:px-16
-                         flex flex-col lg:flex-row
-                         items-start lg:items-center
-                         gap-6 lg:gap-14
-                         z-10 fade-in-up"
-            >
-              {/* Text */}
-              <div className="text-white w-full lg:max-w-2xl space-y-3 sm:space-y-6">
-                <p className="text-red-500 tracking-widest uppercase text-sm sm:text-lg font-semibold">
-                  Building Brighter Futures
-                </p>
-                <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold leading-snug">
-                  Excellence in <br /> Education
-                </h1>
-                <p className="text-xs sm:text-xl text-gray-300 font-medium">
-                  Where Knowledge Meets Innovation
-                </p>
-                <p className="text-xs sm:text-lg text-gray-300 leading-relaxed">
-                  Our comprehensive curriculum and state-of-the-art facilities
-                  ensure holistic development of every student through
-                  research-based learning approaches.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 mt-4 sm:mt-8">
-                  <a
-                    href="/learn-more"
-                    className="bg-red-600 hover:bg-red-700 px-4 py-2 sm:px-8 sm:py-4 rounded-md text-sm sm:text-lg text-white font-semibold shadow-md transition"
-                  >
-                    Learn More →
-                  </a>
-                  <a
-                    href="/admissions"
-                    className="border-2 border-white hover:bg-white hover:text-black px-4 py-2 sm:px-8 sm:py-4 rounded-md text-sm sm:text-lg font-semibold transition"
-                  >
-                    Admissions Open
-                  </a>
-                </div>
-              </div>
+            <div className="absolute inset-0 bg-black/60" />
 
-              {/* Stats Card */}
-              <div
-                className="bg-black/20 border-2 border-white backdrop-blur-md
-                           rounded-2xl shadow-lg
-                           px-6 py-6 sm:px-10 sm:py-8 lg:px-14 lg:py-10
-                           flex flex-col sm:flex-row
-                           gap-6 sm:gap-16 items-center
-                           w-full sm:w-auto mt-6 lg:mt-0"
-              >
-                <div>
-                  <p className="text-red-500 text-xl sm:text-4xl font-bold">100+</p>
-                  <p className="text-gray-200 text-sm sm:text-base">Achievements</p>
-                </div>
-                <div>
-                  <p className="text-red-500 text-xl sm:text-4xl font-bold">50+</p>
-                  <p className="text-gray-200 text-sm sm:text-base">Programs</p>
-                </div>
-                <div>
-                  <p className="text-red-500 text-xl sm:text-4xl font-bold">98%</p>
-                  <p className="text-gray-200 text-sm sm:text-base">Success</p>
+            {/* Content */}
+            <div className="relative z-10 h-full flex items-center">
+              <div className="max-w-7xl mx-auto px-6 lg:px-16 w-full">
+                <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
+
+                  {/* LEFT TEXT */}
+                  <div className="text-white space-y-4">
+                    <p className="text-red-500 uppercase tracking-widest text-sm font-semibold">
+                      Building Brighter Futures
+                    </p>
+
+                    <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
+                      Excellence in <br /> Education
+                    </h1>
+
+                    <p className="text-gray-300 text-lg">
+                      Where Knowledge Meets Innovation
+                    </p>
+
+                    <p className="text-gray-300 max-w-xl">
+                      Our comprehensive curriculum and state-of-the-art facilities
+                      ensure holistic development of every student through
+                      research-based learning approaches.
+                    </p>
+
+                    <div className="flex gap-4 pt-4">
+                      <a
+                        href="/learn-more"
+                        className="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-md font-semibold transition"
+                      >
+                        Learn More →
+                      </a>
+                      <a
+                        href="/admissions"
+                        className="border border-white hover:bg-white hover:text-black px-6 py-3 rounded-md font-semibold transition"
+                      >
+                        Admissions Open
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* RIGHT STATS */}
+                  <div className="hidden lg:flex justify-end">
+                    <div className="bg-black/40 backdrop-blur-md border border-white/30 rounded-2xl px-12 py-8 flex gap-16 text-center">
+                      <div>
+                        <p className="text-red-500 text-4xl font-bold">100+</p>
+                        <p className="text-gray-200">Achievements</p>
+                      </div>
+                      <div>
+                        <p className="text-red-500 text-4xl font-bold">50+</p>
+                        <p className="text-gray-200">Programs</p>
+                      </div>
+                      <div>
+                        <p className="text-red-500 text-4xl font-bold">98%</p>
+                        <p className="text-gray-200">Results</p>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
           </SwiperSlide>
         ))}
-
-        <div className="swiper-pagination absolute bottom-6 flex justify-center w-full z-10"></div>
       </Swiper>
 
-      {/* Navigation Arrows */}
-      <div className="swiper-button-prev absolute left-3 lg:left-10 top-1/2 -translate-y-1/2 z-10 cursor-pointer text-2xl sm:text-3xl text-white bg-black/40 hover:bg-black p-2 rounded-full">
+      {/* Arrows */}
+      <button className="hero-prev absolute left-6 top-1/2 -translate-y-1/2 z-20 text-white text-3xl bg-black/40 hover:bg-black/70 p-3 rounded-full transition">
         <FaChevronLeft />
-      </div>
-      <div className="swiper-button-next absolute right-3 lg:right-10 top-1/2 -translate-y-1/2 z-10 cursor-pointer text-2xl sm:text-3xl text-white bg-black/40 hover:bg-black p-2 rounded-full">
+      </button>
+
+      <button className="hero-next absolute right-6 top-1/2 -translate-y-1/2 z-20 text-white text-3xl bg-black/40 hover:bg-black/70 p-3 rounded-full transition">
         <FaChevronRight />
-      </div>
+      </button>
 
-      {/* CSS */}
+      {/* Pagination */}
       <style jsx="true">{`
-        .zoom-animation { animation: zoomEffect 10s forwards linear; }
-        @keyframes zoomEffect { 0% {transform:scale(1);} 100% {transform:scale(1.1);} }
-
-        .fade-in-up { animation: fadeInUp 1.2s ease forwards; }
-        @keyframes fadeInUp {
-          0% { opacity:0; transform:translateY(40px); }
-          100% { opacity:1; transform:translateY(0); }
+        .swiper-pagination {
+          bottom: 18px !important;
         }
-
         .swiper-pagination-bullet {
-          width: 25px;
-          height: 5px;
-          background-color: white;
-          margin: 0 3px;
-          border-radius: 10px;
-          opacity: 0.6;
-          transition: all 0.3s ease;
+          width: 26px;
+          height: 4px;
+          background: #ffffff;
+          opacity: 0.4;
+          border-radius: 6px;
         }
         .swiper-pagination-bullet-active {
-          background-color: red;
+          background: red;
           opacity: 1;
         }
       `}</style>
-    </div>
+    </section>
   );
 };
 
-export default FadeSwiper;
+export default HeroSlider;
