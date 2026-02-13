@@ -7,6 +7,7 @@ import ActivitiesSection from '../../Components/ActivitiesSection.jsx';
 import GallerySection from '../../Components/GallerySection.jsx';
 import ConnectWithUs from '../../Components/ConnectSection.jsx';
 import SchoolCommittee from '../../Components/SchoolCommitee.jsx';
+import AlumniSection from '../../Components/AlumniSection.jsx';
 
 const HomePage = () => {
     return (
@@ -20,6 +21,7 @@ const HomePage = () => {
             <GallerySection />
             <br />
             <br />
+            <AlumniSection />
             <SchoolCommittee />
             <br />
             <ConnectWithUs />
